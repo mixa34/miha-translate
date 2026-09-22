@@ -1,19 +1,8 @@
-def localProperties = new Properties()
-def localPropertiesFile = rootProject.file('local.properties')
-if (localPropertiesFile.exists()) {
-    localPropertiesFile.withReader('UTF-8') { reader ->
-        localProperties.load(reader)
-    }
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'dev.flutter.flutter-gradle-plugin'
 }
-
-def flutterRoot = localProperties.getProperty('flutter.sdk')
-if (flutterRoot == null) {
-    throw new GradleException('Flutter SDK not found. Define location with flutter.sdk in the local.properties file.')
-}
-
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     namespace "com.simplytranslate_mobile"
@@ -35,7 +24,12 @@ android {
 
     defaultConfig {
         applicationId 'com.simplytranslate_mobile'
-        minSdkVersion 21
+        // Flutter 3.47.5 hard-errors below 23 (DependencyVersionChecker
+        // errorMinSdkVersion) and its build migrator rewrites any literal value
+        // from 16-23 to flutter.minSdkVersion, which is 24. 24 is therefore the
+        // real floor; stating it explicitly keeps the migrator from rewriting
+        // this file on every build. Raised from 21: drops Android 5.0-6.0.
+        minSdkVersion 24
         targetSdkVersion 33
         versionCode 13
         versionName '1.4.4'
@@ -67,8 +61,4 @@ android {
 
 flutter {
     source '../..'
-}
-
-dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

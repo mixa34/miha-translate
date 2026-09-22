@@ -46,6 +46,7 @@ app.*.map.json
 
 # key password
 android/local.properties
+android/.kotlin/
 
 # Node Modules
 node_modules/

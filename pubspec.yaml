@@ -13,11 +13,10 @@ dependencies:
   http: ^1.1.0
   get_storage: ^2.0.3
   audioplayers: ^5.0.0
-  package_info_plus: ^4.0.1
+  package_info_plus: ^10.0.0
   url_launcher: ^6.0.12
   intl: ^0.18.0
   path_provider: ^2.0.8
-  permission_handler: ^10.2.0
   html: ^0.15.3
   i18n: ^4.0.6
 
@@ -28,6 +27,12 @@ flutter:
     - assets/ca/
     - assets/settings/
   
+dependency_overrides:
+  # get_storage 2.1.1 is its latest release and pins `get >=4.0.0 <6.0.0`.
+  # The resolved get 4.6.5 uses ThemeData.backgroundColor, removed from Flutter,
+  # so it cannot compile. 4.7.x fixes this and stays inside get_storage's range.
+  get: ^4.7.2
+
 dev_dependencies:
   build_runner: any
   flutter_test:

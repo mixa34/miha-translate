@@ -17,6 +17,18 @@ class _TranslationOutputState extends State<GoogleTranslationOutput> {
   @override
   Widget build(BuildContext context) {
     Map translatedText = googleOutput;
+
+    // translate_() sets 'error' when the request or the response could not be
+    // handled. Rendering it here is what distinguishes a genuine failure from a
+    // legitimately empty result -- previously both showed an empty box.
+    final String? errorKind = translatedText['error'];
+    final String? errorMessage = errorKind == null
+        ? null
+        : errorKind == 'network'
+            ? i18n().main.no_internet
+            : i18n().main.something_went_wrong;
+    final String displayed = errorMessage ?? (translatedText['text'] ?? '');
+
     return Container(
       decoration: BoxDecoration(
         color: theme == Brightness.dark ? Color(0xff131618) : null,
@@ -35,14 +47,17 @@ class _TranslationOutputState extends State<GoogleTranslationOutput> {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
               child: Scrollbar(
                 child: Directionality(
-                  textDirection: translatedText.containsKey('text')
-                      ? intl.Bidi.detectRtlDirectionality(translatedText['text'])
+                  textDirection: displayed.isEmpty
+                      ? TextDirection.rtl
+                      : intl.Bidi.detectRtlDirectionality(displayed)
                           ? TextDirection.rtl
-                          : TextDirection.ltr
-                      : TextDirection.rtl,
+                          : TextDirection.ltr,
                   child: SelectableText(
-                    translatedText.containsKey('text') ? translatedText['text'] : '',
-                    style: TextStyle(fontSize: _outputFontSize),
+                    displayed,
+                    style: TextStyle(
+                      fontSize: _outputFontSize,
+                      color: errorMessage == null ? null : Theme.of(context).colorScheme.error,
+                    ),
                     minLines: 7,
                   ),
                 ),
