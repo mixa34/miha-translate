@@ -10,7 +10,7 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:simplytranslate_mobile/simplytranslate.dart';
+import 'package:miha_translate/simplytranslate.dart';
 
 /// Recovers the text/from/to actually carried by an `f.req=` form body.
 List<dynamic> decodeRequestBody(String body) {

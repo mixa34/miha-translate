@@ -1,5 +1,5 @@
-name: simplytranslate_mobile
-description: An alternative frontend to Google Translate
+name: miha_translate
+description: Miha Translate, an alternative frontend to Google Translate based on SimplyTranslate Mobile.
 
 publish_to: 'none'
 version: 1.4.4+1

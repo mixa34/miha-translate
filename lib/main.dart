@@ -5,8 +5,8 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:simplytranslate_mobile/screens/about/about_screen.dart';
-import 'package:simplytranslate_mobile/screens/settings/settings_screen.dart';
+import 'package:miha_translate/screens/about/about_screen.dart';
+import 'package:miha_translate/screens/settings/settings_screen.dart';
 import 'data.dart';
 import 'screens/translate/translate.dart';
 
@@ -277,7 +277,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         ),
       ),
       themeMode: theme == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
-      title: 'SimplyTranslate Mobile',
+      title: 'Miha Translate',
       home: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size(0, 60),
@@ -312,7 +312,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               ],
               elevation: 3,
               iconTheme: IconThemeData(),
-              title: const Text('SimplyTranslate Mobile'),
+              title: const Text('Miha Translate'),
             ),
           ),
         ),

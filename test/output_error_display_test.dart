@@ -7,8 +7,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:simplytranslate_mobile/data.dart';
-import 'package:simplytranslate_mobile/screens/translate/widgets/output/output.dart';
+import 'package:miha_translate/data.dart';
+import 'package:miha_translate/screens/translate/widgets/output/output.dart';
 
 Widget harness() => MaterialApp(
       home: Scaffold(body: GoogleTranslationOutput()),

@@ -1,5 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.simplytranslate_mobile">
-  <application android:label="SimplyTranslate Mobile" android:icon="@mipmap/ic_launcher">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.miha.translate">
+  <application android:label="Miha Translate" android:icon="@mipmap/ic_launcher">
     <activity android:name=".MainActivity" android:launchMode="singleTop" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize" android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -7,7 +7,7 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".UppercaseActivity" android:label="SimplyTranslate Mobile" android:exported="true">
+    <activity android:name=".UppercaseActivity" android:label="Miha Translate" android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.PROCESS_TEXT" />
         <category android:name="android.intent.category.DEFAULT" />
@@ -15,7 +15,7 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".SharedActivity" android:label="SimplyTranslate Mobile" android:exported="true">
+    <activity android:name=".SharedActivity" android:label="Miha Translate" android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.SEND" />
         <category android:name="android.intent.category.DEFAULT" />

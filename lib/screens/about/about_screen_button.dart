@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simplytranslate_mobile/data.dart';
+import 'package:miha_translate/data.dart';
 
 class AboutButton extends StatelessWidget {
   final IconData icon;

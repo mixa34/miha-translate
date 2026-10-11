@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simplytranslate_mobile/screens/settings/widgets/settings_button.dart';
+import 'package:miha_translate/screens/settings/widgets/settings_button.dart';
 import '../../../data.dart';
 
 class SelectTheme extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simplytranslate_mobile/simplytranslate.dart';
+import 'package:miha_translate/simplytranslate.dart';
 import '/data.dart';
 
 class GoogleLang extends StatefulWidget {

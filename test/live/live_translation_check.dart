@@ -10,7 +10,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
-import 'package:simplytranslate_mobile/simplytranslate.dart';
+import 'package:miha_translate/simplytranslate.dart';
 
 void main() {
   test('raw endpoint reachability and status', () async {

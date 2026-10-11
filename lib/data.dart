@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '/simplytranslate.dart' as simplytranslate;
-export 'package:simplytranslate_mobile/messages.dart';
+export 'package:miha_translate/messages.dart';
 
 const greyColor = const Color(0xff131618);
 const greenColor = const Color(0xff3fb274);
@@ -59,7 +59,7 @@ Function(String)? changeToTxt;
 String newText = "";
 
 Future<void> getSharedText() async {
-  const methodChannel = MethodChannel('com.simplytranslate_mobile/translate');
+  const methodChannel = MethodChannel('com.miha.translate/translate');
   try {
     final answer = await methodChannel.invokeMethod('getText');
     if (answer != '') {

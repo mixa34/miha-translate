@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace "com.simplytranslate_mobile"
+    namespace "com.miha.translate"
     compileSdkVersion flutter.compileSdkVersion
 
     lintOptions {
@@ -23,7 +23,7 @@ android {
     }
 
     defaultConfig {
-        applicationId 'com.simplytranslate_mobile'
+        applicationId 'com.miha.translate'
         // Flutter 3.47.5 hard-errors below 23 (DependencyVersionChecker
         // errorMinSdkVersion) and its build migrator rewrites any literal value
         // from 16-23 to flutter.minSdkVersion, which is 24. 24 is therefore the

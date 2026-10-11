@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:simplytranslate_mobile/data.dart';
+import 'package:miha_translate/data.dart';
 
 const userAgent = "Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101 Firefox/102.0";
 

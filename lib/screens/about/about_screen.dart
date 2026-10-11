@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:simplytranslate_mobile/data.dart';
+import 'package:miha_translate/data.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'about_screen_button.dart';
 

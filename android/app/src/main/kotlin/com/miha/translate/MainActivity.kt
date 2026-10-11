@@ -1,4 +1,4 @@
-package com.simplytranslate_mobile
+package com.miha.translate
 
 import android.app.Activity
 import android.content.Context
@@ -27,7 +27,7 @@ import android.os.Parcelable
 
 class MainActivity: FlutterActivity() {
 
-    private val TRANSLATE_CHANNEL_NAME = "com.simplytranslate_mobile/translate"
+    private val TRANSLATE_CHANNEL_NAME = "com.miha.translate/translate"
     private var translateChannel: MethodChannel? = null
 
     override fun configureFlutterEngine(@NotNull flutterEngine: FlutterEngine) {
@@ -66,7 +66,7 @@ class UppercaseActivity : Activity() {
 
        text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT).toString()
 
-        val launchIntent = packageManager.getLaunchIntentForPackage("com.simplytranslate_mobile")
+        val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         launchIntent?.let { startActivity(it) }
         finish()
 
@@ -81,7 +81,7 @@ class SharedActivity : Activity() {
 
         text = intent.getCharSequenceExtra(Intent.EXTRA_TEXT).toString()
 
-        val launchIntent = packageManager.getLaunchIntentForPackage("com.simplytranslate_mobile")
+        val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         launchIntent?.let { startActivity(it) }
         finish()
 
