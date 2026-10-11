@@ -71,7 +71,7 @@ class UppercaseActivity : Activity() {
         finish()
 
     }
-    
+
 }
 
 class SharedActivity : Activity() {
@@ -89,7 +89,7 @@ class SharedActivity : Activity() {
 
 }
 
-  
+
 // class Application : FlutterApplication(), PluginRegistrantCallback {
 //     override fun onCreate() {
 //         super.onCreate()
