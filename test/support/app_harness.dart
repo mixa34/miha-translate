@@ -23,6 +23,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:miha_translate/data.dart';
 import 'package:miha_translate/main.dart';
+import 'package:miha_translate/screens/translate/widgets/tts_playback.dart';
 import 'package:miha_translate/simplytranslate.dart' as engine;
 
 const translateChannel = MethodChannel('com.miha.translate/translate');
@@ -180,10 +181,7 @@ Future<FakeTranslationServer> resetApp({Map<String, String> stored = const {}}) 
   googleInCtrl.text = '';
   googleOutput = {};
   loading = false;
-  isTtsInCanceled = false;
-  ttsInputloading = false;
-  ttsOutloading = false;
-  isTtsOutputCanceled = false;
+  stopAllTts();
   isFirst = true;
 
   pendingSharedText = '';

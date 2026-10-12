@@ -4,6 +4,7 @@ import 'tts_button.dart';
 import '/data.dart';
 import 'delete_button.dart';
 import 'character_limit.dart';
+import '../tts_playback.dart';
 
 class GoogleTranslationInput extends StatefulWidget {
   const GoogleTranslationInput({Key? key}) : super(key: key);
@@ -70,6 +71,7 @@ class _TranslationInputState extends State<GoogleTranslationInput> {
                 // The edit supersedes every earlier request at once, so none of
                 // them can overwrite the screen during the debounce window.
                 final generation = beginTranslation();
+                stopAllTts();
                 if (loading) setStateOverlord(() => loading = false);
                 Future.delayed(Duration(seconds: 1), () async {
                   // Superseded by a later edit, Clear, Swap, a language change

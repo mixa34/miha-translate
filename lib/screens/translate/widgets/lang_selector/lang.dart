@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '/data.dart';
 import '../../translate_actions.dart';
+import '../tts_playback.dart';
 
 class GoogleLang extends StatefulWidget {
   final FromTo fromto;
@@ -175,11 +176,13 @@ class _GoogleLangState extends State<GoogleLang> {
                 FocusScope.of(context).unfocus();
                 txtCtrl.text = widget.fromto == FromTo.from ? fromSelLangMap[fromLangVal]! : toSelLangMap[toLangVal]!;
               } else if (chosenOne != (widget.fromto == FromTo.from ? toLangVal : fromLangVal)) {
+                stopAllTts();
                 FocusScope.of(context).unfocus();
                 session.write(widget.fromto == FromTo.from ? 'from_lang' : 'to_lang', chosenOne);
                 setStateOverlord(() => widget.fromto == FromTo.from ? fromLangVal = chosenOne! : toLangVal = chosenOne!);
                 txtCtrl.text = widget.fromto == FromTo.from ? fromSelLangMap[chosenOne]! : toSelLangMap[chosenOne]!;
               } else {
+                stopAllTts();
                 switchVals();
                 FocusScope.of(context).unfocus();
               }

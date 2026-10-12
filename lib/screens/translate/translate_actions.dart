@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/data.dart';
+import 'widgets/tts_playback.dart';
 
 /// Selects [code] as the source or target language and re-translates the
 /// current input.
@@ -7,6 +8,7 @@ import '/data.dart';
 /// Choosing the language that is already selected on the other side swaps the
 /// two instead (see [switchVals]), without re-translating.
 Future<void> selectLanguage(FromTo fromto, String code) async {
+  stopAllTts();
   final option = fromto == FromTo.from ? fromSelLangMap[code] : toSelLangMap[code];
   if (option == (fromto == FromTo.from ? fromSelLangMap[toLangVal] : toSelLangMap[fromLangVal])) {
     // The pair changed, so nothing requested for the old pair may be shown.
@@ -61,12 +63,7 @@ int? _pendingSwap;
 Future<void> swapLanguages(BuildContext context) async {
   final pending = _pendingSwap;
   if (pending != null && isCurrentTranslation(pending)) return;
-  setStateOverlord(() {
-    isTtsInCanceled = true;
-    ttsOutloading = false;
-    isTtsOutputCanceled = true;
-    ttsInputloading = false;
-  });
+  stopAllTts();
   final input = googleInCtrl.text;
   if (input.isEmpty || input.length > 5000) {
     setStateOverlord(cancelTranslations);
@@ -131,14 +128,11 @@ Future<void> swapLanguages(BuildContext context) async {
 }
 
 /// Clears the input and the translation, cancelling any pending translation
-/// and text-to-speech request.
+/// and stopping both voices.
 void clearInput(BuildContext context) {
+  stopAllTts();
   setStateOverlord(() {
     cancelTranslations();
-    ttsInputloading = false;
-    isTtsInCanceled = true;
-    ttsOutloading = false;
-    isTtsOutputCanceled = true;
     googleInCtrl.text = '';
     googleOutput = {};
   });

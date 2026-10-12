@@ -41,13 +41,37 @@ class TranslationException implements Exception {
 /// touching the network. Production always uses a plain client.
 http.Client httpClient = http.Client();
 
+/// Fetches spoken audio for [text] in [language].
+///
+/// Throws [TranslationException] (upstream) when Google answers with anything
+/// other than audio -- a non-200 status such as the 429 CAPTCHA page, an empty
+/// body, or a text/HTML/JSON document -- so that it is never handed to the
+/// audio player. Network failures surface as the usual http/socket exceptions,
+/// and a request that does not answer within [requestTimeout] as a
+/// [TimeoutException].
 Future<Uint8List> tts(String text, String language) async {
   text = Uri.encodeQueryComponent(text);
   final url = Uri.parse(
     "https://translate.google.com/translate_tts?tl=$language&q=$text&client=tw-ob",
   );
-  final response = await http.get(url, headers: {"User-Agent": userAgent});
-  return response.bodyBytes;
+  final response = await http.get(url, headers: {"User-Agent": userAgent}).timeout(requestTimeout);
+  if (response.statusCode != 200) {
+    throw TranslationException(
+      TranslationErrorKind.upstream,
+      'GET translate_tts returned HTTP ${response.statusCode}',
+    );
+  }
+  final body = response.bodyBytes;
+  final contentType = (response.headers['content-type'] ?? '').toLowerCase();
+  final firstByte = body.firstWhere((b) => b != 0x20 && b != 0x09 && b != 0x0a && b != 0x0d, orElse: () => -1);
+  // '<' starts an HTML/XML document and '{' a JSON one; neither is audio.
+  if (body.isEmpty || contentType.startsWith('text/') || contentType.contains('json') || firstByte == 0x3c || firstByte == 0x7b) {
+    throw TranslationException(
+      TranslationErrorKind.upstream,
+      'translate_tts returned no audio (${body.length} bytes, content-type "$contentType")',
+    );
+  }
+  return body;
 }
 
 /// Builds the `f.req` form body for the MkEWBc RPC.

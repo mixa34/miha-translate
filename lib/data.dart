@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '/simplytranslate.dart' as simplytranslate;
+import 'screens/translate/widgets/tts_playback.dart';
 export 'package:miha_translate/messages.dart';
 
 const greyColor = const Color(0xff131618);
@@ -125,14 +126,16 @@ Future<void> getSharedText() async {
     if (answer != '') {
       final _translationInput = answer.toString();
       final generation = beginTranslation();
+      stopAllTts();
 
       setStateOverlord(() {
         googleInCtrl.text = _translationInput;
         loading = true;
       });
 
-      final translatedText = await runTranslation(generation, _translationInput, 'auto', toLangVal);
-      if (isCurrentTranslation(generation)) setStateOverlord(() => googleOutput = translatedText);
+      final to = toLangVal;
+      final translatedText = await runTranslation(generation, _translationInput, 'auto', to);
+      if (isCurrentTranslation(generation)) setGoogleOutput(translatedText, _translationInput, 'auto', to);
     }
   } catch (_) {
     refreshLoading();
@@ -141,11 +144,7 @@ Future<void> getSharedText() async {
 
 BuildContext? translateContext;
 
-bool isTtsInCanceled = false;
-bool ttsInputloading = false;
 
-bool ttsOutloading = false;
-bool isTtsOutputCanceled = false;
 
 bool isFirst = true;
 

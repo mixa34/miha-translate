@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:miha_translate/screens/about/about_screen.dart';
 import 'package:miha_translate/screens/settings/settings_screen.dart';
+import 'package:miha_translate/screens/translate/widgets/tts_playback.dart';
 import 'data.dart';
 import 'screens/translate/translate.dart';
 
@@ -52,6 +53,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    unawaited(disposeTts());
     super.dispose();
   }
 
