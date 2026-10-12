@@ -18,17 +18,8 @@ class GoogleSwitchLang extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               ),
               onPressed: enabled ? () => swapLanguages(context) : null,
-              child: Text(
-                '<-->',
-                style: TextStyle(
-                  fontSize: 18,
-                  color: enabled
-                      ? theme == Brightness.dark
-                          ? Colors.white
-                          : Colors.black
-                      : lightThemeGreyColor,
-                ),
-              ),
+              // Colour from the button: its foreground, or the disabled tone.
+              child: const Text('<-->', style: TextStyle(fontSize: 18)),
             ),
           );
         },

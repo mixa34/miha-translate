@@ -97,6 +97,15 @@ abstract final class AppTheme {
   static Color cardColor(ColorScheme scheme) =>
       scheme.brightness == Brightness.light ? scheme.surfaceContainerLowest : scheme.surfaceContainer;
 
+  /// The bordered area around the source text and around the translation:
+  /// the card surface with a subtle outline. The 1.5 px border width is the
+  /// one the layout was built with.
+  static BoxDecoration translationAreaDecoration(ThemeData theme) => BoxDecoration(
+        color: cardColor(theme.colorScheme),
+        border: Border.all(color: theme.colorScheme.outlineVariant, width: 1.5),
+        borderRadius: BorderRadius.circular(AppRadius.medium),
+      );
+
   static ThemeData light() => _build(lightScheme);
   static ThemeData dark() => _build(darkScheme);
   static ThemeData of(Brightness brightness) => brightness == Brightness.light ? light() : dark();

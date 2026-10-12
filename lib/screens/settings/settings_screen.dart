@@ -30,7 +30,7 @@ class _SettingsState extends State<Settings> {
                 i18n().main.appearance,
                 style: textStyle,
               ),
-              line,
+              sectionDivider,
               SelectTheme(),
             ],
           ),

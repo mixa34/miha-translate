@@ -3,6 +3,8 @@ import 'package:intl/intl.dart' as intl;
 import '/data.dart';
 import 'copy_button.dart';
 import 'tts_button.dart';
+// Prefixed: data.dart's `AppTheme` enum is the saved theme preference.
+import '/theme/app_theme.dart' as design;
 
 class GoogleTranslationOutput extends StatefulWidget {
   const GoogleTranslationOutput({Key? key}) : super(key: key);
@@ -30,15 +32,7 @@ class _TranslationOutputState extends State<GoogleTranslationOutput> {
     final String displayed = errorMessage ?? (translatedText['text'] ?? '');
 
     return Container(
-      decoration: BoxDecoration(
-        color: theme == Brightness.dark ? Color(0xff131618) : null,
-        border: Border.all(
-          color: theme == Brightness.dark ? Color(0xff495057) : Color(0xffa9a9a9),
-          width: 1.5,
-          style: BorderStyle.solid,
-        ),
-        borderRadius: BorderRadius.circular(2),
-      ),
+      decoration: design.AppTheme.translationAreaDecoration(Theme.of(context)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

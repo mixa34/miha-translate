@@ -88,9 +88,9 @@ class _GoogleLangState extends State<GoogleLang> {
                 width: size.width / 3 + 10,
                 height: size.height / 2 <= (options.length) * (36 + 25) ? size.height / 2 : null,
                 margin: const EdgeInsets.only(top: 10),
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: Colors.transparent,
-                  boxShadow: const [const BoxShadow(offset: Offset(0, 0), blurRadius: 5)],
+                  boxShadow: [BoxShadow(color: Theme.of(context).colorScheme.shadow, blurRadius: 5)],
                 ),
                 child: Scrollbar(
                   child: SingleChildScrollView(
@@ -99,7 +99,7 @@ class _GoogleLangState extends State<GoogleLang> {
                       children: options
                           .map(
                             (option) => Container(
-                              color: theme == Brightness.dark ? greyColor : Colors.white,
+                              color: Theme.of(context).popupMenuTheme.color,
                               child: GestureDetector(
                                 onTap: () async {
                                   FocusScope.of(context).unfocus();
@@ -121,11 +121,11 @@ class _GoogleLangState extends State<GoogleLang> {
                                         final (last1, last2, last3) = lastUsed(widget.fromto);
                                         if (widget.fromto == FromTo.from) {
                                           if (option == fromSelLangMap[last1] || option == fromSelLangMap[last2] || option == fromSelLangMap[last3]) {
-                                            return greenColor;
+                                            return Theme.of(context).colorScheme.primary;
                                           }
                                         } else {
                                           if (option == toSelLangMap[last1] || option == toSelLangMap[last2] || option == toSelLangMap[last3]) {
-                                            return greenColor;
+                                            return Theme.of(context).colorScheme.primary;
                                           }
                                         }
                                       }(),

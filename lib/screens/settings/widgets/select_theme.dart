@@ -45,7 +45,7 @@ class SelectTheme extends StatelessWidget {
           context: context,
           builder: (context) => StatefulBuilder(
             builder: (context, setState) => AlertDialog(
-              contentTextStyle: TextStyle(color: theme == Brightness.dark ? Colors.white : Colors.black, fontSize: 20),
+              contentTextStyle: Theme.of(context).textTheme.bodyLarge?.copyWith(color: Theme.of(context).colorScheme.onSurface, fontSize: 20),
               contentPadding: EdgeInsets.all(5),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -114,8 +114,8 @@ class SelectTheme extends StatelessWidget {
           ),
         );
       },
-      icon: theme == Brightness.dark ? Icons.dark_mode : Icons.light_mode,
-      iconColor: Colors.yellow[800]!,
+      icon: Theme.of(context).brightness == Brightness.dark ? Icons.dark_mode : Icons.light_mode,
+      iconColor: Theme.of(context).colorScheme.primary,
       title: i18n().main.theme,
       content: themeValue,
     );

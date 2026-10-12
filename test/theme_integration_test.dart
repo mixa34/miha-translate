@@ -1,7 +1,7 @@
-// Phase 4.3B.2: the app uses the centralized Material 3 themes
-// (lib/theme/app_theme.dart). Theme persistence and "Follow system" keep their
-// existing behaviour; see also theme_restore_*_test.dart and group F of
-// main_screen_regression_test.dart.
+// Phase 4.3B.2/4.3B.3: the app uses the centralized Material 3 themes
+// (lib/theme/app_theme.dart), selected by the saved preference: light, dark,
+// or "Follow system" (ThemeMode.system, tracked live). See also
+// theme_restore_*_test.dart and group F of main_screen_regression_test.dart.
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,6 +25,13 @@ void main() {
   tearDown(() => TestWidgetsFlutterBinding.instance.platformDispatcher.clearPlatformBrightnessTestValue());
 
   ThemeData rendered(WidgetTester tester) => Theme.of(tester.element(find.byType(Scaffold).first));
+  AppTheme preference(Brightness mode) => mode == Brightness.dark ? AppTheme.dark : AppTheme.light;
+
+  /// The colour actually painted behind the source text.
+  Color inputAreaColor(WidgetTester tester) {
+    final area = find.ancestor(of: inputField, matching: find.byType(Container)).first;
+    return (tester.widget<Container>(area).decoration as BoxDecoration).color!;
+  }
 
   testWidgets('MaterialApp is configured with AppTheme.light() and AppTheme.dark()', (tester) async {
     await pumpApp(tester);
@@ -37,7 +44,7 @@ void main() {
 
   for (final mode in Brightness.values) {
     testWidgets('the ${mode.name} theme is rendered when selected', (tester) async {
-      theme = mode;
+      themeRadio = preference(mode);
       await pumpApp(tester);
 
       final current = rendered(tester);
@@ -46,7 +53,7 @@ void main() {
     });
 
     testWidgets('the overflow menu icon is clearly visible on the ${mode.name} app bar', (tester) async {
-      theme = mode;
+      themeRadio = preference(mode);
       await pumpApp(tester);
 
       final icon = find.byIcon(Icons.more_vert);
@@ -64,25 +71,42 @@ void main() {
     });
   }
 
-  // Current behaviour, kept until Phase 4.3B.3: "Follow system" takes the
-  // platform brightness when it is chosen or restored, and does not track
-  // later system changes while the app runs.
-  testWidgets('Follow system keeps the brightness it started with', (tester) async {
-    tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
+  testWidgets('Follow system tracks Android light/dark changes live and keeps the preference', (tester) async {
+    await resetApp(stored: {'from_lang': 'en', 'to_lang': 'sr', 'theme': 'system'});
     themeRadio = AppTheme.system;
-    theme = Brightness.dark; // what main() restores for "system" on a dark device
+    tester.platformDispatcher.platformBrightnessTestValue = Brightness.light;
     await pumpApp(tester);
+    expect(rendered(tester).colorScheme, design.AppTheme.lightScheme);
+    expect(inputAreaColor(tester), design.AppTheme.cardColor(design.AppTheme.lightScheme));
+
+    tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
+    await tester.pumpAndSettle();
     expect(rendered(tester).colorScheme, design.AppTheme.darkScheme);
+    expect(inputAreaColor(tester), design.AppTheme.cardColor(design.AppTheme.darkScheme), reason: 'widgets follow without a restart');
 
     tester.platformDispatcher.platformBrightnessTestValue = Brightness.light;
     await tester.pumpAndSettle();
-
-    expect(rendered(tester).brightness, Brightness.dark);
-    expect(rendered(tester).colorScheme, design.AppTheme.darkScheme);
+    expect(rendered(tester).colorScheme, design.AppTheme.lightScheme);
+    expect(session.read('theme'), 'system', reason: 'the saved preference is not overwritten');
+    expect(themeRadio, AppTheme.system);
   });
 
+  for (final mode in Brightness.values) {
+    testWidgets('an explicit ${mode.name} theme ignores platform changes', (tester) async {
+      themeRadio = preference(mode);
+      tester.platformDispatcher.platformBrightnessTestValue = Brightness.light;
+      await pumpApp(tester);
+      tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
+      await tester.pumpAndSettle();
+      expect(rendered(tester).brightness, mode);
+      tester.platformDispatcher.platformBrightnessTestValue = Brightness.light;
+      await tester.pumpAndSettle();
+      expect(rendered(tester).brightness, mode);
+    });
+  }
+
   testWidgets('translation still works under the new theme', (tester) async {
-    theme = Brightness.dark;
+    themeRadio = AppTheme.dark;
     await pumpApp(tester);
     await tester.enterText(inputField, 'Hello');
     await tester.pump(debounce);

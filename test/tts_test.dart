@@ -43,6 +43,9 @@ void main() {
   Finder spinner(Type side) => find.descendant(of: find.byType(side), matching: find.byType(CircularProgressIndicator));
   IconButton speakerButton(WidgetTester tester, Type side) => tester.widget<IconButton>(speaker(side));
   IconData speakerIcon(WidgetTester tester, Type side) => (speakerButton(tester, side).icon as Icon).icon!;
+  // Over the limit the speaker uses the Material disabled tone.
+  Color disabledTone(WidgetTester tester, Type side) =>
+      Theme.of(tester.element(speaker(side))).colorScheme.onSurface.withValues(alpha: 0.38);
 
   Future<void> settle(WidgetTester tester) => settleRequests(tester);
 
@@ -472,7 +475,7 @@ void main() {
       await pumpApp(tester);
       await tester.enterText(inputField, 'a' * 201);
       await tester.pump();
-      expect((speakerButton(tester, TtsInput).icon as Icon).color, Colors.grey);
+      expect((speakerButton(tester, TtsInput).icon as Icon).color, disabledTone(tester, TtsInput));
 
       await tester.ensureVisible(speaker(TtsInput));
       await tapSpeaker(tester, TtsInput);
@@ -496,7 +499,7 @@ void main() {
       await pumpApp(tester);
       await typeAndTranslate(tester, 'a' * 198); // translated as "sr:" + 198 = 201 characters
       expect((googleOutput['text'] as String).length, 201);
-      expect((speakerButton(tester, TtsOutput).icon as Icon).color, Colors.grey);
+      expect((speakerButton(tester, TtsOutput).icon as Icon).color, disabledTone(tester, TtsOutput));
 
       await tester.ensureVisible(speaker(TtsOutput));
       await tapSpeaker(tester, TtsOutput);

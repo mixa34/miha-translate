@@ -605,7 +605,7 @@ void main() {
     testWidgets('Dark, Light and Follow system are written to the theme key and applied', (tester) async {
       tester.platformDispatcher.platformBrightnessTestValue = Brightness.dark;
       await pumpApp(tester);
-      expect(rendered(tester), Brightness.light);
+      expect(rendered(tester), Brightness.dark, reason: 'Follow system is the default and follows the dark device');
 
       await chooseTheme(tester, 'Dark');
       expect(session.read('theme'), 'dark');

@@ -11,6 +11,7 @@ class Definitions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
       child: Column(
@@ -22,11 +23,11 @@ class Definitions extends StatelessWidget {
               i18n().main.definitions,
               style: TextStyle(fontSize: 24),
             ),
-            line,
+            sectionDivider,
             for (String type in translatedText['definitions'].keys) ...[
               Text(
                 type.capitalize(),
-                style: TextStyle(fontSize: 20, color: theme == Brightness.dark ? Colors.cyanAccent : Color(0xff007979)),
+                style: TextStyle(fontSize: 20, color: scheme.tertiary),
               ),
               SizedBox(height: 8),
               for (int i = 0; i < translatedText['definitions'][type].length; i++) ...[
@@ -47,7 +48,7 @@ class Definitions extends StatelessWidget {
                               '"${translatedText['definitions'][type][i]['use-in-sentence']}"',
                               style: TextStyle(
                                 fontSize: 16,
-                                color: theme == Brightness.dark ? Colors.yellow : Color(0xff009902),
+                                color: scheme.primary,
                               ),
                             ),
                           ],
@@ -61,14 +62,14 @@ class Definitions extends StatelessWidget {
                                       text: '$x: ',
                                       style: TextStyle(
                                         fontSize: 16,
-                                        color: theme == Brightness.dark ? Colors.cyanAccent : Color(0xff007979),
+                                        color: scheme.tertiary,
                                       ),
                                     ),
                                   TextSpan(
                                     text: translatedText['definitions'][type][i]['synonyms'][x].join(', '),
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: theme == Brightness.dark ? Color(0xffdeb887) : Color(0xff804700),
+                                      color: scheme.onSurfaceVariant,
                                     ),
                                   )
                                 ]),

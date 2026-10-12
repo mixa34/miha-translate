@@ -5,6 +5,8 @@ import '/data.dart';
 import 'delete_button.dart';
 import 'character_limit.dart';
 import '../tts_playback.dart';
+// Prefixed: data.dart's `AppTheme` enum is the saved theme preference.
+import '/theme/app_theme.dart' as design;
 
 class GoogleTranslationInput extends StatefulWidget {
   const GoogleTranslationInput({Key? key}) : super(key: key);
@@ -39,15 +41,7 @@ class _TranslationInputState extends State<GoogleTranslationInput> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: theme == Brightness.dark ? const Color(0xff131618) : null,
-        border: Border.all(
-          color: theme == Brightness.dark ? const Color(0xff495057) : lightThemeGreyColor,
-          width: 1.5,
-          style: BorderStyle.solid,
-        ),
-        borderRadius: BorderRadius.circular(2),
-      ),
+      decoration: design.AppTheme.translationAreaDecoration(Theme.of(context)),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -86,6 +80,8 @@ class _TranslationInputState extends State<GoogleTranslationInput> {
                 });
               },
               decoration: InputDecoration(
+                // The area's own surface shows through, like the translation's.
+                filled: false,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
                 enabledBorder: InputBorder.none,
                 focusedBorder: InputBorder.none,

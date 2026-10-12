@@ -9,6 +9,7 @@ class Translations extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
       child: Directionality(
@@ -25,13 +26,13 @@ class Translations extends StatelessWidget {
                 i18n().main.translations,
                 style: TextStyle(fontSize: 24),
               ),
-              line,
+              sectionDivider,
               for (String type in translatedText['translations'].keys) ...[
                 Text(
                   type.capitalize(),
                   style: TextStyle(
                     fontSize: 20,
-                    color: theme == Brightness.dark ? Colors.cyanAccent : Color(0xff007979),
+                    color: scheme.tertiary,
                   ),
                 ),
                 SizedBox(height: 8),
@@ -59,13 +60,13 @@ class Translations extends StatelessWidget {
                                     text: "● $word: ",
                                     style: TextStyle(
                                       fontSize: 16,
-                                      color: theme == Brightness.dark ? Colors.cyanAccent : Color(0xff007979),
+                                      color: scheme.tertiary,
                                     ),
                                     children: [
                                       TextSpan(
                                         text: translatedText['translations'][type][word]['words'].join(', '),
                                         style: TextStyle(
-                                          color: theme == Brightness.dark ? Color(0xffdeb887) : Color(0xff804700),
+                                          color: scheme.onSurfaceVariant,
                                         ),
                                       ),
                                       TextSpan(text: ' '),
@@ -79,10 +80,8 @@ class Translations extends StatelessWidget {
                                   height: 7,
                                   width: 20,
                                   color: int.parse(translatedText['translations'][type][word]['frequency'][0]) > i
-                                      ? theme == Brightness.dark
-                                          ? Colors.cyanAccent
-                                          : Color(0xff007979)
-                                      : Color(0xff007979).withAlpha(60),
+                                      ? scheme.tertiary
+                                      : scheme.outlineVariant,
                                 ),
                             ],
                           ),

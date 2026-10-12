@@ -101,7 +101,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       theme: design.AppTheme.light(),
       darkTheme: design.AppTheme.dark(),
-      themeMode: theme == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
+      // "Follow system" is ThemeMode.system, so the app follows Android's
+      // light/dark setting live; the saved preference is never changed by it.
+      themeMode: switch (themeRadio) {
+        AppTheme.dark => ThemeMode.dark,
+        AppTheme.light => ThemeMode.light,
+        AppTheme.system => ThemeMode.system,
+      },
       title: 'Miha Translate',
       home: Scaffold(
         appBar: PreferredSize(

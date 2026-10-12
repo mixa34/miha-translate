@@ -181,7 +181,7 @@ class TtsButton extends StatelessWidget {
           }(),
           icon: Icon(
             playing ? Icons.stop : Icons.volume_up,
-            color: text.length > 200 && !playing ? Colors.grey : null,
+            color: text.length > 200 && !playing ? Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.38) : null,
           ),
         );
       },

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '/data.dart';
 
 class SettingsButton extends StatelessWidget {
   final void Function() onTap;
@@ -53,7 +52,7 @@ class SettingsButton extends StatelessWidget {
                             content!,
                             style: TextStyle(
                               fontSize: 18,
-                              color: theme == Brightness.dark ? Colors.white54 : Colors.black54,
+                              color: Theme.of(context).colorScheme.onSurfaceVariant,
                             ),
                           ),
                       ],

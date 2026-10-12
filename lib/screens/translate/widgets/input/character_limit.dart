@@ -7,11 +7,8 @@ class CharacterLimit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textLength = googleInCtrl.text.length;
-    final color = textLength > 5000
-        ? Colors.red
-        : theme == Brightness.dark
-            ? Colors.white
-            : greenColor;
+    final scheme = Theme.of(context).colorScheme;
+    final color = textLength > 5000 ? scheme.error : scheme.onSurfaceVariant;
     return Container(
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),

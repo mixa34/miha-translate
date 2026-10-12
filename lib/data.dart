@@ -7,9 +7,6 @@ import '/simplytranslate.dart' as simplytranslate;
 import 'screens/translate/widgets/tts_playback.dart';
 export 'package:miha_translate/messages.dart';
 
-const greyColor = const Color(0xff131618);
-const greenColor = const Color(0xff3fb274);
-const lightThemeGreyColor = const Color(0xffa9a9a9);
 
 late BuildContext contextOverlordData;
 late void Function(void Function() fn) setStateOverlord;
@@ -92,12 +89,16 @@ enum AppTheme { dark, light, system }
 
 var themeValue = '';
 
-final Widget line = Container(
-  margin: const EdgeInsets.only(top: 10, bottom: 5),
-  height: 1.5,
-  color: theme == Brightness.dark ? Colors.white : lightThemeGreyColor,
+/// The rule under a section title. Same space as before (10 above, 1.5 thick,
+/// 5 below); its colour comes from the current theme's divider style.
+const Widget sectionDivider = Padding(
+  padding: EdgeInsets.only(top: 10, bottom: 5),
+  child: Divider(height: 1.5, thickness: 1.5),
 );
 
+/// The brightness last chosen or restored. Kept for compatibility with the
+/// theme setting; rendered colours never read it -- they come from the theme
+/// (see `themeMode` in main.dart), which follows the system live.
 Brightness theme = SchedulerBinding.instance.platformDispatcher.platformBrightness;
 
 late Map<String, String> toSelLangMap;
