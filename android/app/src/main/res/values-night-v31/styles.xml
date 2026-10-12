@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Android 12+ (API 31): the system SplashScreen is shown for every cold
+         launch. Its background is set explicitly to the launch colour, so it
+         does not fall back to a default while the Dark Mode setting is on.
+         The icon stays the default: the app's adaptive launcher icon. -->
+    <style name="LaunchTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <item name="android:windowSplashScreenBackground">@color/launch_background</item>
+    </style>
+</resources>

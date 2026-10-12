@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Launch background before Flutter draws: the Material 3 light surface
+         (lib/theme/app_theme.dart). The night variant is in values-night. -->
+    <color name="launch_background">#F4F6FA</color>
+</resources>
