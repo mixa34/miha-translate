@@ -182,8 +182,10 @@ class MainMessagesAr extends MainMessages {
   String get audio_limit => """لا يمكن جلب الصوت لأكثر من 200 حرف""";
   String get autodetect_not_supported => """التلقائي غير مدعوم""";
   String get cancel => """إلغاء""";
+  String get clear_source => """Clear source text""";
   String get contribute => """المساهمة""";
   String get copied_to_clipboard => """نُسخ إلى الحافظة""";
+  String get copy_translation => """Copy translation""";
   String get dark => """داكن""";
   String get definitions => """المفردات""";
   String detected_language(String language) => """Detected: $language""";
@@ -196,6 +198,8 @@ class MainMessagesAr extends MainMessages {
   String get install => """Install""";
   String get license => """الرخصة""";
   String get light => """فاتح""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """لا يوجد انترنت""";
   String get no_languages_found => """No languages found""";
   String get ok => """حسناً""";
@@ -205,6 +209,7 @@ class MainMessagesAr extends MainMessages {
   String get settings => """الإعدادات""";
   String get something_went_wrong => """هناك خطأ ما""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """التعرف على النص""";
@@ -336,8 +341,10 @@ Map<String, String> get messagesArMap => {
       """main.audio_limit""": """لا يمكن جلب الصوت لأكثر من 200 حرف""",
       """main.autodetect_not_supported""": """التلقائي غير مدعوم""",
       """main.cancel""": """إلغاء""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """المساهمة""",
       """main.copied_to_clipboard""": """نُسخ إلى الحافظة""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """داكن""",
       """main.definitions""": """المفردات""",
       """main.donate""": """تبرع""",
@@ -349,6 +356,8 @@ Map<String, String> get messagesArMap => {
       """main.install""": """Install""",
       """main.license""": """الرخصة""",
       """main.light""": """فاتح""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """لا يوجد انترنت""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """حسناً""",
@@ -358,6 +367,7 @@ Map<String, String> get messagesArMap => {
       """main.settings""": """الإعدادات""",
       """main.something_went_wrong""": """هناك خطأ ما""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """التعرف على النص""",

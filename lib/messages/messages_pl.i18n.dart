@@ -184,8 +184,10 @@ class MainMessagesPl extends MainMessages {
   String get autodetect_not_supported =>
       """Autowykrywanie nie jest obsługiwane""";
   String get cancel => """Anuluj""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Wnieś swój wkład""";
   String get copied_to_clipboard => """Skopiowano do schowka""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Ciemny""";
   String get definitions => """Definicje""";
   String detected_language(String language) => """Detected: $language""";
@@ -198,6 +200,8 @@ class MainMessagesPl extends MainMessages {
   String get install => """Zainstaluj""";
   String get license => """Licencja""";
   String get light => """Jasny""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """Brak połączenia z Internetem""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -207,6 +211,7 @@ class MainMessagesPl extends MainMessages {
   String get settings => """Ustawienia""";
   String get something_went_wrong => """Coś poszło nie tak""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Rozpoznawanie tekstu""";
@@ -340,8 +345,10 @@ Map<String, String> get messagesPlMap => {
       """main.autodetect_not_supported""":
           """Autowykrywanie nie jest obsługiwane""",
       """main.cancel""": """Anuluj""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Wnieś swój wkład""",
       """main.copied_to_clipboard""": """Skopiowano do schowka""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Ciemny""",
       """main.definitions""": """Definicje""",
       """main.donate""": """Wesprzyj""",
@@ -353,6 +360,8 @@ Map<String, String> get messagesPlMap => {
       """main.install""": """Zainstaluj""",
       """main.license""": """Licencja""",
       """main.light""": """Jasny""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """Brak połączenia z Internetem""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -362,6 +371,7 @@ Map<String, String> get messagesPlMap => {
       """main.settings""": """Ustawienia""",
       """main.something_went_wrong""": """Coś poszło nie tak""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Rozpoznawanie tekstu""",

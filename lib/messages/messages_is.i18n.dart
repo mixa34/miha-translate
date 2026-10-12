@@ -182,8 +182,10 @@ class MainMessagesIs extends MainMessages {
   String get audio_limit => """Næ ekki hljóði fyrir meira en 200 stafi""";
   String get autodetect_not_supported => """Sjálfvirk greining ekki studd""";
   String get cancel => """Hætta við""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Taktu þátt""";
   String get copied_to_clipboard => """Afritað á klippispjald""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Dökkt""";
   String get definitions => """Skilgreiningar""";
   String detected_language(String language) => """Detected: $language""";
@@ -196,6 +198,8 @@ class MainMessagesIs extends MainMessages {
   String get install => """Setja upp""";
   String get license => """Notkunarleyfi""";
   String get light => """Ljóst""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """Engin internettenging""";
   String get no_languages_found => """No languages found""";
   String get ok => """Í lagi""";
@@ -205,6 +209,7 @@ class MainMessagesIs extends MainMessages {
   String get settings => """Stillingar""";
   String get something_went_wrong => """Eitthvað fór úrskeiðis""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Textagreining""";
@@ -336,8 +341,10 @@ Map<String, String> get messagesIsMap => {
       """main.audio_limit""": """Næ ekki hljóði fyrir meira en 200 stafi""",
       """main.autodetect_not_supported""": """Sjálfvirk greining ekki studd""",
       """main.cancel""": """Hætta við""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Taktu þátt""",
       """main.copied_to_clipboard""": """Afritað á klippispjald""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Dökkt""",
       """main.definitions""": """Skilgreiningar""",
       """main.donate""": """Styrkja""",
@@ -350,6 +357,8 @@ Map<String, String> get messagesIsMap => {
       """main.install""": """Setja upp""",
       """main.license""": """Notkunarleyfi""",
       """main.light""": """Ljóst""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """Engin internettenging""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """Í lagi""",
@@ -359,6 +368,7 @@ Map<String, String> get messagesIsMap => {
       """main.settings""": """Stillingar""",
       """main.something_went_wrong""": """Eitthvað fór úrskeiðis""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Textagreining""",

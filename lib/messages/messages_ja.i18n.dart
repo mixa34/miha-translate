@@ -182,8 +182,10 @@ class MainMessagesJa extends MainMessages {
   String get audio_limit => """200 文字以上の文章は音声を取得できません""";
   String get autodetect_not_supported => """言語の自動検出はサポートされていません""";
   String get cancel => """キャンセル""";
+  String get clear_source => """Clear source text""";
   String get contribute => """貢献する""";
   String get copied_to_clipboard => """クリップボードにコピー""";
+  String get copy_translation => """Copy translation""";
   String get dark => """ダーク""";
   String get definitions => """定義""";
   String detected_language(String language) => """Detected: $language""";
@@ -196,6 +198,8 @@ class MainMessagesJa extends MainMessages {
   String get install => """インストール""";
   String get license => """ライセンス""";
   String get light => """ライト""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """インターネット接続がありません""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -205,6 +209,7 @@ class MainMessagesJa extends MainMessages {
   String get settings => """設定""";
   String get something_went_wrong => """何らかの問題が発生しました""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """文字認識""";
@@ -336,8 +341,10 @@ Map<String, String> get messagesJaMap => {
       """main.audio_limit""": """200 文字以上の文章は音声を取得できません""",
       """main.autodetect_not_supported""": """言語の自動検出はサポートされていません""",
       """main.cancel""": """キャンセル""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """貢献する""",
       """main.copied_to_clipboard""": """クリップボードにコピー""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """ダーク""",
       """main.definitions""": """定義""",
       """main.donate""": """寄付する""",
@@ -349,6 +356,8 @@ Map<String, String> get messagesJaMap => {
       """main.install""": """インストール""",
       """main.license""": """ライセンス""",
       """main.light""": """ライト""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """インターネット接続がありません""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -358,6 +367,7 @@ Map<String, String> get messagesJaMap => {
       """main.settings""": """設定""",
       """main.something_went_wrong""": """何らかの問題が発生しました""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """文字認識""",

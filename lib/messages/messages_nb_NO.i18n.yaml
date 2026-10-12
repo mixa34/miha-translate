@@ -116,8 +116,10 @@ main:
   audio_limit: Kan ikke hente lyd for mer enn 200 tegn
   autodetect_not_supported: Autodetect not supported
   cancel: Avbryt
+  clear_source: Clear source text
   contribute: Bidra
   copied_to_clipboard: Kopiert til utklippstavle
+  copy_translation: Copy translation
   dark: Mørk
   definitions: Definitions
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Installer
   license: Lisens
   light: Lys
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: Mangler tilkobling til Internett
   no_languages_found: No languages found
   ok: OK
@@ -139,6 +143,7 @@ main:
   settings: Innstillinger
   something_went_wrong: Noe gikk galt
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Tekstgjenkjenning

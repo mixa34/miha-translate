@@ -183,8 +183,10 @@ class MainMessagesUk extends MainMessages {
       """Не можливо отримати звук на більше ніж 200 символів""";
   String get autodetect_not_supported => """Автовизначення не підтримується""";
   String get cancel => """Скасувати""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Співрозробка""";
   String get copied_to_clipboard => """Скопійовано до буфера обміну""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Темна""";
   String get definitions => """Definitions""";
   String detected_language(String language) => """Detected: $language""";
@@ -197,6 +199,8 @@ class MainMessagesUk extends MainMessages {
   String get install => """Встановити""";
   String get license => """Ліцензія""";
   String get light => """Світла""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """Нема з’єднання з Інтернетом""";
   String get no_languages_found => """No languages found""";
   String get ok => """Добре""";
@@ -206,6 +210,7 @@ class MainMessagesUk extends MainMessages {
   String get settings => """Налаштування""";
   String get something_went_wrong => """Щось пішло не так""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Розпізнавання тексту""";
@@ -339,8 +344,10 @@ Map<String, String> get messagesUkMap => {
       """main.autodetect_not_supported""":
           """Автовизначення не підтримується""",
       """main.cancel""": """Скасувати""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Співрозробка""",
       """main.copied_to_clipboard""": """Скопійовано до буфера обміну""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Темна""",
       """main.definitions""": """Definitions""",
       """main.donate""": """Пожертви""",
@@ -352,6 +359,8 @@ Map<String, String> get messagesUkMap => {
       """main.install""": """Встановити""",
       """main.license""": """Ліцензія""",
       """main.light""": """Світла""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """Нема з’єднання з Інтернетом""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """Добре""",
@@ -361,6 +370,7 @@ Map<String, String> get messagesUkMap => {
       """main.settings""": """Налаштування""",
       """main.something_went_wrong""": """Щось пішло не так""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Розпізнавання тексту""",

@@ -116,8 +116,10 @@ main:
   audio_limit: 無法獲取超過 200 個字符的音頻
   autodetect_not_supported: Autodetect not supported
   cancel: 取消
+  clear_source: Clear source text
   contribute: 投稿
   copied_to_clipboard: 已複製到剪貼板
+  copy_translation: Copy translation
   dark: 暗
   definitions: Definitions
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Install
   license: 執照
   light: 光
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: 沒有網絡連接
   no_languages_found: No languages found
   ok: OK
@@ -139,6 +143,7 @@ main:
   settings: 設置
   something_went_wrong: 出了點問題
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Text Recognition

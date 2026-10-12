@@ -197,7 +197,10 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     translateContext = context;
+    // Tapping outside the text fields hides the keyboard. Touch only: in the
+    // semantics tree it would be an unlabelled, screen-sized tap target.
     return GestureDetector(
+      excludeFromSemantics: true,
       onTap: () => FocusScope.of(context).unfocus(),
       child: GoogleTranslate(),
     );

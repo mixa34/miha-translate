@@ -116,8 +116,10 @@ main:
   audio_limit: 200 文字以上の文章は音声を取得できません
   autodetect_not_supported: 言語の自動検出はサポートされていません
   cancel: キャンセル
+  clear_source: Clear source text
   contribute: 貢献する
   copied_to_clipboard: クリップボードにコピー
+  copy_translation: Copy translation
   dark: ダーク
   definitions: 定義
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: インストール
   license: ライセンス
   light: ライト
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: インターネット接続がありません
   no_languages_found: No languages found
   ok: OK
@@ -139,6 +143,7 @@ main:
   settings: 設定
   something_went_wrong: 何らかの問題が発生しました
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: 文字認識

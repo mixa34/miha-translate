@@ -116,8 +116,10 @@ main:
   audio_limit: 200-ൽ കൂടുതൽ വാക്കുകൾക്ക് ഓഡിയോ ലഭിക്കില്ല
   autodetect_not_supported: Autodetect not supported
   cancel: റദ്ദാക്കുക
+  clear_source: Clear source text
   contribute: സഹായം
   copied_to_clipboard: ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി
+  copy_translation: Copy translation
   dark: ഡാർക്
   definitions: Definitions
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Install
   license: ലൈസൻസ്
   light: ലൈറ്റ്
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല
   no_languages_found: No languages found
   ok: ശരി
@@ -139,6 +143,7 @@ main:
   settings: ക്രമീകരണങ്ങൾ
   something_went_wrong: എന്തോ കുഴപ്പം സംഭവിച്ചു
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Text Recognition

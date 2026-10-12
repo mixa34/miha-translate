@@ -182,8 +182,10 @@ class MainMessagesFa extends MainMessages {
   String get audio_limit => """نمی توان برای بیش از ۲۰۰ نویسه صدا دریافت کرد""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """لغو""";
+  String get clear_source => """Clear source text""";
   String get contribute => """مشارکت""";
   String get copied_to_clipboard => """ذخیره در کلیپ‌بورد""";
+  String get copy_translation => """Copy translation""";
   String get dark => """تیره""";
   String get definitions => """Definitions""";
   String detected_language(String language) => """Detected: $language""";
@@ -196,6 +198,8 @@ class MainMessagesFa extends MainMessages {
   String get install => """Install""";
   String get license => """پروانه""";
   String get light => """روشن""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """اتصال به اینترنت برقرار نیست""";
   String get no_languages_found => """No languages found""";
   String get ok => """خُب""";
@@ -205,6 +209,7 @@ class MainMessagesFa extends MainMessages {
   String get settings => """تنظیمات""";
   String get something_went_wrong => """مشکلی پیش آمده""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
@@ -337,8 +342,10 @@ Map<String, String> get messagesFaMap => {
           """نمی توان برای بیش از ۲۰۰ نویسه صدا دریافت کرد""",
       """main.autodetect_not_supported""": """Autodetect not supported""",
       """main.cancel""": """لغو""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """مشارکت""",
       """main.copied_to_clipboard""": """ذخیره در کلیپ‌بورد""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """تیره""",
       """main.definitions""": """Definitions""",
       """main.donate""": """Donate""",
@@ -350,6 +357,8 @@ Map<String, String> get messagesFaMap => {
       """main.install""": """Install""",
       """main.license""": """پروانه""",
       """main.light""": """روشن""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """اتصال به اینترنت برقرار نیست""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """خُب""",
@@ -359,6 +368,7 @@ Map<String, String> get messagesFaMap => {
       """main.settings""": """تنظیمات""",
       """main.something_went_wrong""": """مشکلی پیش آمده""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",

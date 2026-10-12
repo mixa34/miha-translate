@@ -116,8 +116,10 @@ main:
   audio_limit: Nie można uzyskać dźwięku dla ponad 200 znaków
   autodetect_not_supported: Autowykrywanie nie jest obsługiwane
   cancel: Anuluj
+  clear_source: Clear source text
   contribute: Wnieś swój wkład
   copied_to_clipboard: Skopiowano do schowka
+  copy_translation: Copy translation
   dark: Ciemny
   definitions: Definicje
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Zainstaluj
   license: Licencja
   light: Jasny
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: Brak połączenia z Internetem
   no_languages_found: No languages found
   ok: OK
@@ -139,6 +143,7 @@ main:
   settings: Ustawienia
   something_went_wrong: Coś poszło nie tak
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Rozpoznawanie tekstu

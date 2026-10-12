@@ -183,8 +183,10 @@ class MainMessagesCs extends MainMessages {
   String get autodetect_not_supported =>
       """Automatická detekce není podporována""";
   String get cancel => """Zrušit""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Přispějte""";
   String get copied_to_clipboard => """Zkopírováno do schránky""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Tmavý""";
   String get definitions => """Definice""";
   String detected_language(String language) => """Detected: $language""";
@@ -197,6 +199,8 @@ class MainMessagesCs extends MainMessages {
   String get install => """Nainstalovat""";
   String get license => """Licence""";
   String get light => """Světlý""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """Jste bez internetu""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -206,6 +210,7 @@ class MainMessagesCs extends MainMessages {
   String get settings => """Nastavení""";
   String get something_went_wrong => """Něco se pokazilo""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Rozpoznávání textu""";
@@ -338,8 +343,10 @@ Map<String, String> get messagesCsMap => {
       """main.autodetect_not_supported""":
           """Automatická detekce není podporována""",
       """main.cancel""": """Zrušit""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Přispějte""",
       """main.copied_to_clipboard""": """Zkopírováno do schránky""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Tmavý""",
       """main.definitions""": """Definice""",
       """main.donate""": """Darovat""",
@@ -351,6 +358,8 @@ Map<String, String> get messagesCsMap => {
       """main.install""": """Nainstalovat""",
       """main.license""": """Licence""",
       """main.light""": """Světlý""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """Jste bez internetu""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -360,6 +369,7 @@ Map<String, String> get messagesCsMap => {
       """main.settings""": """Nastavení""",
       """main.something_went_wrong""": """Něco se pokazilo""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Rozpoznávání textu""",

@@ -182,8 +182,10 @@ class MainMessagesMl extends MainMessages {
   String get audio_limit => """200-ൽ കൂടുതൽ വാക്കുകൾക്ക് ഓഡിയോ ലഭിക്കില്ല""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """റദ്ദാക്കുക""";
+  String get clear_source => """Clear source text""";
   String get contribute => """സഹായം""";
   String get copied_to_clipboard => """ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി""";
+  String get copy_translation => """Copy translation""";
   String get dark => """ഡാർക്""";
   String get definitions => """Definitions""";
   String detected_language(String language) => """Detected: $language""";
@@ -196,6 +198,8 @@ class MainMessagesMl extends MainMessages {
   String get install => """Install""";
   String get license => """ലൈസൻസ്""";
   String get light => """ലൈറ്റ്""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല""";
   String get no_languages_found => """No languages found""";
   String get ok => """ശരി""";
@@ -205,6 +209,7 @@ class MainMessagesMl extends MainMessages {
   String get settings => """ക്രമീകരണങ്ങൾ""";
   String get something_went_wrong => """എന്തോ കുഴപ്പം സംഭവിച്ചു""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
@@ -336,8 +341,10 @@ Map<String, String> get messagesMlMap => {
       """main.audio_limit""": """200-ൽ കൂടുതൽ വാക്കുകൾക്ക് ഓഡിയോ ലഭിക്കില്ല""",
       """main.autodetect_not_supported""": """Autodetect not supported""",
       """main.cancel""": """റദ്ദാക്കുക""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """സഹായം""",
       """main.copied_to_clipboard""": """ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """ഡാർക്""",
       """main.definitions""": """Definitions""",
       """main.donate""": """Donate""",
@@ -349,6 +356,8 @@ Map<String, String> get messagesMlMap => {
       """main.install""": """Install""",
       """main.license""": """ലൈസൻസ്""",
       """main.light""": """ലൈറ്റ്""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """ശരി""",
@@ -358,6 +367,7 @@ Map<String, String> get messagesMlMap => {
       """main.settings""": """ക്രമീകരണങ്ങൾ""",
       """main.something_went_wrong""": """എന്തോ കുഴപ്പം സംഭവിച്ചു""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",

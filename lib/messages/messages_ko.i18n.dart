@@ -182,8 +182,10 @@ class MainMessagesKo extends MainMessages {
   String get audio_limit => """200자를 초과하는 오디오를 가져올 수 없습니다""";
   String get autodetect_not_supported => """자동 감지가 지원되지 않습니다""";
   String get cancel => """취소""";
+  String get clear_source => """Clear source text""";
   String get contribute => """기여하기""";
   String get copied_to_clipboard => """클립보드에 복사되었습니다""";
+  String get copy_translation => """Copy translation""";
   String get dark => """밤""";
   String get definitions => """정의""";
   String detected_language(String language) => """Detected: $language""";
@@ -196,6 +198,8 @@ class MainMessagesKo extends MainMessages {
   String get install => """설치하기""";
   String get license => """라이센스""";
   String get light => """낮""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """인터넷 엿결 없음""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -205,6 +209,7 @@ class MainMessagesKo extends MainMessages {
   String get settings => """설정""";
   String get something_went_wrong => """무언가 잘못되었습니다""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """글자 인식""";
@@ -336,8 +341,10 @@ Map<String, String> get messagesKoMap => {
       """main.audio_limit""": """200자를 초과하는 오디오를 가져올 수 없습니다""",
       """main.autodetect_not_supported""": """자동 감지가 지원되지 않습니다""",
       """main.cancel""": """취소""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """기여하기""",
       """main.copied_to_clipboard""": """클립보드에 복사되었습니다""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """밤""",
       """main.definitions""": """정의""",
       """main.donate""": """기부하기""",
@@ -349,6 +356,8 @@ Map<String, String> get messagesKoMap => {
       """main.install""": """설치하기""",
       """main.license""": """라이센스""",
       """main.light""": """낮""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """인터넷 엿결 없음""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -358,6 +367,7 @@ Map<String, String> get messagesKoMap => {
       """main.settings""": """설정""",
       """main.something_went_wrong""": """무언가 잘못되었습니다""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """글자 인식""",

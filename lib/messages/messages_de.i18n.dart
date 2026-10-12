@@ -184,8 +184,10 @@ class MainMessagesDe extends MainMessages {
   String get autodetect_not_supported =>
       """Automatische Erkennung wird nicht unterstützt""";
   String get cancel => """Abbrechen""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Mithelfen""";
   String get copied_to_clipboard => """In die Zwischenablage kopiert""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Dunkel""";
   String get definitions => """Definitionen""";
   String detected_language(String language) => """Detected: $language""";
@@ -199,6 +201,8 @@ class MainMessagesDe extends MainMessages {
   String get install => """Install""";
   String get license => """Lizenz""";
   String get light => """Hell""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """Keine Internetverbindung""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -208,6 +212,7 @@ class MainMessagesDe extends MainMessages {
   String get settings => """Einstellungen""";
   String get something_went_wrong => """Etwas ist schiefgegangen""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Texterkennung""";
@@ -341,8 +346,10 @@ Map<String, String> get messagesDeMap => {
       """main.autodetect_not_supported""":
           """Automatische Erkennung wird nicht unterstützt""",
       """main.cancel""": """Abbrechen""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Mithelfen""",
       """main.copied_to_clipboard""": """In die Zwischenablage kopiert""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Dunkel""",
       """main.definitions""": """Definitionen""",
       """main.donate""": """Spenden""",
@@ -355,6 +362,8 @@ Map<String, String> get messagesDeMap => {
       """main.install""": """Install""",
       """main.license""": """Lizenz""",
       """main.light""": """Hell""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """Keine Internetverbindung""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -364,6 +373,7 @@ Map<String, String> get messagesDeMap => {
       """main.settings""": """Einstellungen""",
       """main.something_went_wrong""": """Etwas ist schiefgegangen""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Texterkennung""",

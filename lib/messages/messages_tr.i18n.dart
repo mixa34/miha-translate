@@ -184,8 +184,10 @@ class MainMessagesTr extends MainMessages {
   String get autodetect_not_supported =>
       """Otomatik belirleme desteklenmiyor""";
   String get cancel => """İptal""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Katkıda bulun""";
   String get copied_to_clipboard => """Panoya kopyalandı""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Koyu""";
   String get definitions => """Tanımlar""";
   String detected_language(String language) => """Detected: $language""";
@@ -198,6 +200,8 @@ class MainMessagesTr extends MainMessages {
   String get install => """Kur""";
   String get license => """Lisans""";
   String get light => """Açık""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """İnternet bağlantısı yok""";
   String get no_languages_found => """No languages found""";
   String get ok => """Tamam""";
@@ -207,6 +211,7 @@ class MainMessagesTr extends MainMessages {
   String get settings => """Ayarlar""";
   String get something_went_wrong => """Bir şeyler yanlış gitti""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Metin Tanıma""";
@@ -340,8 +345,10 @@ Map<String, String> get messagesTrMap => {
       """main.autodetect_not_supported""":
           """Otomatik belirleme desteklenmiyor""",
       """main.cancel""": """İptal""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Katkıda bulun""",
       """main.copied_to_clipboard""": """Panoya kopyalandı""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Koyu""",
       """main.definitions""": """Tanımlar""",
       """main.donate""": """Bağış Yap""",
@@ -353,6 +360,8 @@ Map<String, String> get messagesTrMap => {
       """main.install""": """Kur""",
       """main.license""": """Lisans""",
       """main.light""": """Açık""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """İnternet bağlantısı yok""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """Tamam""",
@@ -362,6 +371,7 @@ Map<String, String> get messagesTrMap => {
       """main.settings""": """Ayarlar""",
       """main.something_went_wrong""": """Bir şeyler yanlış gitti""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Metin Tanıma""",

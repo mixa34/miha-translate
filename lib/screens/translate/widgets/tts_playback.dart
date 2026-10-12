@@ -136,14 +136,23 @@ Future<void> disposeTts() => Future.wait([inputTts.dispose(), outputTts.dispose(
 ///
 /// [language] is read only when the button is pressed, so it always reflects
 /// the current selection; null then means nothing is spoken. [available] false
-/// disables the button.
+/// disables the button. [listenLabel] names what it speaks; while loading or
+/// playing, pressing it stops, and its tooltip says so.
 class TtsButton extends StatelessWidget {
   final TtsPlayback playback;
   final String text;
   final String? Function() language;
   final bool available;
+  final String listenLabel;
 
-  const TtsButton({required this.playback, required this.text, required this.language, this.available = true, Key? key}) : super(key: key);
+  const TtsButton({
+    required this.playback,
+    required this.text,
+    required this.language,
+    required this.listenLabel,
+    this.available = true,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -151,23 +160,31 @@ class TtsButton extends StatelessWidget {
       valueListenable: playback.state,
       builder: (context, state, _) {
         if (state == TtsState.loading) {
-          return InkWell(
-            onTap: playback.stop,
-            child: Container(
-              height: 48,
-              width: 48,
-              alignment: Alignment.center,
-              child: Container(
-                alignment: Alignment.center,
-                height: 24,
-                width: 24,
-                child: const CircularProgressIndicator(strokeWidth: 3),
+          // Pressing it stops, as while playing.
+          return Tooltip(
+            message: i18n().main.stop_audio,
+            child: Semantics(
+              button: true,
+              child: InkWell(
+                onTap: playback.stop,
+                child: Container(
+                  height: 48,
+                  width: 48,
+                  alignment: Alignment.center,
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 24,
+                    width: 24,
+                    child: const CircularProgressIndicator(strokeWidth: 3),
+                  ),
+                ),
               ),
             ),
           );
         }
         final playing = state == TtsState.playing;
         return IconButton(
+          tooltip: playing ? i18n().main.stop_audio : listenLabel,
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
           onPressed: () {

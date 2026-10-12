@@ -116,8 +116,10 @@ main:
   audio_limit: Не можливо отримати звук на більше ніж 200 символів
   autodetect_not_supported: Автовизначення не підтримується
   cancel: Скасувати
+  clear_source: Clear source text
   contribute: Співрозробка
   copied_to_clipboard: Скопійовано до буфера обміну
+  copy_translation: Copy translation
   dark: Темна
   definitions: Definitions
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Встановити
   license: Ліцензія
   light: Світла
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: Нема з’єднання з Інтернетом
   no_languages_found: No languages found
   ok: Добре
@@ -139,6 +143,7 @@ main:
   settings: Налаштування
   something_went_wrong: Щось пішло не так
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Розпізнавання тексту

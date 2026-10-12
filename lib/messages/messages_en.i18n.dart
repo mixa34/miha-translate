@@ -182,8 +182,10 @@ class MainMessagesEn extends MainMessages {
   String get audio_limit => """Cannot get audio for more than 200 characters""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """Cancel""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Contribute""";
   String get copied_to_clipboard => """Copied to clipboard""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Dark""";
   String get definitions => """Definitions""";
   String detected_language(String language) => """Detected: $language""";
@@ -196,6 +198,8 @@ class MainMessagesEn extends MainMessages {
   String get install => """Install""";
   String get license => """License""";
   String get light => """Light""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """No internet connection""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -205,6 +209,7 @@ class MainMessagesEn extends MainMessages {
   String get settings => """Settings""";
   String get something_went_wrong => """Something went wrong""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
@@ -337,8 +342,10 @@ Map<String, String> get messagesEnMap => {
           """Cannot get audio for more than 200 characters""",
       """main.autodetect_not_supported""": """Autodetect not supported""",
       """main.cancel""": """Cancel""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Contribute""",
       """main.copied_to_clipboard""": """Copied to clipboard""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Dark""",
       """main.definitions""": """Definitions""",
       """main.donate""": """Donate""",
@@ -350,6 +357,8 @@ Map<String, String> get messagesEnMap => {
       """main.install""": """Install""",
       """main.license""": """License""",
       """main.light""": """Light""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """No internet connection""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -359,6 +368,7 @@ Map<String, String> get messagesEnMap => {
       """main.settings""": """Settings""",
       """main.something_went_wrong""": """Something went wrong""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",

@@ -13,6 +13,7 @@ class TtsOutput extends StatelessWidget {
       playback: outputTts,
       text: text is String ? text : '',
       language: displayedTranslationLanguage,
+      listenLabel: i18n().main.listen_translation,
     );
   }
 }

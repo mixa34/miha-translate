@@ -183,8 +183,10 @@ class MainMessagesPtBR extends MainMessages {
       """Não é possível obter áudio para mais de 200 caracteres""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """Cancelar""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Contribuir""";
   String get copied_to_clipboard => """Copiado para a área de transferência""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Escuro""";
   String get definitions => """Definitions""";
   String detected_language(String language) => """Detected: $language""";
@@ -197,6 +199,8 @@ class MainMessagesPtBR extends MainMessages {
   String get install => """Install""";
   String get license => """Licença""";
   String get light => """Claro""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """Sem conexão de internet""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -206,6 +210,7 @@ class MainMessagesPtBR extends MainMessages {
   String get settings => """Configurações""";
   String get something_went_wrong => """Algo deu errado""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
@@ -338,9 +343,11 @@ Map<String, String> get messagesPtBRMap => {
           """Não é possível obter áudio para mais de 200 caracteres""",
       """main.autodetect_not_supported""": """Autodetect not supported""",
       """main.cancel""": """Cancelar""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Contribuir""",
       """main.copied_to_clipboard""":
           """Copiado para a área de transferência""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Escuro""",
       """main.definitions""": """Definitions""",
       """main.donate""": """Doar""",
@@ -353,6 +360,8 @@ Map<String, String> get messagesPtBRMap => {
       """main.install""": """Install""",
       """main.license""": """Licença""",
       """main.light""": """Claro""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """Sem conexão de internet""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -362,6 +371,7 @@ Map<String, String> get messagesPtBRMap => {
       """main.settings""": """Configurações""",
       """main.something_went_wrong""": """Algo deu errado""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",

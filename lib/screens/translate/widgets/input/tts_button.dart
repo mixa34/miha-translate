@@ -21,6 +21,7 @@ class TtsInput extends StatelessWidget {
         text: value.text,
         language: () => fromLangVal == 'auto' ? detectedSourceLanguage() : fromLangVal,
         available: fromLangVal != 'auto' || detectedSourceLanguage() != null,
+        listenLabel: i18n().main.listen_source,
       ),
     );
   }

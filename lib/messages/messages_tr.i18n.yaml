@@ -116,8 +116,10 @@ main:
   audio_limit: 200 karakterden fazlası için ses dosyası alınamıyor
   autodetect_not_supported: Otomatik belirleme desteklenmiyor
   cancel: İptal
+  clear_source: Clear source text
   contribute: Katkıda bulun
   copied_to_clipboard: Panoya kopyalandı
+  copy_translation: Copy translation
   dark: Koyu
   definitions: Tanımlar
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Kur
   license: Lisans
   light: Açık
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: İnternet bağlantısı yok
   no_languages_found: No languages found
   ok: Tamam
@@ -139,6 +143,7 @@ main:
   settings: Ayarlar
   something_went_wrong: Bir şeyler yanlış gitti
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Metin Tanıma

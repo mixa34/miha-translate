@@ -116,8 +116,10 @@ main:
   audio_limit: Δεν είναι δυνατή η λήψη ήχου για πάνω από 200 χαρακτήρες
   autodetect_not_supported: Autodetect not supported
   cancel: Ακύρωση
+  clear_source: Clear source text
   contribute: Συνεισφέρετε
   copied_to_clipboard: Αντιγράφηκε στο πρόχειρο
+  copy_translation: Copy translation
   dark: Σκούρο
   definitions: Definitions
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Install
   license: Άδεια
   light: Φωτεινό
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: Δεν υπάρχει σύνδεση στο διαδίκτυο
   no_languages_found: No languages found
   ok: OK
@@ -139,6 +143,7 @@ main:
   settings: Ρυθμίσεις
   something_went_wrong: Κάτι δεν πήγε καλά
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Text Recognition

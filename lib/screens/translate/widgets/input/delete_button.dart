@@ -10,6 +10,7 @@ class DeleteTranslationInputButton extends StatelessWidget {
     return Container(
       alignment: Alignment.topRight,
       child: IconButton(
+        tooltip: i18n().main.clear_source,
         splashColor: Colors.transparent,
         highlightColor: Colors.transparent,
         onPressed: googleInCtrl.text == ''

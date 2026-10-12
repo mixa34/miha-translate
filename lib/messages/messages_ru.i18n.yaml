@@ -116,8 +116,10 @@ main:
   audio_limit: Невозможно воспроизвести аудио более чем для 200 символов
   autodetect_not_supported: Автоматическое определение не поддерживается
   cancel: Отмена
+  clear_source: Clear source text
   contribute: Сделать вклад
   copied_to_clipboard: Скопировано в буфер обмена
+  copy_translation: Copy translation
   dark: Тёмная
   definitions: Определения
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Установить
   license: Лицензия
   light: Светлая
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: Нет подключения к интернету
   no_languages_found: No languages found
   ok: OK
@@ -139,6 +143,7 @@ main:
   settings: Настройки
   something_went_wrong: Что-то пошло не так
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Распознавание текста

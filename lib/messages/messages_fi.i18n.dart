@@ -183,8 +183,10 @@ class MainMessagesFi extends MainMessages {
   String get autodetect_not_supported =>
       """Automaattista tunnistusta ei tueta""";
   String get cancel => """Peruuta""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Osallistu""";
   String get copied_to_clipboard => """Tallennettu leikepöydälle""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Tumma""";
   String get definitions => """Määritelmät""";
   String detected_language(String language) => """Detected: $language""";
@@ -197,6 +199,8 @@ class MainMessagesFi extends MainMessages {
   String get install => """Asenna""";
   String get license => """Lisenssi""";
   String get light => """Vaalea""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """Ei internet-yhteyttä""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -206,6 +210,7 @@ class MainMessagesFi extends MainMessages {
   String get settings => """Asetukset""";
   String get something_went_wrong => """Jokin meni pieleen""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Tekstintunnistus""";
@@ -338,8 +343,10 @@ Map<String, String> get messagesFiMap => {
       """main.autodetect_not_supported""":
           """Automaattista tunnistusta ei tueta""",
       """main.cancel""": """Peruuta""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Osallistu""",
       """main.copied_to_clipboard""": """Tallennettu leikepöydälle""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Tumma""",
       """main.definitions""": """Määritelmät""",
       """main.donate""": """Lahjoita""",
@@ -351,6 +358,8 @@ Map<String, String> get messagesFiMap => {
       """main.install""": """Asenna""",
       """main.license""": """Lisenssi""",
       """main.light""": """Vaalea""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """Ei internet-yhteyttä""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -360,6 +369,7 @@ Map<String, String> get messagesFiMap => {
       """main.settings""": """Asetukset""",
       """main.something_went_wrong""": """Jokin meni pieleen""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Tekstintunnistus""",

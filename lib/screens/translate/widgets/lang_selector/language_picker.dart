@@ -101,6 +101,7 @@ class _LanguagePickerSheetState extends State<LanguagePickerSheet> {
           padding: const EdgeInsets.fromLTRB(AppSpacing.xl, 0, AppSpacing.xl, AppSpacing.sm),
           child: Semantics(
             header: true,
+            namesRoute: true,
             child: Text(
               widget.side == FromTo.from ? messages.translate_from : messages.translate_to,
               style: theme.textTheme.titleLarge,
@@ -140,14 +141,23 @@ class _LanguagePickerSheetState extends State<LanguagePickerSheet> {
       const SliverToBoxAdapter(child: SizedBox(height: AppSpacing.lg)),
     ];
 
+    // The bottom sheet names its route with the generic "Dialog"; as the
+    // innermost route, this one is named by the title instead, which screen
+    // readers announce when the picker opens.
+    //
     // Sits above the keyboard; without one, leaves a little of the screen
     // above the sheet visible.
-    return Padding(
-      padding: EdgeInsets.only(bottom: keyboard),
-      child: LayoutBuilder(
-        builder: (context, constraints) => SizedBox(
-          height: keyboard > 0 ? constraints.maxHeight : constraints.maxHeight * 0.9,
-          child: CustomScrollView(slivers: slivers),
+    return Semantics(
+      container: true,
+      scopesRoute: true,
+      explicitChildNodes: true,
+      child: Padding(
+        padding: EdgeInsets.only(bottom: keyboard),
+        child: LayoutBuilder(
+          builder: (context, constraints) => SizedBox(
+            height: keyboard > 0 ? constraints.maxHeight : constraints.maxHeight * 0.9,
+            child: CustomScrollView(slivers: slivers),
+          ),
         ),
       ),
     );

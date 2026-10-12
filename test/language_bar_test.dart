@@ -195,9 +195,8 @@ void main() {
       expect(tester.getSize(swapButton).width, greaterThanOrEqualTo(48));
     });
 
-    // The bar on its own: the translate screen's tap-to-dismiss-keyboard
-    // GestureDetector (MainPage, main.dart) is an unlabelled full-screen tap
-    // target that would fail the label guideline for reasons outside the bar.
+    // The bar on its own; the complete screen is checked in
+    // accessibility_test.dart.
     testWidgets('accessibility guidelines for the bar, ${mode.name}', (tester) async {
       fromLangVal = 'en';
       toLangVal = 'sr';

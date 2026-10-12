@@ -183,8 +183,10 @@ class MainMessagesEl extends MainMessages {
       """Δεν είναι δυνατή η λήψη ήχου για πάνω από 200 χαρακτήρες""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """Ακύρωση""";
+  String get clear_source => """Clear source text""";
   String get contribute => """Συνεισφέρετε""";
   String get copied_to_clipboard => """Αντιγράφηκε στο πρόχειρο""";
+  String get copy_translation => """Copy translation""";
   String get dark => """Σκούρο""";
   String get definitions => """Definitions""";
   String detected_language(String language) => """Detected: $language""";
@@ -198,6 +200,8 @@ class MainMessagesEl extends MainMessages {
   String get install => """Install""";
   String get license => """Άδεια""";
   String get light => """Φωτεινό""";
+  String get listen_source => """Listen to source text""";
+  String get listen_translation => """Listen to translation""";
   String get no_internet => """Δεν υπάρχει σύνδεση στο διαδίκτυο""";
   String get no_languages_found => """No languages found""";
   String get ok => """OK""";
@@ -207,6 +211,7 @@ class MainMessagesEl extends MainMessages {
   String get settings => """Ρυθμίσεις""";
   String get something_went_wrong => """Κάτι δεν πήγε καλά""";
   String get source_language => """Source language""";
+  String get stop_audio => """Stop audio""";
   String get swap_languages => """Swap languages""";
   String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
@@ -339,8 +344,10 @@ Map<String, String> get messagesElMap => {
           """Δεν είναι δυνατή η λήψη ήχου για πάνω από 200 χαρακτήρες""",
       """main.autodetect_not_supported""": """Autodetect not supported""",
       """main.cancel""": """Ακύρωση""",
+      """main.clear_source""": """Clear source text""",
       """main.contribute""": """Συνεισφέρετε""",
       """main.copied_to_clipboard""": """Αντιγράφηκε στο πρόχειρο""",
+      """main.copy_translation""": """Copy translation""",
       """main.dark""": """Σκούρο""",
       """main.definitions""": """Definitions""",
       """main.donate""": """Κάντε μια δωρεά""",
@@ -353,6 +360,8 @@ Map<String, String> get messagesElMap => {
       """main.install""": """Install""",
       """main.license""": """Άδεια""",
       """main.light""": """Φωτεινό""",
+      """main.listen_source""": """Listen to source text""",
+      """main.listen_translation""": """Listen to translation""",
       """main.no_internet""": """Δεν υπάρχει σύνδεση στο διαδίκτυο""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
@@ -362,6 +371,7 @@ Map<String, String> get messagesElMap => {
       """main.settings""": """Ρυθμίσεις""",
       """main.something_went_wrong""": """Κάτι δεν πήγε καλά""",
       """main.source_language""": """Source language""",
+      """main.stop_audio""": """Stop audio""",
       """main.swap_languages""": """Swap languages""",
       """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",

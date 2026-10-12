@@ -116,8 +116,10 @@ main:
   audio_limit: Impossibile ottenere l'audio per più di 200 caratteri
   autodetect_not_supported: Rilevamento automatico non supportato
   cancel: Annulla
+  clear_source: Clear source text
   contribute: Contribuisci
   copied_to_clipboard: Copiato negli appunti
+  copy_translation: Copy translation
   dark: Scuro
   definitions: Definizioni
   detected_language(String language): "Detected: $language"
@@ -130,6 +132,8 @@ main:
   install: Installa
   license: Licenza
   light: Chiaro
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
   no_internet: Nessuna connessione internet
   no_languages_found: No languages found
   ok: OK
@@ -139,6 +143,7 @@ main:
   settings: Impostazioni
   something_went_wrong: Qualcosa è andato storto
   source_language: Source language
+  stop_audio: Stop audio
   swap_languages: Swap languages
   target_language: Target language
   text_recognition: Riconoscimento del testo

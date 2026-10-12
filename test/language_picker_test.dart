@@ -260,7 +260,7 @@ void main() {
       final handle = tester.ensureSemantics();
       fromLangVal = 'auto';
       await open(tester, FromTo.from);
-      expect(tester.getSemantics(find.descendant(of: picker, matching: find.text('Translate from'))), matchesSemantics(label: 'Translate from', isHeader: true));
+      expect(tester.getSemantics(find.descendant(of: picker, matching: find.text('Translate from'))), matchesSemantics(label: 'Translate from', isHeader: true, namesRoute: true));
       expect(
         tester.getSemantics(tile('Autodetect')),
         isSemantics(label: 'Autodetect', isSelected: true, hasSelectedState: true, isButton: true),
