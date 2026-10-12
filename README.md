@@ -31,7 +31,7 @@ I use [VSCodium](https://vscodium.com/). I use the extensions [Dart](https://mar
 
 If you've inherited this project, keep in mind that there are some python scripts in `scripts/` that process translated strings for both website and app.
 
-To compile translations run `dart run build_runner build`
+To compile translations (`lib/messages/*.i18n.yaml` → `*.i18n.dart`) run `dart run tool/generate_i18n.dart`. Check that the generated files are up to date with `dart run tool/generate_i18n.dart --check`. Every language YAML must have the same keys, in the same order, as `messages.i18n.yaml`. (`dart run build_runner build` no longer works with the pinned build_runner on current Dart SDKs; see the comment in `tool/generate_i18n.dart`.)
 
 ## Translation
 Weblate: https://hosted.weblate.org/projects/simplytranslate-mobile/

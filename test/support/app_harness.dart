@@ -155,12 +155,87 @@ final clipboardWrites = <String>[];
 
 late Directory storageDir;
 
+/// Controls GetStorage's files in [storageDir] so the folder can be deleted
+/// reliably when a test file finishes.
+///
+/// get_storage 2.1.1 writes its backup copy (GetStorage.bak) after each flush
+/// without awaiting it, and `save()` does not wait for the flush either. The
+/// backup write first recreates the folder (`createSync(recursive: true)`) if
+/// it is missing, so a write still in flight at teardown used to leave the
+/// folder behind. Flushes started inside widget tests can also stay frozen in
+/// their fake-async zone, so waiting for them cannot work.
+///
+/// Once [closed], storage files report that they exist, are never created and
+/// are never written: nothing can recreate the folder any more, whether a
+/// flush is still running, finishes later or never does.
+final class _StorageFiles extends IOOverrides {
+  bool closed = false;
+
+  /// Only paths inside [storageDir] -- not siblings sharing its name prefix.
+  bool _isStorage(String path) => path.startsWith('${storageDir.path}${Platform.pathSeparator}');
+
+  @override
+  File createFile(String path) {
+    final file = super.createFile(path);
+    return _isStorage(path) ? _StorageFile(file, this) : file;
+  }
+}
+
+/// A file in [storageDir]. It implements only the File members get_storage
+/// uses; anything else fails loudly, so a change in get_storage cannot
+/// silently bypass [_StorageFiles].
+class _StorageFile implements File {
+  _StorageFile(this._file, this._storage);
+
+  final File _file;
+  final _StorageFiles _storage;
+
+  @override
+  String get path => _file.path;
+
+  @override
+  bool existsSync() => _storage.closed || _file.existsSync();
+
+  @override
+  void createSync({bool recursive = false, bool exclusive = false}) {
+    if (!_storage.closed) _file.createSync(recursive: recursive, exclusive: exclusive);
+  }
+
+  @override
+  Future<File> writeAsString(String contents, {FileMode mode = FileMode.write, Encoding encoding = utf8, bool flush = false}) {
+    if (_storage.closed) return Future.value(this);
+    // A write in flight when the folder is deleted fails because the folder
+    // is gone; only that failure, and only once closed, is expected.
+    return _file.writeAsString(contents, mode: mode, encoding: encoding, flush: flush).then<File>(
+          (_) => this,
+          onError: (Object error, StackTrace stack) =>
+              _storage.closed && error is PathNotFoundException ? this : Error.throwWithStackTrace(error, stack),
+        );
+  }
+
+  @override
+  Future<RandomAccessFile> open({FileMode mode = FileMode.read}) => _file.open(mode: mode);
+
+  @override
+  Future<String> readAsString({Encoding encoding = utf8}) => _file.readAsString(encoding: encoding);
+
+  @override
+  Future<FileSystemEntity> delete({bool recursive = false}) => _file.delete(recursive: recursive);
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) =>
+      throw UnsupportedError('test storage file: ${invocation.memberName} is not handled (see _StorageFile)');
+}
+
+late _StorageFiles _storageFiles;
+
 /// Call once per test file, from `setUpAll`.
 Future<void> initHarness() async {
   TestWidgetsFlutterBinding.ensureInitialized();
   final messenger = TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
 
   storageDir = Directory.systemTemp.createTempSync('miha_translate_test_');
+  IOOverrides.global = _storageFiles = _StorageFiles();
   messenger.setMockMethodCallHandler(pathProviderChannel, (_) async => storageDir.path);
 
   messenger.setMockMethodCallHandler(translateChannel, (call) async {
@@ -181,13 +256,20 @@ Future<void> initHarness() async {
   await GetStorage.init();
 }
 
-/// Call from `tearDownAll`.
+/// Call from `tearDownAll`. Runs even when tests in the file failed.
 Future<void> disposeHarness() async {
-  // Flush first: GetStorage writes its .bak copy after the main file, and a
-  // late write would otherwise recreate the directory after it is deleted.
-  await session.save();
-  await Future<void>.delayed(const Duration(milliseconds: 200));
-  if (storageDir.existsSync()) storageDir.deleteSync(recursive: true);
+  _storageFiles.closed = true;
+  // A write that was already in flight may still create a file while the
+  // folder is being deleted; nothing new can be created, so retrying ends.
+  // The overrides stay installed so a flush finishing later stays harmless.
+  for (var attempt = 0; storageDir.existsSync(); attempt++) {
+    try {
+      storageDir.deleteSync(recursive: true);
+    } on FileSystemException {
+      if (attempt == 1000) rethrow;
+      await Future<void>.delayed(Duration.zero);
+    }
+  }
 }
 
 /// Resets the app's global state and storage between tests, and routes the
