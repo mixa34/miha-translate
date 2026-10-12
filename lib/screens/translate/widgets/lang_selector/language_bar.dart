@@ -39,7 +39,11 @@ class LanguageButton extends StatelessWidget {
 
   const LanguageButton(this.side, {Key? key}) : super(key: key);
 
-  String get _language => side == FromTo.from ? fromSelLangMap[fromLangVal]! : toSelLangMap[toLangVal]!;
+  // The code itself rather than a crash, should a code outside the list ever
+  // get here; initialization only lets codes of the list in.
+  String get _language => side == FromTo.from
+      ? fromSelLangMap[fromLangVal] ?? fromLangVal
+      : toSelLangMap[toLangVal] ?? toLangVal;
 
   @override
   Widget build(BuildContext context) {

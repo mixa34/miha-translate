@@ -11,6 +11,7 @@ import 'package:miha_translate/screens/translate/widgets/tts_playback.dart';
 // Prefixed: data.dart's `AppTheme` enum is the saved theme preference.
 import 'package:miha_translate/theme/app_theme.dart' as design;
 import 'data.dart';
+import 'language_codes.dart';
 import 'screens/translate/translate.dart';
 
 void main(List<String> args) async {
@@ -170,8 +171,10 @@ class MainPageLocalization extends StatelessWidget {
     fromSelLangMap = selectLanguagesMapGetter(context);
     fromSelLangMap['auto'] = i18n().langs.autodetect;
 
-    fromLangVal = session.read('from_lang') ?? 'auto';
-    toLangVal = session.read('to_lang') ?? appLocale.languageCode;
+    // Only codes of the lists: a saved or device code may be a legacy,
+    // regional or unsupported one. What is saved is left as it is.
+    fromLangVal = initialSourceLanguage(session.read('from_lang'), fromSelLangMap.keys);
+    toLangVal = initialTargetLanguage(session.read('to_lang'), appLocale.toLanguageTag(), toSelLangMap.keys);
 
     return MainPage();
   }
