@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '/data.dart';
+import '../../translate_actions.dart';
 
 class DeleteTranslationInputButton extends StatelessWidget {
   const DeleteTranslationInputButton({Key? key}) : super(key: key);
@@ -13,19 +14,7 @@ class DeleteTranslationInputButton extends StatelessWidget {
         highlightColor: Colors.transparent,
         onPressed: googleInCtrl.text == ''
             ? null
-            : () {
-                setStateOverlord(() {
-                  loading = false;
-                  isTranslationCanceled = true;
-                  ttsInputloading = false;
-                  isTtsInCanceled = true;
-                  ttsOutloading = false;
-                  isTtsOutputCanceled = true;
-                  googleInCtrl.text = '';
-                  googleOutput = {};
-                });
-                FocusScope.of(context).unfocus();
-              },
+            : () => clearInput(context),
         icon: Icon(Icons.close),
       ),
     );

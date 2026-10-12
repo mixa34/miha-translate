@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:miha_translate/simplytranslate.dart';
 import '/data.dart';
+import '../../translate_actions.dart';
 
 class GoogleLang extends StatefulWidget {
   final FromTo fromto;
@@ -102,23 +103,10 @@ class _GoogleLangState extends State<GoogleLang> {
                               child: GestureDetector(
                                 onTap: () async {
                                   FocusScope.of(context).unfocus();
-                                  if (option == (widget.fromto == FromTo.from ? fromSelLangMap[toLangVal] : toSelLangMap[fromLangVal])) {
-                                    switchVals();
-                                  } else {
-                                    for (var i in widget.fromto == FromTo.from ? fromSelLangMap.keys : toSelLangMap.keys) {
-                                      if (option == (widget.fromto == FromTo.from ? fromSelLangMap[i] : toSelLangMap[i])) {
-                                        session.write(widget.fromto == FromTo.from ? 'from_lang' : 'to_lang', i);
-                                        if (widget.fromto == FromTo.from) {
-                                          fromLangVal = i;
-                                          changeFromTxt!(fromSelLangMap[fromLangVal]!);
-                                        } else {
-                                          toLangVal = i;
-                                          changeToTxt!(toSelLangMap[toLangVal]!);
-                                        }
-                                        final translatedText = await translate(googleInCtrl.text, fromLangVal, toLangVal);
-                                        if (!isTranslationCanceled) setStateOverlord(() => googleOutput = translatedText);
-                                        break;
-                                      }
+                                  for (var i in widget.fromto == FromTo.from ? fromSelLangMap.keys : toSelLangMap.keys) {
+                                    if (option == (widget.fromto == FromTo.from ? fromSelLangMap[i] : toSelLangMap[i])) {
+                                      await selectLanguage(widget.fromto, i);
+                                      break;
                                     }
                                   }
                                 },
