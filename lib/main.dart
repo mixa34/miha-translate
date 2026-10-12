@@ -8,6 +8,8 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:miha_translate/screens/about/about_screen.dart';
 import 'package:miha_translate/screens/settings/settings_screen.dart';
 import 'package:miha_translate/screens/translate/widgets/tts_playback.dart';
+// Prefixed: data.dart's `AppTheme` enum is the saved theme preference.
+import 'package:miha_translate/theme/app_theme.dart' as design;
 import 'data.dart';
 import 'screens/translate/translate.dart';
 
@@ -97,187 +99,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         return Locale('en');
       },
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme(
-          primary: greenColor,
-          secondary: greenColor,
-          surface: Colors.white,
-          background: Colors.white,
-          error: Colors.red,
-          onPrimary: Colors.white,
-          onSecondary: Colors.white,
-          onSurface: Colors.black,
-          onBackground: Colors.black,
-          onError: Colors.white,
-          brightness: Brightness.light,
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(2),
-            borderSide: BorderSide(color: const Color(0xffa9a9a9), width: 1.5),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(2),
-            borderSide: BorderSide(color: const Color(0xffa9a9a9), width: 1.5),
-          ),
-        ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-            style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
-          side: BorderSide(width: 1.5, color: const Color(0xffa9a9a9)),
-        )),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            padding: MaterialStateProperty.all(const EdgeInsets.symmetric(horizontal: 10)),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
-            ),
-          ),
-        ),
-        snackBarTheme: SnackBarThemeData(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(50),
-          ),
-          behavior: SnackBarBehavior.floating,
-        ),
-        iconTheme: IconThemeData(color: greenColor),
-        switchTheme: SwitchThemeData(
-          thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return null;
-            }
-            if (states.contains(MaterialState.selected)) {
-              return greenColor;
-            }
-            return null;
-          }),
-          trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return null;
-            }
-            if (states.contains(MaterialState.selected)) {
-              return greenColor;
-            }
-            return null;
-          }),
-        ),
-        radioTheme: RadioThemeData(
-          fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return null;
-            }
-            if (states.contains(MaterialState.selected)) {
-              return greenColor;
-            }
-            return null;
-          }),
-        ),
-        checkboxTheme: CheckboxThemeData(
-          fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return null;
-            }
-            if (states.contains(MaterialState.selected)) {
-              return greenColor;
-            }
-            return null;
-          }),
-        ),
-      ),
-      darkTheme: ThemeData(
-        colorScheme: ColorScheme(
-          primary: greenColor,
-          // primaryVariant: greenColor,
-          secondary: greenColor,
-          // secondaryVariant: greenColor,
-          surface: const Color(0xff131618),
-          background: const Color(0xff131618),
-          error: Colors.red,
-          onPrimary: Colors.white,
-          onSecondary: Colors.redAccent,
-          onSurface: Colors.white,
-          onBackground: Colors.black,
-          onError: Colors.white,
-          brightness: Brightness.dark,
-        ),
-        scaffoldBackgroundColor: const Color(0xff212529),
-        inputDecorationTheme: InputDecorationTheme(
-          fillColor: const Color(0xff131618),
-          filled: true,
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(2),
-            borderSide: BorderSide(color: Color(0xff495057), width: 1.5),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(2),
-            borderSide: BorderSide(color: Color(0xff495057), width: 1.5),
-          ),
-        ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-            style: OutlinedButton.styleFrom(
-          backgroundColor: const Color(0xff131618),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(2)),
-          side: BorderSide(width: 1.5, color: const Color(0xff495057)),
-        )),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.pressed))
-                  return Theme.of(context).colorScheme.primary.withOpacity(0.5);
-                else if (states.contains(MaterialState.disabled)) return Color(0xff495057);
-                return greenColor; // Use the component's default.
-              },
-            ),
-          ),
-        ),
-        snackBarTheme: SnackBarThemeData(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-          behavior: SnackBarBehavior.floating,
-        ),
-        switchTheme: SwitchThemeData(
-          thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return null;
-            }
-            if (states.contains(MaterialState.selected)) {
-              return greenColor;
-            }
-            return null;
-          }),
-          trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return null;
-            }
-            if (states.contains(MaterialState.selected)) {
-              return greenColor;
-            }
-            return null;
-          }),
-        ),
-        radioTheme: RadioThemeData(
-          fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return null;
-            }
-            if (states.contains(MaterialState.selected)) {
-              return greenColor;
-            }
-            return null;
-          }),
-        ),
-        checkboxTheme: CheckboxThemeData(
-          fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
-            if (states.contains(MaterialState.disabled)) {
-              return null;
-            }
-            if (states.contains(MaterialState.selected)) {
-              return greenColor;
-            }
-            return null;
-          }),
-        ),
-      ),
+      theme: design.AppTheme.light(),
+      darkTheme: design.AppTheme.dark(),
       themeMode: theme == Brightness.dark ? ThemeMode.dark : ThemeMode.light,
       title: 'Miha Translate',
       home: Scaffold(
@@ -287,7 +110,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             builder: (context) => AppBar(
               actions: [
                 PopupMenuButton(
-                  icon: Icon(Icons.more_vert, color: Colors.white),
+                  // No explicit colour: inherits the app bar's foreground, so it stays
+                  // visible in both themes.
+                  icon: const Icon(Icons.more_vert),
                   itemBuilder: (BuildContext context) => [
                     PopupMenuItem(
                       value: 'settings',
@@ -313,7 +138,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
                 ),
               ],
               elevation: 3,
-              iconTheme: IconThemeData(),
               title: const Text('Miha Translate'),
             ),
           ),

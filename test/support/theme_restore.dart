@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:miha_translate/data.dart';
 import 'package:miha_translate/main.dart' as app;
+import 'package:miha_translate/theme/app_theme.dart' as design;
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'app_harness.dart';
@@ -54,6 +55,8 @@ void testThemeRestoredAtLaunch({
     expect(themeRadio, expectedRadio);
     expect(theme, expectedBrightness);
     expect(themeValue, expectedLabel);
-    expect(Theme.of(tester.element(find.byType(Scaffold).first)).brightness, expectedBrightness);
+    final rendered = Theme.of(tester.element(find.byType(Scaffold).first));
+    expect(rendered.brightness, expectedBrightness);
+    expect(rendered.colorScheme, design.AppTheme.of(expectedBrightness).colorScheme, reason: 'the Material 3 design system is applied');
   });
 }
