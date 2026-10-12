@@ -69,3 +69,41 @@ class LanguageButton extends StatelessWidget {
     );
   }
 }
+
+/// "Detected: <language>" below the language bar, while the source is
+/// Autodetect and the shown translation reported a detected language.
+///
+/// Whether there is a detection is decided by [detectedSourceLanguage] alone
+/// (current output, input and target; supported languages only). It rebuilds
+/// on every edit, so the label disappears as soon as the text changes, and
+/// takes no space when there is nothing to show.
+class DetectedLanguageLabel extends StatelessWidget {
+  const DetectedLanguageLabel({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) => ValueListenableBuilder<TextEditingValue>(
+        valueListenable: googleInCtrl,
+        builder: (context, _, __) {
+          final code = detectedSourceLanguage();
+          final name = code == null ? null : fromSelLangMap[code];
+          if (name == null) return const SizedBox.shrink();
+          final theme = Theme.of(context);
+          return Padding(
+            padding: const EdgeInsets.only(left: AppSpacing.lg, right: AppSpacing.lg, top: AppSpacing.sm),
+            child: Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: Semantics(
+                liveRegion: true,
+                child: Text(
+                  i18n().main.detected_language(name),
+                  key: TranslateKeys.detectedLanguage,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+                ),
+              ),
+            ),
+          );
+        },
+      );
+}

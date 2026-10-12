@@ -54,8 +54,9 @@ class _GoogleTranslateState extends State<GoogleTranslate> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Not const: it must rebuild with the screen to show the current languages.
+                  // Not const: they must rebuild with the screen to show the current state.
                   LanguageBar(),
+                  DetectedLanguageLabel(),
                   space,
                   GoogleTranslationInput(),
                   space,
