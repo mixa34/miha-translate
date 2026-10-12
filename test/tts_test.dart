@@ -173,11 +173,7 @@ void main() {
       await typeAndTranslate(tester, 'Hello');
       // Change the target; its translation is held, so "sr:Hello" stays shown.
       translator.holdResponses = true;
-      await tester.tap(targetLangField);
-      await tester.pump();
-      await tester.enterText(targetLangField, 'Germ');
-      await tester.pump();
-      await tester.tap(languageOption('German'));
+      await chooseLanguage(tester, FromTo.to, 'Germ', 'German');
       await tester.pump();
       expect(toLangVal, 'de');
       expect(googleOutput['text'], 'sr:Hello');
@@ -348,11 +344,7 @@ void main() {
 
     ttsTest('choosing a language', (tester) async {
       await startInputVoice(tester);
-      await tester.tap(targetLangField);
-      await tester.pump();
-      await tester.enterText(targetLangField, 'Germ');
-      await tester.pump();
-      await tester.tap(languageOption('German'));
+      await chooseLanguage(tester, FromTo.to, 'Germ', 'German');
       await tester.pump();
 
       expect(inputTts.state.value, TtsState.idle);

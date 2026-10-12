@@ -4,6 +4,7 @@ import 'tts_button.dart';
 import '/data.dart';
 import 'delete_button.dart';
 import 'character_limit.dart';
+import '../../translate_keys.dart';
 import '../tts_playback.dart';
 // Prefixed: data.dart's `AppTheme` enum is the saved theme preference.
 import '/theme/app_theme.dart' as design;
@@ -47,6 +48,7 @@ class _TranslationInputState extends State<GoogleTranslationInput> {
         children: [
           Expanded(
             child: TextField(
+              key: TranslateKeys.input,
               onTap: () => isFirst = true,
               textDirection: googleInCtrl.text.length == 0
                   ? intl.Bidi.detectRtlDirectionality(

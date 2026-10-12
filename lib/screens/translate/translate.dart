@@ -7,6 +7,7 @@ import '/data.dart';
 import 'widgets/input/input.dart';
 import 'widgets/output/output.dart';
 import 'widgets/lang_selector/switch_lang.dart';
+import 'translate_keys.dart';
 
 class GoogleTranslate extends StatefulWidget {
   const GoogleTranslate({Key? key}) : super(key: key);
@@ -58,9 +59,9 @@ class _GoogleTranslateState extends State<GoogleTranslate> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GoogleLang(FromTo.from),
+                      GoogleLang(FromTo.from, key: TranslateKeys.sourceLanguage),
                       GoogleSwitchLang(),
-                      GoogleLang(FromTo.to),
+                      GoogleLang(FromTo.to, key: TranslateKeys.targetLanguage),
                     ],
                   ),
                   space,

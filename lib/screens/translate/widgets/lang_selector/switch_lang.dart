@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '/data.dart';
 import '../../translate_actions.dart';
+import '../../translate_keys.dart';
 
 class GoogleSwitchLang extends StatelessWidget {
   const GoogleSwitchLang({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class GoogleSwitchLang extends StatelessWidget {
           return Container(
             width: MediaQuery.of(context).size.width / 3 - 60,
             child: OutlinedButton(
+              key: TranslateKeys.swapLanguages,
               style: OutlinedButton.styleFrom(
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               ),

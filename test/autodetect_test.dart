@@ -136,17 +136,8 @@ void main() {
 
     Finder speaker(Type side) => find.descendant(of: find.byType(side), matching: find.byType(IconButton));
     bool speakerEnabled(WidgetTester tester, Type side) => tester.widget<IconButton>(speaker(side)).onPressed != null;
-    bool swapEnabled(WidgetTester tester) => tester.widget<OutlinedButton>(swapButton).onPressed != null;
+    bool swapEnabled(WidgetTester tester) => isSwapEnabled(tester);
     String describe(RecordedRequest r) => '${r.text} ${r.from}>${r.to}';
-
-    Future<void> chooseLanguage(WidgetTester tester, Finder field, String query, String name) async {
-      await tester.tap(field);
-      await tester.pump();
-      await tester.enterText(field, query);
-      await tester.pump();
-      await tester.tap(languageOption(name));
-      await tester.pump();
-    }
 
     Future<void> finish(WidgetTester tester) async {
       await tester.pump(debounce);
@@ -165,7 +156,7 @@ void main() {
           expect(detectedSourceLanguage(), c.detected);
           expect(fromLangVal, 'auto');
           expect(session.read('from_lang'), 'auto');
-          expect(fieldText(tester, sourceLangField), 'Autodetect');
+          expect(selectedLanguageLabel(tester, FromTo.from), 'Autodetect');
           await finish(tester);
         });
       }
@@ -250,7 +241,7 @@ void main() {
         expect(detectedSourceLanguage(), 'en');
 
         server.holdResponses = true;
-        await chooseLanguage(tester, targetLangField, 'Germ', 'German');
+        await chooseLanguage(tester, FromTo.to, 'Germ', 'German');
         expect(detectedSourceLanguage(), isNull, reason: 'the output still belongs to the old target');
         expect(swapEnabled(tester), isFalse);
 
@@ -265,7 +256,7 @@ void main() {
         server.detect = (_) => 'fr';
         await pumpApp(tester);
         await typeAndTranslate(tester, 'Bonjour');
-        await chooseLanguage(tester, sourceLangField, 'Germ', 'German');
+        await chooseLanguage(tester, FromTo.from, 'Germ', 'German');
         await settleRequests(tester);
 
         expect(fromLangVal, 'de');
@@ -284,7 +275,7 @@ void main() {
         expect(googleOutput.containsKey('detectedLanguage'), isFalse);
         expect(fromLangVal, 'sr');
         expect(session.read('from_lang'), 'sr');
-        expect(fieldText(tester, sourceLangField), 'Serbian');
+        expect(selectedLanguageLabel(tester, FromTo.from), 'Serbian');
         expect(detectedSourceLanguage(), isNull);
 
         await tester.tap(speaker(TtsInput));
@@ -302,7 +293,7 @@ void main() {
         await tester.pumpWidget(const SizedBox());
         await pumpApp(tester);
         expect(fromLangVal, 'auto');
-        expect(fieldText(tester, sourceLangField), 'Autodetect');
+        expect(selectedLanguageLabel(tester, FromTo.from), 'Autodetect');
         await finish(tester);
       });
     });
@@ -354,8 +345,8 @@ void main() {
         expect(toLangVal, 'en');
         expect(session.read('from_lang'), 'sr');
         expect(session.read('to_lang'), 'en');
-        expect(fieldText(tester, sourceLangField), 'Serbian');
-        expect(fieldText(tester, targetLangField), 'English');
+        expect(selectedLanguageLabel(tester, FromTo.from), 'Serbian');
+        expect(selectedLanguageLabel(tester, FromTo.to), 'English');
         expect(googleInCtrl.text, 'sr:Hello');
         expect(googleOutput['text'], 'en:sr:Hello', reason: 'the reverse response, not the original input');
         expect(find.text('en:sr:Hello'), findsOneWidget);

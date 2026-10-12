@@ -82,8 +82,8 @@ void main() {
 
       expect(fromLangVal, 'fr');
       expect(toLangVal, 'de');
-      expect(fieldText(tester, sourceLangField), 'French');
-      expect(fieldText(tester, targetLangField), 'German');
+      expect(selectedLanguageLabel(tester, FromTo.from), 'French');
+      expect(selectedLanguageLabel(tester, FromTo.to), 'German');
     });
 
     testWidgets('without stored values the source is Autodetect and the target is the app locale', (tester) async {
@@ -92,23 +92,19 @@ void main() {
 
       expect(fromLangVal, 'auto');
       expect(toLangVal, 'en');
-      expect(fieldText(tester, sourceLangField), 'Autodetect');
-      expect(fieldText(tester, targetLangField), 'English');
+      expect(selectedLanguageLabel(tester, FromTo.from), 'Autodetect');
+      expect(selectedLanguageLabel(tester, FromTo.to), 'English');
     });
 
     testWidgets('picking a source language from the list updates state and from_lang', (tester) async {
       await pumpApp(tester);
 
-      await tester.tap(sourceLangField);
-      await tester.pump();
-      await tester.enterText(sourceLangField, 'Germ');
-      await tester.pump();
-      await tester.tap(languageOption('German'));
+      await chooseLanguage(tester, FromTo.from, 'Germ', 'German');
       await settleRequests(tester);
 
       expect(fromLangVal, 'de');
       expect(session.read('from_lang'), 'de');
-      expect(fieldText(tester, sourceLangField), 'German');
+      expect(selectedLanguageLabel(tester, FromTo.from), 'German');
       expect(toLangVal, 'sr', reason: 'the other side is untouched');
       expect(server.requests, isEmpty, reason: 'nothing to translate yet');
     });
@@ -124,7 +120,7 @@ void main() {
 
       expect(toLangVal, 'fr');
       expect(session.read('to_lang'), 'fr');
-      expect(fieldText(tester, targetLangField), 'French');
+      expect(selectedLanguageLabel(tester, FromTo.to), 'French');
       expect(fromLangVal, 'en');
     });
 
@@ -133,11 +129,7 @@ void main() {
       await typeAndTranslate(tester, 'Hello');
       server.requests.clear();
 
-      await tester.tap(targetLangField);
-      await tester.pump();
-      await tester.enterText(targetLangField, 'Germ');
-      await tester.pump();
-      await tester.tap(languageOption('German'));
+      await chooseLanguage(tester, FromTo.to, 'Germ', 'German');
       await settleRequests(tester);
 
       expect(server.requests, hasLength(1));
@@ -150,11 +142,7 @@ void main() {
     testWidgets('picking the target language as the source swaps the two', (tester) async {
       await pumpApp(tester);
 
-      await tester.tap(sourceLangField);
-      await tester.pump();
-      await tester.enterText(sourceLangField, 'Serb');
-      await tester.pump();
-      await tester.tap(languageOption('Serbian'));
+      await chooseLanguage(tester, FromTo.from, 'Serb', 'Serbian');
       await settleRequests(tester);
 
       expect(fromLangVal, 'sr');
@@ -179,7 +167,7 @@ void main() {
       server = await resetApp(stored: {'from_lang': 'auto', 'to_lang': 'sr'});
       await pumpApp(tester);
 
-      expect(tester.widget<OutlinedButton>(swapButton).onPressed, isNull);
+      expect(isSwapEnabled(tester), isFalse);
     });
 
     testWidgets('with empty input, swap exchanges and persists the languages without a request', (tester) async {
@@ -192,8 +180,8 @@ void main() {
       expect(toLangVal, 'en');
       expect(session.read('from_lang'), 'sr');
       expect(session.read('to_lang'), 'en');
-      expect(fieldText(tester, sourceLangField), 'Serbian');
-      expect(fieldText(tester, targetLangField), 'English');
+      expect(selectedLanguageLabel(tester, FromTo.from), 'Serbian');
+      expect(selectedLanguageLabel(tester, FromTo.to), 'English');
       expect(server.requests, isEmpty);
     });
 
@@ -204,8 +192,8 @@ void main() {
       expect(toLangVal, to);
       expect(session.read('from_lang'), from);
       expect(session.read('to_lang'), to);
-      expect(fieldText(tester, sourceLangField), from == 'en' ? 'English' : 'Serbian');
-      expect(fieldText(tester, targetLangField), to == 'en' ? 'English' : 'Serbian');
+      expect(selectedLanguageLabel(tester, FromTo.from), from == 'en' ? 'English' : 'Serbian');
+      expect(selectedLanguageLabel(tester, FromTo.to), to == 'en' ? 'English' : 'Serbian');
     }
 
     testWidgets('the shown translation becomes the new input and only the back-translation is requested', (tester) async {
@@ -449,7 +437,7 @@ void main() {
       await tester.pump();
 
       expect(googleInCtrl.text, isEmpty);
-      expect(fieldText(tester, inputField), isEmpty);
+      expect(tester.widget<TextField>(inputField).controller!.text, isEmpty);
       expect(googleOutput, isEmpty);
       expect(find.text('sr:Hello'), findsNothing);
     });
@@ -514,7 +502,7 @@ void main() {
       expect(googleOutput['text'], 'sr:Bonjour');
       expect(fromLangVal, 'en', reason: 'the selected source language is left as it was');
       expect(session.read('from_lang'), 'en');
-      expect(fieldText(tester, sourceLangField), 'English');
+      expect(selectedLanguageLabel(tester, FromTo.from), 'English');
     });
 
     testWidgets('shared text arriving while in the background is picked up 1 second after resume', (tester) async {
@@ -567,7 +555,7 @@ void main() {
       expect(server.requests.single.from, 'auto');
       expect(googleOutput['detectedLanguage'], 'fr');
       expect(fromLangVal, 'auto');
-      expect(fieldText(tester, sourceLangField), 'Autodetect');
+      expect(selectedLanguageLabel(tester, FromTo.from), 'Autodetect');
       expect(session.read('from_lang'), isNull);
     });
 
@@ -579,7 +567,7 @@ void main() {
 
       expect(fromLangVal, 'auto');
       expect(session.read('from_lang'), 'auto');
-      expect(fieldText(tester, sourceLangField), 'Autodetect');
+      expect(selectedLanguageLabel(tester, FromTo.from), 'Autodetect');
     });
   });
 

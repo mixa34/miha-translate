@@ -109,7 +109,7 @@ void main() {
         themeRadio = preference(mode);
         await pumpApp(tester);
 
-        for (final field in [sourceLangField, targetLangField]) {
+        for (final field in [languageSelectorField(FromTo.from), languageSelectorField(FromTo.to)]) {
           final fill = tester.widget<InputDecorator>(find.descendant(of: field, matching: find.byType(InputDecorator))).decoration.fillColor!;
           expect(contrast(paintedEditable(tester, field), fill), greaterThanOrEqualTo(4.5));
         }
@@ -119,18 +119,14 @@ void main() {
         themeRadio = preference(mode);
         await pumpApp(tester);
         await translate(tester, 'Hello'); // records en/sr as recent
-        await tester.tap(targetLangField);
-        await tester.pump();
-        await tester.enterText(targetLangField, 'Serb');
-        await tester.pump();
+        await openLanguageList(tester, FromTo.to, query: 'Serb');
 
         final serbian = languageOption('Serbian');
         final row = tester.widget<Container>(find.ancestor(of: serbian, matching: find.byType(Container)).at(1));
         expect(row.color, scheme.surfaceContainerHigh);
         expect(paintedText(tester, serbian), scheme.primary);
         expect(contrast(scheme.primary, scheme.surfaceContainerHigh), greaterThanOrEqualTo(4.5));
-        await tester.enterText(targetLangField, 'Germ');
-        await tester.pump();
+        await openLanguageList(tester, FromTo.to, query: 'Germ');
         final other = languageOption('German');
         expect(paintedText(tester, other), scheme.onSurface, reason: 'not a recent language');
         expect(contrast(paintedText(tester, other), scheme.surfaceContainerHigh), greaterThanOrEqualTo(4.5));

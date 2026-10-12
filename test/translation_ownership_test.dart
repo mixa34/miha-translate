@@ -37,14 +37,7 @@ void main() {
     await settleRequests(tester);
   }
 
-  Future<void> chooseTarget(WidgetTester tester, String query, String name) async {
-    await tester.tap(targetLangField);
-    await tester.pump();
-    await tester.enterText(targetLangField, query);
-    await tester.pump();
-    await tester.tap(languageOption(name));
-    await tester.pump();
-  }
+  Future<void> chooseTarget(WidgetTester tester, String query, String name) => chooseLanguage(tester, FromTo.to, query, name);
 
   void resume(WidgetTester tester) {
     for (final state in [

@@ -23,6 +23,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:miha_translate/data.dart';
 import 'package:miha_translate/main.dart';
+import 'package:miha_translate/screens/translate/translate_keys.dart';
+import 'package:miha_translate/screens/translate/widgets/input/input.dart';
 import 'package:miha_translate/screens/translate/widgets/tts_playback.dart';
 import 'package:miha_translate/simplytranslate.dart' as engine;
 
@@ -236,27 +238,59 @@ Future<void> drainTimers(WidgetTester tester) async {
   await tester.pump(const Duration(seconds: 1));
 }
 
-// --- Finders for the current (pre-redesign) layout ---------------------------
+// --- The translate screen's controls ------------------------------------------
 //
-// The translate screen has exactly three TextFields, in this order: the source
-// language autocomplete, the target language autocomplete, and the input.
+// Found by the keys in lib/screens/translate/translate_keys.dart, which name
+// the logical controls rather than their position in the widget tree.
 
-Finder get sourceLangField => find.byType(TextField).at(0);
-Finder get targetLangField => find.byType(TextField).at(1);
-Finder get inputField => find.byType(TextField).at(2);
-Finder get swapButton => find.widgetWithText(OutlinedButton, '<-->');
+Finder get inputField => find.byKey(TranslateKeys.input);
+Finder get swapButton => find.byKey(TranslateKeys.swapLanguages);
+Finder languageSelector(FromTo side) =>
+    find.byKey(side == FromTo.from ? TranslateKeys.sourceLanguage : TranslateKeys.targetLanguage);
 
-String fieldText(WidgetTester tester, Finder field) => tester.widget<TextField>(field).controller!.text;
+bool isSwapEnabled(WidgetTester tester) => tester.widget<ButtonStyleButton>(swapButton).onPressed != null;
 
-/// An entry in the language autocomplete's options overlay.
+// --- Language selection ----------------------------------------------------------
+//
+// Behavioural tests select and read languages only through these helpers, so
+// a new selector widget only has to change them. Today's selector is an
+// autocomplete text field with an options overlay.
+
+/// The selector's text field (the current autocomplete implementation).
+Finder languageSelectorField(FromTo side) => find.descendant(of: languageSelector(side), matching: find.byType(TextField));
+Finder get sourceLangField => languageSelectorField(FromTo.from);
+Finder get targetLangField => languageSelectorField(FromTo.to);
+
+/// The language name the selector shows.
+String selectedLanguageLabel(WidgetTester tester, FromTo side) =>
+    tester.widget<TextField>(languageSelectorField(side)).controller!.text;
+
+/// Opens the selector's language list, optionally filtered by [query].
+Future<void> openLanguageList(WidgetTester tester, FromTo side, {String? query}) async {
+  await tester.tap(languageSelectorField(side));
+  await tester.pump();
+  if (query != null) {
+    await tester.enterText(languageSelectorField(side), query);
+    await tester.pump();
+  }
+}
+
+/// Selects the language called [name], found by searching for [query].
+Future<void> chooseLanguage(WidgetTester tester, FromTo side, String query, String name) async {
+  await openLanguageList(tester, side, query: query);
+  await tester.tap(languageOption(name));
+  await tester.pump();
+}
+
+/// An entry in the open language list.
 Finder languageOption(String name) => find.descendant(
       of: find.byType(Scrollbar),
       matching: find.text(name),
     );
 
-/// A widget anywhere under the translate screen's input box.
+/// A widget anywhere in the translate screen's input box.
 Finder underInput(Finder matching) => find.descendant(
-      of: find.ancestor(of: inputField, matching: find.byType(Row)).first,
+      of: find.ancestor(of: inputField, matching: find.byType(GoogleTranslationInput)),
       matching: matching,
     );
 
