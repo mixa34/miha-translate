@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '/data.dart';
-// Shown: data.dart's `AppTheme` enum is the saved theme preference.
+// Shown and prefixed: data.dart's `AppTheme` enum is the saved theme preference.
 import '/theme/app_theme.dart' show AppSpacing;
+import '/theme/app_theme.dart' as design show AppTheme;
 import '../../translate_actions.dart';
 import '../../translate_keys.dart';
 import 'language_picker.dart';
@@ -11,23 +12,77 @@ import 'switch_lang.dart';
 ///
 /// Stateless: the labels are read from the current languages whenever the
 /// translate screen rebuilds, which every language change triggers.
+///
+/// The buttons share the width equally and always have the same height. A
+/// name may take two lines, but a word is never broken: if one of its words
+/// is wider than the label, it is shown on one line, cut with an ellipsis.
+/// With large text (1.5 times the normal size or more) the dropdown arrows
+/// are left out to give the names more room.
 class LanguageBar extends StatelessWidget {
   const LanguageBar({Key? key}) : super(key: key);
 
+  /// The swap button and the space around it.
+  static const _swapWidth = design.AppTheme.minTouchTarget + 2 * AppSpacing.xs;
+
   @override
   Widget build(BuildContext context) {
-    // The buttons are created without const so they rebuild, and read the
-    // current languages, whenever the screen does.
-    return Row(
-      children: [
-        Expanded(child: LanguageButton(FromTo.from, key: TranslateKeys.sourceLanguage)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
-          child: SwapLanguagesButton(),
+    final style = LanguageButton.labelStyle(context);
+    final scaler = MediaQuery.textScalerOf(context);
+    final fontSize = style.fontSize ?? 14;
+    final showArrow = scaler.scale(fontSize) < 1.5 * fontSize;
+    final direction = Directionality.of(context);
+    // Decided here, from the bar's width: the buttons are under
+    // IntrinsicHeight, where a LayoutBuilder cannot be used.
+    return LayoutBuilder(builder: (context, constraints) {
+      final labelWidth = (constraints.maxWidth - _swapWidth) / 2 - LanguageButton.chromeWidth(showArrow);
+      int maxLines(FromTo side) =>
+          _wordsFit(LanguageButton.nameOf(side), style, scaler, labelWidth, direction) ? 2 : 1;
+      // The buttons are created without const so they rebuild, and read the
+      // current languages, whenever the screen does.
+      return IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: LanguageButton(FromTo.from,
+                  key: TranslateKeys.sourceLanguage, maxLines: maxLines(FromTo.from), showArrow: showArrow),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
+              child: SwapLanguagesButton(),
+            ),
+            Expanded(
+              child: LanguageButton(FromTo.to,
+                  key: TranslateKeys.targetLanguage, maxLines: maxLines(FromTo.to), showArrow: showArrow),
+            ),
+          ],
         ),
-        Expanded(child: LanguageButton(FromTo.to, key: TranslateKeys.targetLanguage)),
-      ],
-    );
+      );
+    });
+  }
+
+  /// Recent answers of [_wordsFit]: the bar rebuilds with the whole screen,
+  /// while its names, width and text size rarely change.
+  static final _fitCache = <(String, TextStyle, double, double, TextDirection), bool>{};
+
+  /// Whether every word of [text] fits on one line of [width].
+  static bool _wordsFit(String text, TextStyle style, TextScaler scaler, double width, TextDirection direction) {
+    final key = (text, style, scaler.scale(style.fontSize ?? 14), width, direction);
+    final cached = _fitCache[key];
+    if (cached != null) return cached;
+    var fits = true;
+    for (final word in text.split(RegExp(r'\s+'))) {
+      final painter = TextPainter(text: TextSpan(text: word, style: style), textDirection: direction, textScaler: scaler)
+        ..layout();
+      final wordWidth = painter.width;
+      painter.dispose();
+      if (wordWidth > width) {
+        fits = false;
+        break;
+      }
+    }
+    if (_fitCache.length >= 32) _fitCache.clear();
+    return _fitCache[key] = fits;
   }
 }
 
@@ -37,11 +92,33 @@ class LanguageBar extends StatelessWidget {
 class LanguageButton extends StatelessWidget {
   final FromTo side;
 
-  const LanguageButton(this.side, {Key? key}) : super(key: key);
+  /// Lines the name may take; [LanguageBar] allows two only when no word of
+  /// it would have to be broken.
+  final int maxLines;
+
+  /// Whether the dropdown arrow is shown; [LanguageBar] leaves it out with
+  /// large text.
+  final bool showArrow;
+
+  const LanguageButton(this.side, {this.maxLines = 1, this.showArrow = true, Key? key}) : super(key: key);
+
+  static const _arrowSize = 18.0;
+
+  /// Space between the name and the button's edges. Without the arrow the
+  /// name keeps the same distance from both rounded ends, so it is never
+  /// drawn into the curve.
+  static EdgeInsets _padding(bool showArrow) =>
+      EdgeInsets.only(left: AppSpacing.md, right: showArrow ? AppSpacing.xs : AppSpacing.md);
+
+  /// Horizontal space in the button that is not the name's.
+  static double chromeWidth(bool showArrow) => _padding(showArrow).horizontal + (showArrow ? _arrowSize : 0);
+
+  /// The style the name is drawn with: filled buttons use labelLarge.
+  static TextStyle labelStyle(BuildContext context) => Theme.of(context).textTheme.labelLarge ?? const TextStyle(fontSize: 14);
 
   // The code itself rather than a crash, should a code outside the list ever
   // get here; initialization only lets codes of the list in.
-  String get _language => side == FromTo.from
+  static String nameOf(FromTo side) => side == FromTo.from
       ? fromSelLangMap[fromLangVal] ?? fromLangVal
       : toSelLangMap[toLangVal] ?? toLangVal;
 
@@ -49,24 +126,28 @@ class LanguageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final messages = i18n().main;
     final role = side == FromTo.from ? messages.source_language : messages.target_language;
+    final name = nameOf(side);
     return FilledButton.tonal(
       style: FilledButton.styleFrom(
-        minimumSize: const Size(0, 48),
-        padding: const EdgeInsets.only(left: AppSpacing.lg, right: AppSpacing.sm),
+        minimumSize: const Size(0, design.AppTheme.minTouchTarget),
+        padding: _padding(showArrow),
+        // Half the minimum height: a pill at one line, a rounded rectangle
+        // when two lines make it taller, so the corners stay clear of the text.
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(design.AppTheme.minTouchTarget / 2)),
       ),
       onPressed: () async {
         final code = await showLanguagePicker(context, side);
         if (code != null) await selectLanguage(side, code);
       },
       child: Semantics(
-        label: '$role: $_language',
+        label: '$role: $name',
         excludeSemantics: true,
         child: Row(
           children: [
             Expanded(
-              child: Text(_language, maxLines: 1, overflow: TextOverflow.ellipsis, softWrap: false),
+              child: Text(name, maxLines: maxLines, overflow: TextOverflow.ellipsis, softWrap: maxLines > 1),
             ),
-            const Icon(Icons.arrow_drop_down),
+            if (showArrow) const Icon(Icons.arrow_drop_down, size: _arrowSize),
           ],
         ),
       ),
