@@ -111,6 +111,7 @@ langs:
   zulu: ズールー語
 main:
   about: このアプリについて
+  all_languages: All languages
   appearance: 外観
   audio_limit: 200 文字以上の文章は音声を取得できません
   autodetect_not_supported: 言語の自動検出はサポートされていません
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: クリップボードにコピー
   dark: ダーク
   definitions: 定義
+  detected_language(String language): "Detected: $language"
   donate: 寄付する
   enter_text_here: ここにテキストを入力してください
   error: エラーが発生しました
@@ -129,14 +131,22 @@ main:
   license: ライセンス
   light: ライト
   no_internet: インターネット接続がありません
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: バグを報告
+  search_languages: Search languages
   settings: 設定
   something_went_wrong: 何らかの問題が発生しました
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: 文字認識
   text_to_speech: テキスト読み上げ
   theme: テーマ
   translate: 翻訳
+  translate_from: Translate from
+  translate_to: Translate to
   translation: 翻訳
   translations: 翻訳
   version: バージョン

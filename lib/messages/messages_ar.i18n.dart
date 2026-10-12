@@ -177,6 +177,7 @@ class MainMessagesAr extends MainMessages {
   final MessagesAr _parent;
   const MainMessagesAr(this._parent) : super(_parent);
   String get about => """عن""";
+  String get all_languages => """All languages""";
   String get appearance => """المظهر""";
   String get audio_limit => """لا يمكن جلب الصوت لأكثر من 200 حرف""";
   String get autodetect_not_supported => """التلقائي غير مدعوم""";
@@ -185,6 +186,7 @@ class MainMessagesAr extends MainMessages {
   String get copied_to_clipboard => """نُسخ إلى الحافظة""";
   String get dark => """داكن""";
   String get definitions => """المفردات""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """تبرع""";
   String get enter_text_here => """أدخل النص هنا""";
   String get error => """هناك خطأ ما""";
@@ -195,14 +197,22 @@ class MainMessagesAr extends MainMessages {
   String get license => """الرخصة""";
   String get light => """فاتح""";
   String get no_internet => """لا يوجد انترنت""";
+  String get no_languages_found => """No languages found""";
   String get ok => """حسناً""";
+  String get recent_languages => """Recent""";
   String get report_bug => """بلّغ عن خطأ""";
+  String get search_languages => """Search languages""";
   String get settings => """الإعدادات""";
   String get something_went_wrong => """هناك خطأ ما""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """التعرف على النص""";
   String get text_to_speech => """نص-إلى-صوت""";
   String get theme => """السمة""";
   String get translate => """ترجم""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """الترجمة""";
   String get translations => """الترجمات""";
   String get version => """الإصدار""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesArMap => {
       """langs.yoruba""": """اليورباية""",
       """langs.zulu""": """الزولوية""",
       """main.about""": """عن""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """المظهر""",
       """main.audio_limit""": """لا يمكن جلب الصوت لأكثر من 200 حرف""",
       """main.autodetect_not_supported""": """التلقائي غير مدعوم""",
@@ -339,14 +350,22 @@ Map<String, String> get messagesArMap => {
       """main.license""": """الرخصة""",
       """main.light""": """فاتح""",
       """main.no_internet""": """لا يوجد انترنت""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """حسناً""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """بلّغ عن خطأ""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """الإعدادات""",
       """main.something_went_wrong""": """هناك خطأ ما""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """التعرف على النص""",
       """main.text_to_speech""": """نص-إلى-صوت""",
       """main.theme""": """السمة""",
       """main.translate""": """ترجم""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """الترجمة""",
       """main.translations""": """الترجمات""",
       """main.version""": """الإصدار""",

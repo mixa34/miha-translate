@@ -111,6 +111,7 @@ langs:
   zulu: Zulua
 main:
   about: Pri
+  all_languages: All languages
   appearance: Aspekto
   audio_limit: Ne eblas prononci pli ol 200 signojn
   autodetect_not_supported: Aŭtomata trovado ne funkcias
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Kopiita al tondujo
   dark: Malhela
   definitions: Difinoj
+  detected_language(String language): "Detected: $language"
   donate: Donaci
   enter_text_here: Tajpu tekston ĉi tie
   error: Okazis eraro
@@ -129,14 +131,22 @@ main:
   license: Permesilo
   light: Hela
   no_internet: Sen Interreta konekto
+  no_languages_found: No languages found
   ok: Bone
+  recent_languages: Recent
   report_bug: Raporti cimon
+  search_languages: Search languages
   settings: Agordoj
   something_went_wrong: Io fiaskis
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Tekstorekono
   text_to_speech: Prononcilo
   theme: Etoso
   translate: Traduki
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Tradukado
   translations: Tradukoj
   version: Versio

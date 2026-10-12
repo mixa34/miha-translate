@@ -177,6 +177,7 @@ class MainMessagesEl extends MainMessages {
   final MessagesEl _parent;
   const MainMessagesEl(this._parent) : super(_parent);
   String get about => """Σχετικά""";
+  String get all_languages => """All languages""";
   String get appearance => """Εμφάνιση""";
   String get audio_limit =>
       """Δεν είναι δυνατή η λήψη ήχου για πάνω από 200 χαρακτήρες""";
@@ -186,6 +187,7 @@ class MainMessagesEl extends MainMessages {
   String get copied_to_clipboard => """Αντιγράφηκε στο πρόχειρο""";
   String get dark => """Σκούρο""";
   String get definitions => """Definitions""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Κάντε μια δωρεά""";
   String get enter_text_here => """Πληκτρολογήστε κείμενο εδώ""";
   String get error => """Υπήρχε ένα σφάλμα""";
@@ -197,14 +199,22 @@ class MainMessagesEl extends MainMessages {
   String get license => """Άδεια""";
   String get light => """Φωτεινό""";
   String get no_internet => """Δεν υπάρχει σύνδεση στο διαδίκτυο""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Αναφέρετε ένα bug""";
+  String get search_languages => """Search languages""";
   String get settings => """Ρυθμίσεις""";
   String get something_went_wrong => """Κάτι δεν πήγε καλά""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
   String get text_to_speech => """Text-To-Speech""";
   String get theme => """Θέμα""";
   String get translate => """Μετάφραση""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Μετάφραση""";
   String get translations => """Translation""";
   String get version => """Έκδοση""";
@@ -323,6 +333,7 @@ Map<String, String> get messagesElMap => {
       """langs.yoruba""": """Γιορούμπα""",
       """langs.zulu""": """Ζουλού""",
       """main.about""": """Σχετικά""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Εμφάνιση""",
       """main.audio_limit""":
           """Δεν είναι δυνατή η λήψη ήχου για πάνω από 200 χαρακτήρες""",
@@ -343,14 +354,22 @@ Map<String, String> get messagesElMap => {
       """main.license""": """Άδεια""",
       """main.light""": """Φωτεινό""",
       """main.no_internet""": """Δεν υπάρχει σύνδεση στο διαδίκτυο""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Αναφέρετε ένα bug""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Ρυθμίσεις""",
       """main.something_went_wrong""": """Κάτι δεν πήγε καλά""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",
       """main.text_to_speech""": """Text-To-Speech""",
       """main.theme""": """Θέμα""",
       """main.translate""": """Μετάφραση""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Μετάφραση""",
       """main.translations""": """Translation""",
       """main.version""": """Έκδοση""",

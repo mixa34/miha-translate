@@ -111,6 +111,7 @@ langs:
   zulu: زولو
 main:
   about: درباره
+  all_languages: All languages
   appearance: ظاهر
   audio_limit: نمی توان برای بیش از ۲۰۰ نویسه صدا دریافت کرد
   autodetect_not_supported: Autodetect not supported
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: ذخیره در کلیپ‌بورد
   dark: تیره
   definitions: Definitions
+  detected_language(String language): "Detected: $language"
   donate: Donate
   enter_text_here: متن را اینجا وارد کنید
   error: یک مشکل به وجود آمده
@@ -129,14 +131,22 @@ main:
   license: پروانه
   light: روشن
   no_internet: اتصال به اینترنت برقرار نیست
+  no_languages_found: No languages found
   ok: خُب
+  recent_languages: Recent
   report_bug: Report a bug
+  search_languages: Search languages
   settings: تنظیمات
   something_went_wrong: مشکلی پیش آمده
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Text Recognition
   text_to_speech: Text-To-Speech
   theme: تم
   translate: ترجمه
+  translate_from: Translate from
+  translate_to: Translate to
   translation: ترجمه
   translations: Translation
   version: نسخه

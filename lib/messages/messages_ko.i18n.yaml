@@ -111,6 +111,7 @@ langs:
   zulu: 줄루어
 main:
   about: 소개
+  all_languages: All languages
   appearance: 모양
   audio_limit: 200자를 초과하는 오디오를 가져올 수 없습니다
   autodetect_not_supported: 자동 감지가 지원되지 않습니다
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: 클립보드에 복사되었습니다
   dark: 밤
   definitions: 정의
+  detected_language(String language): "Detected: $language"
   donate: 기부하기
   enter_text_here: 글자를 입력해주세요
   error: 오류가 발생했습니다
@@ -129,14 +131,22 @@ main:
   license: 라이센스
   light: 낮
   no_internet: 인터넷 엿결 없음
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: 버그 제보하기
+  search_languages: Search languages
   settings: 설정
   something_went_wrong: 무언가 잘못되었습니다
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: 글자 인식
   text_to_speech: 글자 읽어주기
   theme: 테마
   translate: 번역하기
+  translate_from: Translate from
+  translate_to: Translate to
   translation: 번역
   translations: 번역
   version: 버전

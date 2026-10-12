@@ -177,6 +177,7 @@ class MainMessagesCs extends MainMessages {
   final MessagesCs _parent;
   const MainMessagesCs(this._parent) : super(_parent);
   String get about => """O aplikaci""";
+  String get all_languages => """All languages""";
   String get appearance => """Vzhled""";
   String get audio_limit => """Nelze získat zvuk pro více než 200 znaků""";
   String get autodetect_not_supported =>
@@ -186,6 +187,7 @@ class MainMessagesCs extends MainMessages {
   String get copied_to_clipboard => """Zkopírováno do schránky""";
   String get dark => """Tmavý""";
   String get definitions => """Definice""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Darovat""";
   String get enter_text_here => """Zde zadejte text""";
   String get error => """Něco se nepovedlo""";
@@ -196,14 +198,22 @@ class MainMessagesCs extends MainMessages {
   String get license => """Licence""";
   String get light => """Světlý""";
   String get no_internet => """Jste bez internetu""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Nahlásit chybu""";
+  String get search_languages => """Search languages""";
   String get settings => """Nastavení""";
   String get something_went_wrong => """Něco se pokazilo""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Rozpoznávání textu""";
   String get text_to_speech => """Převod textu na řeč""";
   String get theme => """Motiv""";
   String get translate => """Přeložit""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Překlad""";
   String get translations => """Překlady""";
   String get version => """Verze""";
@@ -322,6 +332,7 @@ Map<String, String> get messagesCsMap => {
       """langs.yoruba""": """Yoruba""",
       """langs.zulu""": """Zul""",
       """main.about""": """O aplikaci""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Vzhled""",
       """main.audio_limit""": """Nelze získat zvuk pro více než 200 znaků""",
       """main.autodetect_not_supported""":
@@ -341,14 +352,22 @@ Map<String, String> get messagesCsMap => {
       """main.license""": """Licence""",
       """main.light""": """Světlý""",
       """main.no_internet""": """Jste bez internetu""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Nahlásit chybu""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Nastavení""",
       """main.something_went_wrong""": """Něco se pokazilo""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Rozpoznávání textu""",
       """main.text_to_speech""": """Převod textu na řeč""",
       """main.theme""": """Motiv""",
       """main.translate""": """Přeložit""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Překlad""",
       """main.translations""": """Překlady""",
       """main.version""": """Verze""",

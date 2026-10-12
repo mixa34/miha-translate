@@ -111,6 +111,7 @@ langs:
   zulu: zulu
 main:
   about: Tietoja
+  all_languages: All languages
   appearance: Ulkonäkö
   audio_limit: Ääntä ei voi saada yli 200 merkille
   autodetect_not_supported: Automaattista tunnistusta ei tueta
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Tallennettu leikepöydälle
   dark: Tumma
   definitions: Määritelmät
+  detected_language(String language): "Detected: $language"
   donate: Lahjoita
   enter_text_here: Kirjoita teksti tähän
   error: Tapahtui virhe
@@ -129,14 +131,22 @@ main:
   license: Lisenssi
   light: Vaalea
   no_internet: Ei internet-yhteyttä
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: Ilmoita virheestä
+  search_languages: Search languages
   settings: Asetukset
   something_went_wrong: Jokin meni pieleen
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Tekstintunnistus
   text_to_speech: Teksti puheeksi
   theme: Teema
   translate: Käännä
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Käännös
   translations: Käännökset
   version: Versio

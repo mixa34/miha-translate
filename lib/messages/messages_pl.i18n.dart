@@ -177,6 +177,7 @@ class MainMessagesPl extends MainMessages {
   final MessagesPl _parent;
   const MainMessagesPl(this._parent) : super(_parent);
   String get about => """O aplikacji""";
+  String get all_languages => """All languages""";
   String get appearance => """Wygląd""";
   String get audio_limit =>
       """Nie można uzyskać dźwięku dla ponad 200 znaków""";
@@ -187,6 +188,7 @@ class MainMessagesPl extends MainMessages {
   String get copied_to_clipboard => """Skopiowano do schowka""";
   String get dark => """Ciemny""";
   String get definitions => """Definicje""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Wesprzyj""";
   String get enter_text_here => """Wpisz tutaj tekst""";
   String get error => """Wystąpił błąd""";
@@ -197,14 +199,22 @@ class MainMessagesPl extends MainMessages {
   String get license => """Licencja""";
   String get light => """Jasny""";
   String get no_internet => """Brak połączenia z Internetem""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Zgłoś błąd""";
+  String get search_languages => """Search languages""";
   String get settings => """Ustawienia""";
   String get something_went_wrong => """Coś poszło nie tak""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Rozpoznawanie tekstu""";
   String get text_to_speech => """Zamiana tekstu na mowę""";
   String get theme => """Motyw""";
   String get translate => """Przetłumacz""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Tłumaczenie""";
   String get translations => """Tłumaczenia""";
   String get version => """Wersja""";
@@ -323,6 +333,7 @@ Map<String, String> get messagesPlMap => {
       """langs.yoruba""": """joruba""",
       """langs.zulu""": """zulu""",
       """main.about""": """O aplikacji""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Wygląd""",
       """main.audio_limit""":
           """Nie można uzyskać dźwięku dla ponad 200 znaków""",
@@ -343,14 +354,22 @@ Map<String, String> get messagesPlMap => {
       """main.license""": """Licencja""",
       """main.light""": """Jasny""",
       """main.no_internet""": """Brak połączenia z Internetem""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Zgłoś błąd""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Ustawienia""",
       """main.something_went_wrong""": """Coś poszło nie tak""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Rozpoznawanie tekstu""",
       """main.text_to_speech""": """Zamiana tekstu na mowę""",
       """main.theme""": """Motyw""",
       """main.translate""": """Przetłumacz""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Tłumaczenie""",
       """main.translations""": """Tłumaczenia""",
       """main.version""": """Wersja""",

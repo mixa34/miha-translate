@@ -177,6 +177,7 @@ class MainMessagesIs extends MainMessages {
   final MessagesIs _parent;
   const MainMessagesIs(this._parent) : super(_parent);
   String get about => """Um hugbúnaðinn""";
+  String get all_languages => """All languages""";
   String get appearance => """Útlit""";
   String get audio_limit => """Næ ekki hljóði fyrir meira en 200 stafi""";
   String get autodetect_not_supported => """Sjálfvirk greining ekki studd""";
@@ -185,6 +186,7 @@ class MainMessagesIs extends MainMessages {
   String get copied_to_clipboard => """Afritað á klippispjald""";
   String get dark => """Dökkt""";
   String get definitions => """Skilgreiningar""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Styrkja""";
   String get enter_text_here => """Settu hér inn texta""";
   String get error => """Það kom upp villa""";
@@ -195,14 +197,22 @@ class MainMessagesIs extends MainMessages {
   String get license => """Notkunarleyfi""";
   String get light => """Ljóst""";
   String get no_internet => """Engin internettenging""";
+  String get no_languages_found => """No languages found""";
   String get ok => """Í lagi""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Tilkynna um villu""";
+  String get search_languages => """Search languages""";
   String get settings => """Stillingar""";
   String get something_went_wrong => """Eitthvað fór úrskeiðis""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Textagreining""";
   String get text_to_speech => """Texti-í-tal (TTS)""";
   String get theme => """Þema""";
   String get translate => """Þýða""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Þýðing""";
   String get translations => """Þýðingar""";
   String get version => """Útgáfa""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesIsMap => {
       """langs.yoruba""": """Yórúba""",
       """langs.zulu""": """Zúlú""",
       """main.about""": """Um hugbúnaðinn""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Útlit""",
       """main.audio_limit""": """Næ ekki hljóði fyrir meira en 200 stafi""",
       """main.autodetect_not_supported""": """Sjálfvirk greining ekki studd""",
@@ -340,14 +351,22 @@ Map<String, String> get messagesIsMap => {
       """main.license""": """Notkunarleyfi""",
       """main.light""": """Ljóst""",
       """main.no_internet""": """Engin internettenging""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """Í lagi""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Tilkynna um villu""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Stillingar""",
       """main.something_went_wrong""": """Eitthvað fór úrskeiðis""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Textagreining""",
       """main.text_to_speech""": """Texti-í-tal (TTS)""",
       """main.theme""": """Þema""",
       """main.translate""": """Þýða""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Þýðing""",
       """main.translations""": """Þýðingar""",
       """main.version""": """Útgáfa""",

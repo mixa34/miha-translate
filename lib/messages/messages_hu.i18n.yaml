@@ -111,6 +111,7 @@ langs:
   zulu: Zulu
 main:
   about: Névjegy
+  all_languages: All languages
   appearance: Kinézet
   audio_limit: 200 karakter felett nem tud hangot lejátszani
   autodetect_not_supported: Az automatikus felismerés nem támogatott
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Vágólapra másolva
   dark: Sötét
   definitions: Meghatározások
+  detected_language(String language): "Detected: $language"
   donate: Támogatás
   enter_text_here: Írd be a szöveget
   error: Hiba történt
@@ -129,14 +131,22 @@ main:
   license: Licenc
   light: Világos
   no_internet: Nincs internetkapcsolat
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: Hibajelentés
+  search_languages: Search languages
   settings: Beállíŧások
   something_went_wrong: Valami rosszul sült el
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Szövegfelismerés
   text_to_speech: Text-To-Speech
   theme: Téma
   translate: Fordítás
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Fordítás
   translations: Fordítások
   version: Verzió

@@ -177,6 +177,7 @@ class MainMessagesFa extends MainMessages {
   final MessagesFa _parent;
   const MainMessagesFa(this._parent) : super(_parent);
   String get about => """درباره""";
+  String get all_languages => """All languages""";
   String get appearance => """ظاهر""";
   String get audio_limit => """نمی توان برای بیش از ۲۰۰ نویسه صدا دریافت کرد""";
   String get autodetect_not_supported => """Autodetect not supported""";
@@ -185,6 +186,7 @@ class MainMessagesFa extends MainMessages {
   String get copied_to_clipboard => """ذخیره در کلیپ‌بورد""";
   String get dark => """تیره""";
   String get definitions => """Definitions""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Donate""";
   String get enter_text_here => """متن را اینجا وارد کنید""";
   String get error => """یک مشکل به وجود آمده""";
@@ -195,14 +197,22 @@ class MainMessagesFa extends MainMessages {
   String get license => """پروانه""";
   String get light => """روشن""";
   String get no_internet => """اتصال به اینترنت برقرار نیست""";
+  String get no_languages_found => """No languages found""";
   String get ok => """خُب""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Report a bug""";
+  String get search_languages => """Search languages""";
   String get settings => """تنظیمات""";
   String get something_went_wrong => """مشکلی پیش آمده""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
   String get text_to_speech => """Text-To-Speech""";
   String get theme => """تم""";
   String get translate => """ترجمه""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """ترجمه""";
   String get translations => """Translation""";
   String get version => """نسخه""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesFaMap => {
       """langs.yoruba""": """یوروبایی""",
       """langs.zulu""": """زولو""",
       """main.about""": """درباره""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """ظاهر""",
       """main.audio_limit""":
           """نمی توان برای بیش از ۲۰۰ نویسه صدا دریافت کرد""",
@@ -340,14 +351,22 @@ Map<String, String> get messagesFaMap => {
       """main.license""": """پروانه""",
       """main.light""": """روشن""",
       """main.no_internet""": """اتصال به اینترنت برقرار نیست""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """خُب""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Report a bug""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """تنظیمات""",
       """main.something_went_wrong""": """مشکلی پیش آمده""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",
       """main.text_to_speech""": """Text-To-Speech""",
       """main.theme""": """تم""",
       """main.translate""": """ترجمه""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """ترجمه""",
       """main.translations""": """Translation""",
       """main.version""": """نسخه""",

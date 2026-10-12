@@ -111,6 +111,7 @@ langs:
   zulu: Zul
 main:
   about: O aplikaci
+  all_languages: All languages
   appearance: Vzhled
   audio_limit: Nelze získat zvuk pro více než 200 znaků
   autodetect_not_supported: Automatická detekce není podporována
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Zkopírováno do schránky
   dark: Tmavý
   definitions: Definice
+  detected_language(String language): "Detected: $language"
   donate: Darovat
   enter_text_here: Zde zadejte text
   error: Něco se nepovedlo
@@ -129,14 +131,22 @@ main:
   license: Licence
   light: Světlý
   no_internet: Jste bez internetu
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: Nahlásit chybu
+  search_languages: Search languages
   settings: Nastavení
   something_went_wrong: Něco se pokazilo
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Rozpoznávání textu
   text_to_speech: Převod textu na řeč
   theme: Motiv
   translate: Přeložit
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Překlad
   translations: Překlady
   version: Verze

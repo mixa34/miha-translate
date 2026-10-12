@@ -177,6 +177,7 @@ class MainMessagesRu extends MainMessages {
   final MessagesRu _parent;
   const MainMessagesRu(this._parent) : super(_parent);
   String get about => """О приложении""";
+  String get all_languages => """All languages""";
   String get appearance => """Внешний вид""";
   String get audio_limit =>
       """Невозможно воспроизвести аудио более чем для 200 символов""";
@@ -187,6 +188,7 @@ class MainMessagesRu extends MainMessages {
   String get copied_to_clipboard => """Скопировано в буфер обмена""";
   String get dark => """Тёмная""";
   String get definitions => """Определения""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Пожертвовать""";
   String get enter_text_here => """Введите текст в это поле""";
   String get error => """Произошла ошибка""";
@@ -197,14 +199,22 @@ class MainMessagesRu extends MainMessages {
   String get license => """Лицензия""";
   String get light => """Светлая""";
   String get no_internet => """Нет подключения к интернету""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Сообщить о проблеме""";
+  String get search_languages => """Search languages""";
   String get settings => """Настройки""";
   String get something_went_wrong => """Что-то пошло не так""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Распознавание текста""";
   String get text_to_speech => """Текст-в-Речь (TTS)""";
   String get theme => """Тема""";
   String get translate => """Перевести""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Перевод""";
   String get translations => """Переводы""";
   String get version => """Версия""";
@@ -323,6 +333,7 @@ Map<String, String> get messagesRuMap => {
       """langs.yoruba""": """Йоруба""",
       """langs.zulu""": """Зулу""",
       """main.about""": """О приложении""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Внешний вид""",
       """main.audio_limit""":
           """Невозможно воспроизвести аудио более чем для 200 символов""",
@@ -343,14 +354,22 @@ Map<String, String> get messagesRuMap => {
       """main.license""": """Лицензия""",
       """main.light""": """Светлая""",
       """main.no_internet""": """Нет подключения к интернету""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Сообщить о проблеме""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Настройки""",
       """main.something_went_wrong""": """Что-то пошло не так""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Распознавание текста""",
       """main.text_to_speech""": """Текст-в-Речь (TTS)""",
       """main.theme""": """Тема""",
       """main.translate""": """Перевести""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Перевод""",
       """main.translations""": """Переводы""",
       """main.version""": """Версия""",

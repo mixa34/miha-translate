@@ -177,6 +177,7 @@ class MainMessagesHu extends MainMessages {
   final MessagesHu _parent;
   const MainMessagesHu(this._parent) : super(_parent);
   String get about => """Névjegy""";
+  String get all_languages => """All languages""";
   String get appearance => """Kinézet""";
   String get audio_limit => """200 karakter felett nem tud hangot lejátszani""";
   String get autodetect_not_supported =>
@@ -186,6 +187,7 @@ class MainMessagesHu extends MainMessages {
   String get copied_to_clipboard => """Vágólapra másolva""";
   String get dark => """Sötét""";
   String get definitions => """Meghatározások""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Támogatás""";
   String get enter_text_here => """Írd be a szöveget""";
   String get error => """Hiba történt""";
@@ -196,14 +198,22 @@ class MainMessagesHu extends MainMessages {
   String get license => """Licenc""";
   String get light => """Világos""";
   String get no_internet => """Nincs internetkapcsolat""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Hibajelentés""";
+  String get search_languages => """Search languages""";
   String get settings => """Beállíŧások""";
   String get something_went_wrong => """Valami rosszul sült el""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Szövegfelismerés""";
   String get text_to_speech => """Text-To-Speech""";
   String get theme => """Téma""";
   String get translate => """Fordítás""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Fordítás""";
   String get translations => """Fordítások""";
   String get version => """Verzió""";
@@ -322,6 +332,7 @@ Map<String, String> get messagesHuMap => {
       """langs.yoruba""": """Joruba""",
       """langs.zulu""": """Zulu""",
       """main.about""": """Névjegy""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Kinézet""",
       """main.audio_limit""":
           """200 karakter felett nem tud hangot lejátszani""",
@@ -342,14 +353,22 @@ Map<String, String> get messagesHuMap => {
       """main.license""": """Licenc""",
       """main.light""": """Világos""",
       """main.no_internet""": """Nincs internetkapcsolat""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Hibajelentés""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Beállíŧások""",
       """main.something_went_wrong""": """Valami rosszul sült el""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Szövegfelismerés""",
       """main.text_to_speech""": """Text-To-Speech""",
       """main.theme""": """Téma""",
       """main.translate""": """Fordítás""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Fordítás""",
       """main.translations""": """Fordítások""",
       """main.version""": """Verzió""",

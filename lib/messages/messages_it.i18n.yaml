@@ -111,6 +111,7 @@ langs:
   zulu: zulu
 main:
   about: Informazioni
+  all_languages: All languages
   appearance: Aspetto
   audio_limit: Impossibile ottenere l'audio per più di 200 caratteri
   autodetect_not_supported: Rilevamento automatico non supportato
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Copiato negli appunti
   dark: Scuro
   definitions: Definizioni
+  detected_language(String language): "Detected: $language"
   donate: Dona
   enter_text_here: Inserisci il testo qui
   error: Si è verificato un errore
@@ -129,14 +131,22 @@ main:
   license: Licenza
   light: Chiaro
   no_internet: Nessuna connessione internet
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: Segnala un errore
+  search_languages: Search languages
   settings: Impostazioni
   something_went_wrong: Qualcosa è andato storto
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Riconoscimento del testo
   text_to_speech: Sintesi vocale
   theme: Tema
   translate: Traduci
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Traduzione
   translations: Traduzioni
   version: Versione

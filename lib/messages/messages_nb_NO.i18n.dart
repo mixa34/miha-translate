@@ -177,6 +177,7 @@ class MainMessagesNbNO extends MainMessages {
   final MessagesNbNO _parent;
   const MainMessagesNbNO(this._parent) : super(_parent);
   String get about => """Om""";
+  String get all_languages => """All languages""";
   String get appearance => """Utseende""";
   String get audio_limit => """Kan ikke hente lyd for mer enn 200 tegn""";
   String get autodetect_not_supported => """Autodetect not supported""";
@@ -185,6 +186,7 @@ class MainMessagesNbNO extends MainMessages {
   String get copied_to_clipboard => """Kopiert til utklippstavle""";
   String get dark => """Mørk""";
   String get definitions => """Definitions""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Doner""";
   String get enter_text_here => """Skriv inn tekst her""";
   String get error => """En feil oppstod""";
@@ -195,14 +197,22 @@ class MainMessagesNbNO extends MainMessages {
   String get license => """Lisens""";
   String get light => """Lys""";
   String get no_internet => """Mangler tilkobling til Internett""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Innrapporter en feil""";
+  String get search_languages => """Search languages""";
   String get settings => """Innstillinger""";
   String get something_went_wrong => """Noe gikk galt""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Tekstgjenkjenning""";
   String get text_to_speech => """Text-To-Speech""";
   String get theme => """Drakt""";
   String get translate => """Oversett""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Oversettelse""";
   String get translations => """Translation""";
   String get version => """Versjon""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesNbNOMap => {
       """langs.yoruba""": """Joruba""",
       """langs.zulu""": """Zulu""",
       """main.about""": """Om""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Utseende""",
       """main.audio_limit""": """Kan ikke hente lyd for mer enn 200 tegn""",
       """main.autodetect_not_supported""": """Autodetect not supported""",
@@ -339,14 +350,22 @@ Map<String, String> get messagesNbNOMap => {
       """main.license""": """Lisens""",
       """main.light""": """Lys""",
       """main.no_internet""": """Mangler tilkobling til Internett""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Innrapporter en feil""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Innstillinger""",
       """main.something_went_wrong""": """Noe gikk galt""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Tekstgjenkjenning""",
       """main.text_to_speech""": """Text-To-Speech""",
       """main.theme""": """Drakt""",
       """main.translate""": """Oversett""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Oversettelse""",
       """main.translations""": """Translation""",
       """main.version""": """Versjon""",

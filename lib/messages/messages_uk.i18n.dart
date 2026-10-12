@@ -177,6 +177,7 @@ class MainMessagesUk extends MainMessages {
   final MessagesUk _parent;
   const MainMessagesUk(this._parent) : super(_parent);
   String get about => """Про застосунок""";
+  String get all_languages => """All languages""";
   String get appearance => """Вигляд""";
   String get audio_limit =>
       """Не можливо отримати звук на більше ніж 200 символів""";
@@ -186,6 +187,7 @@ class MainMessagesUk extends MainMessages {
   String get copied_to_clipboard => """Скопійовано до буфера обміну""";
   String get dark => """Темна""";
   String get definitions => """Definitions""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Пожертви""";
   String get enter_text_here => """Вводьте текст тут""";
   String get error => """Там була помилка""";
@@ -196,14 +198,22 @@ class MainMessagesUk extends MainMessages {
   String get license => """Ліцензія""";
   String get light => """Світла""";
   String get no_internet => """Нема з’єднання з Інтернетом""";
+  String get no_languages_found => """No languages found""";
   String get ok => """Добре""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Звіт про ваду""";
+  String get search_languages => """Search languages""";
   String get settings => """Налаштування""";
   String get something_went_wrong => """Щось пішло не так""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Розпізнавання тексту""";
   String get text_to_speech => """Text-To-Speech""";
   String get theme => """Тема""";
   String get translate => """Перекласти""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Переклад""";
   String get translations => """Переклади""";
   String get version => """Версія""";
@@ -322,6 +332,7 @@ Map<String, String> get messagesUkMap => {
       """langs.yoruba""": """Yoruba""",
       """langs.zulu""": """Zul""",
       """main.about""": """Про застосунок""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Вигляд""",
       """main.audio_limit""":
           """Не можливо отримати звук на більше ніж 200 символів""",
@@ -342,14 +353,22 @@ Map<String, String> get messagesUkMap => {
       """main.license""": """Ліцензія""",
       """main.light""": """Світла""",
       """main.no_internet""": """Нема з’єднання з Інтернетом""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """Добре""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Звіт про ваду""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Налаштування""",
       """main.something_went_wrong""": """Щось пішло не так""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Розпізнавання тексту""",
       """main.text_to_speech""": """Text-To-Speech""",
       """main.theme""": """Тема""",
       """main.translate""": """Перекласти""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Переклад""",
       """main.translations""": """Переклади""",
       """main.version""": """Версія""",

@@ -177,6 +177,7 @@ class MainMessagesTr extends MainMessages {
   final MessagesTr _parent;
   const MainMessagesTr(this._parent) : super(_parent);
   String get about => """Hakkında""";
+  String get all_languages => """All languages""";
   String get appearance => """Görünüm""";
   String get audio_limit =>
       """200 karakterden fazlası için ses dosyası alınamıyor""";
@@ -187,6 +188,7 @@ class MainMessagesTr extends MainMessages {
   String get copied_to_clipboard => """Panoya kopyalandı""";
   String get dark => """Koyu""";
   String get definitions => """Tanımlar""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Bağış Yap""";
   String get enter_text_here => """Metni buraya girin""";
   String get error => """Bir hata oluştu""";
@@ -197,14 +199,22 @@ class MainMessagesTr extends MainMessages {
   String get license => """Lisans""";
   String get light => """Açık""";
   String get no_internet => """İnternet bağlantısı yok""";
+  String get no_languages_found => """No languages found""";
   String get ok => """Tamam""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Hata bildir""";
+  String get search_languages => """Search languages""";
   String get settings => """Ayarlar""";
   String get something_went_wrong => """Bir şeyler yanlış gitti""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Metin Tanıma""";
   String get text_to_speech => """Metin Okuma""";
   String get theme => """Tema""";
   String get translate => """Çevir""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Çeviri""";
   String get translations => """Çeviriler""";
   String get version => """Sürüm""";
@@ -323,6 +333,7 @@ Map<String, String> get messagesTrMap => {
       """langs.yoruba""": """Yoruba Dili""",
       """langs.zulu""": """Zulu Dili""",
       """main.about""": """Hakkında""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Görünüm""",
       """main.audio_limit""":
           """200 karakterden fazlası için ses dosyası alınamıyor""",
@@ -343,14 +354,22 @@ Map<String, String> get messagesTrMap => {
       """main.license""": """Lisans""",
       """main.light""": """Açık""",
       """main.no_internet""": """İnternet bağlantısı yok""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """Tamam""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Hata bildir""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Ayarlar""",
       """main.something_went_wrong""": """Bir şeyler yanlış gitti""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Metin Tanıma""",
       """main.text_to_speech""": """Metin Okuma""",
       """main.theme""": """Tema""",
       """main.translate""": """Çevir""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Çeviri""",
       """main.translations""": """Çeviriler""",
       """main.version""": """Sürüm""",

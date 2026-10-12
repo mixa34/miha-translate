@@ -177,6 +177,7 @@ class MainMessagesJa extends MainMessages {
   final MessagesJa _parent;
   const MainMessagesJa(this._parent) : super(_parent);
   String get about => """このアプリについて""";
+  String get all_languages => """All languages""";
   String get appearance => """外観""";
   String get audio_limit => """200 文字以上の文章は音声を取得できません""";
   String get autodetect_not_supported => """言語の自動検出はサポートされていません""";
@@ -185,6 +186,7 @@ class MainMessagesJa extends MainMessages {
   String get copied_to_clipboard => """クリップボードにコピー""";
   String get dark => """ダーク""";
   String get definitions => """定義""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """寄付する""";
   String get enter_text_here => """ここにテキストを入力してください""";
   String get error => """エラーが発生しました""";
@@ -195,14 +197,22 @@ class MainMessagesJa extends MainMessages {
   String get license => """ライセンス""";
   String get light => """ライト""";
   String get no_internet => """インターネット接続がありません""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """バグを報告""";
+  String get search_languages => """Search languages""";
   String get settings => """設定""";
   String get something_went_wrong => """何らかの問題が発生しました""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """文字認識""";
   String get text_to_speech => """テキスト読み上げ""";
   String get theme => """テーマ""";
   String get translate => """翻訳""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """翻訳""";
   String get translations => """翻訳""";
   String get version => """バージョン""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesJaMap => {
       """langs.yoruba""": """ヨルバ語""",
       """langs.zulu""": """ズールー語""",
       """main.about""": """このアプリについて""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """外観""",
       """main.audio_limit""": """200 文字以上の文章は音声を取得できません""",
       """main.autodetect_not_supported""": """言語の自動検出はサポートされていません""",
@@ -339,14 +350,22 @@ Map<String, String> get messagesJaMap => {
       """main.license""": """ライセンス""",
       """main.light""": """ライト""",
       """main.no_internet""": """インターネット接続がありません""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """バグを報告""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """設定""",
       """main.something_went_wrong""": """何らかの問題が発生しました""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """文字認識""",
       """main.text_to_speech""": """テキスト読み上げ""",
       """main.theme""": """テーマ""",
       """main.translate""": """翻訳""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """翻訳""",
       """main.translations""": """翻訳""",
       """main.version""": """バージョン""",

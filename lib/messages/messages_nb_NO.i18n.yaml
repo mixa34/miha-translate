@@ -111,6 +111,7 @@ langs:
   zulu: Zulu
 main:
   about: Om
+  all_languages: All languages
   appearance: Utseende
   audio_limit: Kan ikke hente lyd for mer enn 200 tegn
   autodetect_not_supported: Autodetect not supported
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Kopiert til utklippstavle
   dark: Mørk
   definitions: Definitions
+  detected_language(String language): "Detected: $language"
   donate: Doner
   enter_text_here: Skriv inn tekst her
   error: En feil oppstod
@@ -129,14 +131,22 @@ main:
   license: Lisens
   light: Lys
   no_internet: Mangler tilkobling til Internett
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: Innrapporter en feil
+  search_languages: Search languages
   settings: Innstillinger
   something_went_wrong: Noe gikk galt
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Tekstgjenkjenning
   text_to_speech: Text-To-Speech
   theme: Drakt
   translate: Oversett
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Oversettelse
   translations: Translation
   version: Versjon

@@ -111,6 +111,7 @@ langs:
   zulu: Zúlú
 main:
   about: Um hugbúnaðinn
+  all_languages: All languages
   appearance: Útlit
   audio_limit: Næ ekki hljóði fyrir meira en 200 stafi
   autodetect_not_supported: Sjálfvirk greining ekki studd
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Afritað á klippispjald
   dark: Dökkt
   definitions: Skilgreiningar
+  detected_language(String language): "Detected: $language"
   donate: Styrkja
   enter_text_here: Settu hér inn texta
   error: Það kom upp villa
@@ -129,14 +131,22 @@ main:
   license: Notkunarleyfi
   light: Ljóst
   no_internet: Engin internettenging
+  no_languages_found: No languages found
   ok: Í lagi
+  recent_languages: Recent
   report_bug: Tilkynna um villu
+  search_languages: Search languages
   settings: Stillingar
   something_went_wrong: Eitthvað fór úrskeiðis
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Textagreining
   text_to_speech: Texti-í-tal (TTS)
   theme: Þema
   translate: Þýða
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Þýðing
   translations: Þýðingar
   version: Útgáfa

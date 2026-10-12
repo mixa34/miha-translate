@@ -111,6 +111,7 @@ langs:
   zulu: Zul
 main:
   about: Про застосунок
+  all_languages: All languages
   appearance: Вигляд
   audio_limit: Не можливо отримати звук на більше ніж 200 символів
   autodetect_not_supported: Автовизначення не підтримується
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Скопійовано до буфера обміну
   dark: Темна
   definitions: Definitions
+  detected_language(String language): "Detected: $language"
   donate: Пожертви
   enter_text_here: Вводьте текст тут
   error: Там була помилка
@@ -129,14 +131,22 @@ main:
   license: Ліцензія
   light: Світла
   no_internet: Нема з’єднання з Інтернетом
+  no_languages_found: No languages found
   ok: Добре
+  recent_languages: Recent
   report_bug: Звіт про ваду
+  search_languages: Search languages
   settings: Налаштування
   something_went_wrong: Щось пішло не так
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Розпізнавання тексту
   text_to_speech: Text-To-Speech
   theme: Тема
   translate: Перекласти
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Переклад
   translations: Переклади
   version: Версія

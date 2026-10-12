@@ -177,6 +177,7 @@ class MainMessagesZhHK extends MainMessages {
   final MessagesZhHK _parent;
   const MainMessagesZhHK(this._parent) : super(_parent);
   String get about => """關於""";
+  String get all_languages => """All languages""";
   String get appearance => """外觀""";
   String get audio_limit => """無法獲取超過 200 個字符的音頻""";
   String get autodetect_not_supported => """Autodetect not supported""";
@@ -185,6 +186,7 @@ class MainMessagesZhHK extends MainMessages {
   String get copied_to_clipboard => """已複製到剪貼板""";
   String get dark => """暗""";
   String get definitions => """Definitions""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Donate""";
   String get enter_text_here => """在此處輸入文本""";
   String get error => """出現錯誤""";
@@ -195,14 +197,22 @@ class MainMessagesZhHK extends MainMessages {
   String get license => """執照""";
   String get light => """光""";
   String get no_internet => """沒有網絡連接""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Report a bug""";
+  String get search_languages => """Search languages""";
   String get settings => """設置""";
   String get something_went_wrong => """出了點問題""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
   String get text_to_speech => """Text-To-Speech""";
   String get theme => """主題""";
   String get translate => """翻譯""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """翻譯""";
   String get translations => """Translation""";
   String get version => """版本""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesZhHKMap => {
       """langs.yoruba""": """約魯巴語""",
       """langs.zulu""": """祖魯語""",
       """main.about""": """關於""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """外觀""",
       """main.audio_limit""": """無法獲取超過 200 個字符的音頻""",
       """main.autodetect_not_supported""": """Autodetect not supported""",
@@ -339,14 +350,22 @@ Map<String, String> get messagesZhHKMap => {
       """main.license""": """執照""",
       """main.light""": """光""",
       """main.no_internet""": """沒有網絡連接""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Report a bug""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """設置""",
       """main.something_went_wrong""": """出了點問題""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",
       """main.text_to_speech""": """Text-To-Speech""",
       """main.theme""": """主題""",
       """main.translate""": """翻譯""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """翻譯""",
       """main.translations""": """Translation""",
       """main.version""": """版本""",

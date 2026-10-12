@@ -177,6 +177,7 @@ class MainMessagesKo extends MainMessages {
   final MessagesKo _parent;
   const MainMessagesKo(this._parent) : super(_parent);
   String get about => """소개""";
+  String get all_languages => """All languages""";
   String get appearance => """모양""";
   String get audio_limit => """200자를 초과하는 오디오를 가져올 수 없습니다""";
   String get autodetect_not_supported => """자동 감지가 지원되지 않습니다""";
@@ -185,6 +186,7 @@ class MainMessagesKo extends MainMessages {
   String get copied_to_clipboard => """클립보드에 복사되었습니다""";
   String get dark => """밤""";
   String get definitions => """정의""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """기부하기""";
   String get enter_text_here => """글자를 입력해주세요""";
   String get error => """오류가 발생했습니다""";
@@ -195,14 +197,22 @@ class MainMessagesKo extends MainMessages {
   String get license => """라이센스""";
   String get light => """낮""";
   String get no_internet => """인터넷 엿결 없음""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """버그 제보하기""";
+  String get search_languages => """Search languages""";
   String get settings => """설정""";
   String get something_went_wrong => """무언가 잘못되었습니다""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """글자 인식""";
   String get text_to_speech => """글자 읽어주기""";
   String get theme => """테마""";
   String get translate => """번역하기""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """번역""";
   String get translations => """번역""";
   String get version => """버전""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesKoMap => {
       """langs.yoruba""": """요루바어""",
       """langs.zulu""": """줄루어""",
       """main.about""": """소개""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """모양""",
       """main.audio_limit""": """200자를 초과하는 오디오를 가져올 수 없습니다""",
       """main.autodetect_not_supported""": """자동 감지가 지원되지 않습니다""",
@@ -339,14 +350,22 @@ Map<String, String> get messagesKoMap => {
       """main.license""": """라이센스""",
       """main.light""": """낮""",
       """main.no_internet""": """인터넷 엿결 없음""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """버그 제보하기""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """설정""",
       """main.something_went_wrong""": """무언가 잘못되었습니다""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """글자 인식""",
       """main.text_to_speech""": """글자 읽어주기""",
       """main.theme""": """테마""",
       """main.translate""": """번역하기""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """번역""",
       """main.translations""": """번역""",
       """main.version""": """버전""",

@@ -111,6 +111,7 @@ langs:
   zulu: Ζουλού
 main:
   about: Σχετικά
+  all_languages: All languages
   appearance: Εμφάνιση
   audio_limit: Δεν είναι δυνατή η λήψη ήχου για πάνω από 200 χαρακτήρες
   autodetect_not_supported: Autodetect not supported
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Αντιγράφηκε στο πρόχειρο
   dark: Σκούρο
   definitions: Definitions
+  detected_language(String language): "Detected: $language"
   donate: Κάντε μια δωρεά
   enter_text_here: Πληκτρολογήστε κείμενο εδώ
   error: Υπήρχε ένα σφάλμα
@@ -129,14 +131,22 @@ main:
   license: Άδεια
   light: Φωτεινό
   no_internet: Δεν υπάρχει σύνδεση στο διαδίκτυο
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: Αναφέρετε ένα bug
+  search_languages: Search languages
   settings: Ρυθμίσεις
   something_went_wrong: Κάτι δεν πήγε καλά
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Text Recognition
   text_to_speech: Text-To-Speech
   theme: Θέμα
   translate: Μετάφραση
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Μετάφραση
   translations: Translation
   version: Έκδοση

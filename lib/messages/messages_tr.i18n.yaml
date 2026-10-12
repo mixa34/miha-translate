@@ -111,6 +111,7 @@ langs:
   zulu: Zulu Dili
 main:
   about: Hakkında
+  all_languages: All languages
   appearance: Görünüm
   audio_limit: 200 karakterden fazlası için ses dosyası alınamıyor
   autodetect_not_supported: Otomatik belirleme desteklenmiyor
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Panoya kopyalandı
   dark: Koyu
   definitions: Tanımlar
+  detected_language(String language): "Detected: $language"
   donate: Bağış Yap
   enter_text_here: Metni buraya girin
   error: Bir hata oluştu
@@ -129,14 +131,22 @@ main:
   license: Lisans
   light: Açık
   no_internet: İnternet bağlantısı yok
+  no_languages_found: No languages found
   ok: Tamam
+  recent_languages: Recent
   report_bug: Hata bildir
+  search_languages: Search languages
   settings: Ayarlar
   something_went_wrong: Bir şeyler yanlış gitti
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Metin Tanıma
   text_to_speech: Metin Okuma
   theme: Tema
   translate: Çevir
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Çeviri
   translations: Çeviriler
   version: Sürüm

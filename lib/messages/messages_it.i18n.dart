@@ -177,6 +177,7 @@ class MainMessagesIt extends MainMessages {
   final MessagesIt _parent;
   const MainMessagesIt(this._parent) : super(_parent);
   String get about => """Informazioni""";
+  String get all_languages => """All languages""";
   String get appearance => """Aspetto""";
   String get audio_limit =>
       """Impossibile ottenere l'audio per più di 200 caratteri""";
@@ -187,6 +188,7 @@ class MainMessagesIt extends MainMessages {
   String get copied_to_clipboard => """Copiato negli appunti""";
   String get dark => """Scuro""";
   String get definitions => """Definizioni""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Dona""";
   String get enter_text_here => """Inserisci il testo qui""";
   String get error => """Si è verificato un errore""";
@@ -198,14 +200,22 @@ class MainMessagesIt extends MainMessages {
   String get license => """Licenza""";
   String get light => """Chiaro""";
   String get no_internet => """Nessuna connessione internet""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Segnala un errore""";
+  String get search_languages => """Search languages""";
   String get settings => """Impostazioni""";
   String get something_went_wrong => """Qualcosa è andato storto""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Riconoscimento del testo""";
   String get text_to_speech => """Sintesi vocale""";
   String get theme => """Tema""";
   String get translate => """Traduci""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Traduzione""";
   String get translations => """Traduzioni""";
   String get version => """Versione""";
@@ -324,6 +334,7 @@ Map<String, String> get messagesItMap => {
       """langs.yoruba""": """yoruba""",
       """langs.zulu""": """zulu""",
       """main.about""": """Informazioni""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Aspetto""",
       """main.audio_limit""":
           """Impossibile ottenere l'audio per più di 200 caratteri""",
@@ -345,14 +356,22 @@ Map<String, String> get messagesItMap => {
       """main.license""": """Licenza""",
       """main.light""": """Chiaro""",
       """main.no_internet""": """Nessuna connessione internet""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Segnala un errore""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Impostazioni""",
       """main.something_went_wrong""": """Qualcosa è andato storto""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Riconoscimento del testo""",
       """main.text_to_speech""": """Sintesi vocale""",
       """main.theme""": """Tema""",
       """main.translate""": """Traduci""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Traduzione""",
       """main.translations""": """Traduzioni""",
       """main.version""": """Versione""",

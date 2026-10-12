@@ -111,6 +111,7 @@ langs:
   zulu: 祖魯語
 main:
   about: 關於
+  all_languages: All languages
   appearance: 外觀
   audio_limit: 無法獲取超過 200 個字符的音頻
   autodetect_not_supported: Autodetect not supported
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: 已複製到剪貼板
   dark: 暗
   definitions: Definitions
+  detected_language(String language): "Detected: $language"
   donate: Donate
   enter_text_here: 在此處輸入文本
   error: 出現錯誤
@@ -129,14 +131,22 @@ main:
   license: 執照
   light: 光
   no_internet: 沒有網絡連接
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: Report a bug
+  search_languages: Search languages
   settings: 設置
   something_went_wrong: 出了點問題
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Text Recognition
   text_to_speech: Text-To-Speech
   theme: 主題
   translate: 翻譯
+  translate_from: Translate from
+  translate_to: Translate to
   translation: 翻譯
   translations: Translation
   version: 版本

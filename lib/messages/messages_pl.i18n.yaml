@@ -111,6 +111,7 @@ langs:
   zulu: zulu
 main:
   about: O aplikacji
+  all_languages: All languages
   appearance: Wygląd
   audio_limit: Nie można uzyskać dźwięku dla ponad 200 znaków
   autodetect_not_supported: Autowykrywanie nie jest obsługiwane
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: Skopiowano do schowka
   dark: Ciemny
   definitions: Definicje
+  detected_language(String language): "Detected: $language"
   donate: Wesprzyj
   enter_text_here: Wpisz tutaj tekst
   error: Wystąpił błąd
@@ -129,14 +131,22 @@ main:
   license: Licencja
   light: Jasny
   no_internet: Brak połączenia z Internetem
+  no_languages_found: No languages found
   ok: OK
+  recent_languages: Recent
   report_bug: Zgłoś błąd
+  search_languages: Search languages
   settings: Ustawienia
   something_went_wrong: Coś poszło nie tak
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Rozpoznawanie tekstu
   text_to_speech: Zamiana tekstu na mowę
   theme: Motyw
   translate: Przetłumacz
+  translate_from: Translate from
+  translate_to: Translate to
   translation: Tłumaczenie
   translations: Tłumaczenia
   version: Wersja

@@ -177,6 +177,7 @@ class MainMessagesPtBR extends MainMessages {
   final MessagesPtBR _parent;
   const MainMessagesPtBR(this._parent) : super(_parent);
   String get about => """Sobre""";
+  String get all_languages => """All languages""";
   String get appearance => """Aparência""";
   String get audio_limit =>
       """Não é possível obter áudio para mais de 200 caracteres""";
@@ -186,6 +187,7 @@ class MainMessagesPtBR extends MainMessages {
   String get copied_to_clipboard => """Copiado para a área de transferência""";
   String get dark => """Escuro""";
   String get definitions => """Definitions""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Doar""";
   String get enter_text_here => """Adicione o texto aqui""";
   String get error => """Ocorreu um erro""";
@@ -196,14 +198,22 @@ class MainMessagesPtBR extends MainMessages {
   String get license => """Licença""";
   String get light => """Claro""";
   String get no_internet => """Sem conexão de internet""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Reportar um bug""";
+  String get search_languages => """Search languages""";
   String get settings => """Configurações""";
   String get something_went_wrong => """Algo deu errado""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
   String get text_to_speech => """Text-To-Speech""";
   String get theme => """Tema""";
   String get translate => """Traduzir""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Tradução""";
   String get translations => """Translation""";
   String get version => """Versão""";
@@ -322,6 +332,7 @@ Map<String, String> get messagesPtBRMap => {
       """langs.yoruba""": """Iorubá""",
       """langs.zulu""": """Zulu""",
       """main.about""": """Sobre""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Aparência""",
       """main.audio_limit""":
           """Não é possível obter áudio para mais de 200 caracteres""",
@@ -343,14 +354,22 @@ Map<String, String> get messagesPtBRMap => {
       """main.license""": """Licença""",
       """main.light""": """Claro""",
       """main.no_internet""": """Sem conexão de internet""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Reportar um bug""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Configurações""",
       """main.something_went_wrong""": """Algo deu errado""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",
       """main.text_to_speech""": """Text-To-Speech""",
       """main.theme""": """Tema""",
       """main.translate""": """Traduzir""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Tradução""",
       """main.translations""": """Translation""",
       """main.version""": """Versão""",

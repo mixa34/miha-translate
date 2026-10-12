@@ -177,6 +177,7 @@ class MainMessagesFi extends MainMessages {
   final MessagesFi _parent;
   const MainMessagesFi(this._parent) : super(_parent);
   String get about => """Tietoja""";
+  String get all_languages => """All languages""";
   String get appearance => """Ulkonäkö""";
   String get audio_limit => """Ääntä ei voi saada yli 200 merkille""";
   String get autodetect_not_supported =>
@@ -186,6 +187,7 @@ class MainMessagesFi extends MainMessages {
   String get copied_to_clipboard => """Tallennettu leikepöydälle""";
   String get dark => """Tumma""";
   String get definitions => """Määritelmät""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Lahjoita""";
   String get enter_text_here => """Kirjoita teksti tähän""";
   String get error => """Tapahtui virhe""";
@@ -196,14 +198,22 @@ class MainMessagesFi extends MainMessages {
   String get license => """Lisenssi""";
   String get light => """Vaalea""";
   String get no_internet => """Ei internet-yhteyttä""";
+  String get no_languages_found => """No languages found""";
   String get ok => """OK""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Ilmoita virheestä""";
+  String get search_languages => """Search languages""";
   String get settings => """Asetukset""";
   String get something_went_wrong => """Jokin meni pieleen""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Tekstintunnistus""";
   String get text_to_speech => """Teksti puheeksi""";
   String get theme => """Teema""";
   String get translate => """Käännä""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Käännös""";
   String get translations => """Käännökset""";
   String get version => """Versio""";
@@ -322,6 +332,7 @@ Map<String, String> get messagesFiMap => {
       """langs.yoruba""": """joruba""",
       """langs.zulu""": """zulu""",
       """main.about""": """Tietoja""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Ulkonäkö""",
       """main.audio_limit""": """Ääntä ei voi saada yli 200 merkille""",
       """main.autodetect_not_supported""":
@@ -341,14 +352,22 @@ Map<String, String> get messagesFiMap => {
       """main.license""": """Lisenssi""",
       """main.light""": """Vaalea""",
       """main.no_internet""": """Ei internet-yhteyttä""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """OK""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Ilmoita virheestä""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Asetukset""",
       """main.something_went_wrong""": """Jokin meni pieleen""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Tekstintunnistus""",
       """main.text_to_speech""": """Teksti puheeksi""",
       """main.theme""": """Teema""",
       """main.translate""": """Käännä""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Käännös""",
       """main.translations""": """Käännökset""",
       """main.version""": """Versio""",

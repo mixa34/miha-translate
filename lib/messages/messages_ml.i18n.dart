@@ -177,6 +177,7 @@ class MainMessagesMl extends MainMessages {
   final MessagesMl _parent;
   const MainMessagesMl(this._parent) : super(_parent);
   String get about => """ആപ്പിനെ കുറിച്ച്""";
+  String get all_languages => """All languages""";
   String get appearance => """കാഴ്ചയിൽ""";
   String get audio_limit => """200-ൽ കൂടുതൽ വാക്കുകൾക്ക് ഓഡിയോ ലഭിക്കില്ല""";
   String get autodetect_not_supported => """Autodetect not supported""";
@@ -185,6 +186,7 @@ class MainMessagesMl extends MainMessages {
   String get copied_to_clipboard => """ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി""";
   String get dark => """ഡാർക്""";
   String get definitions => """Definitions""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Donate""";
   String get enter_text_here => """ടെക്സ്റ്റ് ഇവിടെ നൽകുക""";
   String get error => """പ്രശനം ഉണ്ടായിരുന്നു""";
@@ -195,14 +197,22 @@ class MainMessagesMl extends MainMessages {
   String get license => """ലൈസൻസ്""";
   String get light => """ലൈറ്റ്""";
   String get no_internet => """ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല""";
+  String get no_languages_found => """No languages found""";
   String get ok => """ശരി""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Report a bug""";
+  String get search_languages => """Search languages""";
   String get settings => """ക്രമീകരണങ്ങൾ""";
   String get something_went_wrong => """എന്തോ കുഴപ്പം സംഭവിച്ചു""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Text Recognition""";
   String get text_to_speech => """Text-To-Speech""";
   String get theme => """തീം""";
   String get translate => """വിവർത്തനം""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """വിവർത്തനം""";
   String get translations => """Translation""";
   String get version => """പതിപ്പ്""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesMlMap => {
       """langs.yoruba""": """Yoruba""",
       """langs.zulu""": """സുലു""",
       """main.about""": """ആപ്പിനെ കുറിച്ച്""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """കാഴ്ചയിൽ""",
       """main.audio_limit""": """200-ൽ കൂടുതൽ വാക്കുകൾക്ക് ഓഡിയോ ലഭിക്കില്ല""",
       """main.autodetect_not_supported""": """Autodetect not supported""",
@@ -339,14 +350,22 @@ Map<String, String> get messagesMlMap => {
       """main.license""": """ലൈസൻസ്""",
       """main.light""": """ലൈറ്റ്""",
       """main.no_internet""": """ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """ശരി""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Report a bug""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """ക്രമീകരണങ്ങൾ""",
       """main.something_went_wrong""": """എന്തോ കുഴപ്പം സംഭവിച്ചു""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Text Recognition""",
       """main.text_to_speech""": """Text-To-Speech""",
       """main.theme""": """തീം""",
       """main.translate""": """വിവർത്തനം""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """വിവർത്തനം""",
       """main.translations""": """Translation""",
       """main.version""": """പതിപ്പ്""",

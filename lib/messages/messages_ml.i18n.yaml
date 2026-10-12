@@ -111,6 +111,7 @@ langs:
   zulu: സുലു
 main:
   about: ആപ്പിനെ കുറിച്ച്
+  all_languages: All languages
   appearance: കാഴ്ചയിൽ
   audio_limit: 200-ൽ കൂടുതൽ വാക്കുകൾക്ക് ഓഡിയോ ലഭിക്കില്ല
   autodetect_not_supported: Autodetect not supported
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി
   dark: ഡാർക്
   definitions: Definitions
+  detected_language(String language): "Detected: $language"
   donate: Donate
   enter_text_here: ടെക്സ്റ്റ് ഇവിടെ നൽകുക
   error: പ്രശനം ഉണ്ടായിരുന്നു
@@ -129,14 +131,22 @@ main:
   license: ലൈസൻസ്
   light: ലൈറ്റ്
   no_internet: ഇന്റർനെറ്റ് കണക്ഷൻ ലഭ്യമല്ല
+  no_languages_found: No languages found
   ok: ശരി
+  recent_languages: Recent
   report_bug: Report a bug
+  search_languages: Search languages
   settings: ക്രമീകരണങ്ങൾ
   something_went_wrong: എന്തോ കുഴപ്പം സംഭവിച്ചു
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: Text Recognition
   text_to_speech: Text-To-Speech
   theme: തീം
   translate: വിവർത്തനം
+  translate_from: Translate from
+  translate_to: Translate to
   translation: വിവർത്തനം
   translations: Translation
   version: പതിപ്പ്

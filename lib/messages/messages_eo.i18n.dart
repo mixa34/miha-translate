@@ -177,6 +177,7 @@ class MainMessagesEo extends MainMessages {
   final MessagesEo _parent;
   const MainMessagesEo(this._parent) : super(_parent);
   String get about => """Pri""";
+  String get all_languages => """All languages""";
   String get appearance => """Aspekto""";
   String get audio_limit => """Ne eblas prononci pli ol 200 signojn""";
   String get autodetect_not_supported => """Aŭtomata trovado ne funkcias""";
@@ -185,6 +186,7 @@ class MainMessagesEo extends MainMessages {
   String get copied_to_clipboard => """Kopiita al tondujo""";
   String get dark => """Malhela""";
   String get definitions => """Difinoj""";
+  String detected_language(String language) => """Detected: $language""";
   String get donate => """Donaci""";
   String get enter_text_here => """Tajpu tekston ĉi tie""";
   String get error => """Okazis eraro""";
@@ -195,14 +197,22 @@ class MainMessagesEo extends MainMessages {
   String get license => """Permesilo""";
   String get light => """Hela""";
   String get no_internet => """Sen Interreta konekto""";
+  String get no_languages_found => """No languages found""";
   String get ok => """Bone""";
+  String get recent_languages => """Recent""";
   String get report_bug => """Raporti cimon""";
+  String get search_languages => """Search languages""";
   String get settings => """Agordoj""";
   String get something_went_wrong => """Io fiaskis""";
+  String get source_language => """Source language""";
+  String get swap_languages => """Swap languages""";
+  String get target_language => """Target language""";
   String get text_recognition => """Tekstorekono""";
   String get text_to_speech => """Prononcilo""";
   String get theme => """Etoso""";
   String get translate => """Traduki""";
+  String get translate_from => """Translate from""";
+  String get translate_to => """Translate to""";
   String get translation => """Tradukado""";
   String get translations => """Tradukoj""";
   String get version => """Versio""";
@@ -321,6 +331,7 @@ Map<String, String> get messagesEoMap => {
       """langs.yoruba""": """Joruba""",
       """langs.zulu""": """Zulua""",
       """main.about""": """Pri""",
+      """main.all_languages""": """All languages""",
       """main.appearance""": """Aspekto""",
       """main.audio_limit""": """Ne eblas prononci pli ol 200 signojn""",
       """main.autodetect_not_supported""": """Aŭtomata trovado ne funkcias""",
@@ -340,14 +351,22 @@ Map<String, String> get messagesEoMap => {
       """main.license""": """Permesilo""",
       """main.light""": """Hela""",
       """main.no_internet""": """Sen Interreta konekto""",
+      """main.no_languages_found""": """No languages found""",
       """main.ok""": """Bone""",
+      """main.recent_languages""": """Recent""",
       """main.report_bug""": """Raporti cimon""",
+      """main.search_languages""": """Search languages""",
       """main.settings""": """Agordoj""",
       """main.something_went_wrong""": """Io fiaskis""",
+      """main.source_language""": """Source language""",
+      """main.swap_languages""": """Swap languages""",
+      """main.target_language""": """Target language""",
       """main.text_recognition""": """Tekstorekono""",
       """main.text_to_speech""": """Prononcilo""",
       """main.theme""": """Etoso""",
       """main.translate""": """Traduki""",
+      """main.translate_from""": """Translate from""",
+      """main.translate_to""": """Translate to""",
       """main.translation""": """Tradukado""",
       """main.translations""": """Tradukoj""",
       """main.version""": """Versio""",

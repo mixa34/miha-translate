@@ -111,6 +111,7 @@ langs:
   zulu: الزولوية
 main:
   about: عن
+  all_languages: All languages
   appearance: المظهر
   audio_limit: لا يمكن جلب الصوت لأكثر من 200 حرف
   autodetect_not_supported: التلقائي غير مدعوم
@@ -119,6 +120,7 @@ main:
   copied_to_clipboard: نُسخ إلى الحافظة
   dark: داكن
   definitions: المفردات
+  detected_language(String language): "Detected: $language"
   donate: تبرع
   enter_text_here: أدخل النص هنا
   error: هناك خطأ ما
@@ -129,14 +131,22 @@ main:
   license: الرخصة
   light: فاتح
   no_internet: لا يوجد انترنت
+  no_languages_found: No languages found
   ok: حسناً
+  recent_languages: Recent
   report_bug: بلّغ عن خطأ
+  search_languages: Search languages
   settings: الإعدادات
   something_went_wrong: هناك خطأ ما
+  source_language: Source language
+  swap_languages: Swap languages
+  target_language: Target language
   text_recognition: التعرف على النص
   text_to_speech: نص-إلى-صوت
   theme: السمة
   translate: ترجم
+  translate_from: Translate from
+  translate_to: Translate to
   translation: الترجمة
   translations: الترجمات
   version: الإصدار
