@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import '/simplytranslate.dart' as simplytranslate;
+import 'language_codes.dart';
 import 'screens/translate/widgets/tts_playback.dart';
 export 'package:miha_translate/messages.dart';
 
@@ -42,9 +43,12 @@ void cancelTranslations() {
   loading = false;
 }
 
+/// Whether the current generation's request is in flight.
+bool get translationPending => _translationsInFlight.contains(translationEpoch);
+
 /// Sets `loading` to whether the current generation's request is in flight.
 void refreshLoading() {
-  setStateOverlord(() => loading = _translationsInFlight.contains(translationEpoch));
+  setStateOverlord(() => loading = translationPending);
 }
 
 /// Runs the translation engine on behalf of [generation].
@@ -156,10 +160,30 @@ switchVals() {
 
 enum FromTo { from, to }
 
-(String?, String?, String?) lastUsed(FromTo fromto) {
-  if (fromto == FromTo.from) {
-    return (session.read("fromLast1"), session.read("fromLast2"), session.read("fromLast3"));
-  } else {
-    return (session.read("toLast1"), session.read("toLast2"), session.read("toLast3"));
+/// The storage keys of [side]'s recently used languages, most recent first.
+/// The engine also adds languages it is asked to translate with that are not
+/// there yet (simplytranslate.dart, translate()).
+List<String> _recentKeys(FromTo side) =>
+    side == FromTo.from ? const ['fromLast1', 'fromLast2', 'fromLast3'] : const ['toLast1', 'toLast2', 'toLast3'];
+
+/// [side]'s recently used languages, most recent first: codes of the language
+/// list only (legacy aliases mapped to their code, anything else left out),
+/// never Autodetect, each once. Only reads storage.
+List<String> recentLanguageCodes(FromTo side) => [
+      ...{
+        for (final key in _recentKeys(side))
+          if (normalizeLanguageCode(session.read(key), toSelLangMap.keys) case final code?) code,
+      },
+    ];
+
+/// Records [code] as [side]'s most recently used language: first, the others
+/// after it in order, at most three. Autodetect is not recorded. Unused keys
+/// are removed, so no stale or malformed entry is left behind.
+void rememberLanguage(FromTo side, String code) {
+  final language = normalizeLanguageCode(code, toSelLangMap.keys);
+  if (language == null) return;
+  final codes = [language, ...recentLanguageCodes(side).where((c) => c != language)].take(3).toList();
+  for (final (i, key) in _recentKeys(side).indexed) {
+    i < codes.length ? session.write(key, codes[i]) : session.remove(key);
   }
 }

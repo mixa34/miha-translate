@@ -3,27 +3,55 @@ import '/data.dart';
 import 'widgets/tts_playback.dart';
 
 /// Selects [code] as the source or target language and re-translates the
-/// current input.
+/// current input. The selection is recorded as recently used, before any
+/// request.
 ///
 /// Choosing the language that is already selected on the other side swaps the
-/// two instead (see [switchVals]), without re-translating.
+/// two instead (see [switchVals]), without re-translating. Choosing the
+/// language already selected on this side only retries a failed translation
+/// of the current input (see [_failedTranslationShown]); otherwise nothing
+/// else happens: no request, and playback goes on.
 Future<void> selectLanguage(FromTo fromto, String code) async {
+  if (code == (fromto == FromTo.from ? fromLangVal : toLangVal)) {
+    rememberLanguage(fromto, code);
+    if (_failedTranslationShown()) await _translateInput();
+    return;
+  }
   stopAllTts();
   final option = fromto == FromTo.from ? fromSelLangMap[code] : toSelLangMap[code];
   if (option == (fromto == FromTo.from ? fromSelLangMap[toLangVal] : toSelLangMap[fromLangVal])) {
     // The pair changed, so nothing requested for the old pair may be shown.
     setStateOverlord(cancelTranslations);
+    final unchanged = fromLangVal == 'auto'; // switchVals does not swap Autodetect
     switchVals();
+    if (!unchanged) _rememberPair();
   } else {
     session.write(fromto == FromTo.from ? 'from_lang' : 'to_lang', code);
     setStateOverlord(() => fromto == FromTo.from ? fromLangVal = code : toLangVal = code);
-    final generation = beginTranslation();
-    final text = googleInCtrl.text;
-    final from = fromLangVal;
-    final to = toLangVal;
-    final translatedText = await runTranslation(generation, text, from, to);
-    if (isCurrentTranslation(generation)) setGoogleOutput(translatedText, text, from, to);
+    rememberLanguage(fromto, code);
+    await _translateInput();
   }
+}
+
+/// Translates the current input with the current languages in a new
+/// generation, showing the result only if nothing superseded it.
+Future<void> _translateInput() async {
+  final generation = beginTranslation();
+  final text = googleInCtrl.text;
+  final from = fromLangVal;
+  final to = toLangVal;
+  final translatedText = await runTranslation(generation, text, from, to);
+  if (isCurrentTranslation(generation)) setGoogleOutput(translatedText, text, from, to);
+}
+
+/// Whether the output shown is a failed translation of exactly the current,
+/// non-empty input and languages, with no request for them on its way.
+bool _failedTranslationShown() {
+  final source = googleOutputSource;
+  if (source == null || !identical(source.output, googleOutput) || !googleOutput.containsKey('error')) return false;
+  final text = googleInCtrl.text;
+  if (text.isEmpty || source.text != text || source.from != fromLangVal || source.to != toLangVal) return false;
+  return !translationPending;
 }
 
 /// The translation currently shown, if it is a successful translation of
@@ -92,6 +120,7 @@ Future<void> swapLanguages(BuildContext context) async {
   if (input.isEmpty || input.length > 5000) {
     setStateOverlord(cancelTranslations);
     switchVals();
+    _rememberPair();
     setStateOverlord(() {});
     return;
   }
@@ -140,6 +169,7 @@ Future<void> _commitSwap(String newInput, void Function() swapPair) async {
     googleInCtrl.text = newInput;
     googleOutput = {};
   });
+  _rememberPair();
   final newFrom = fromLangVal;
   final newTo = toLangVal;
   final back = await runTranslation(generation, newInput, newFrom, newTo);
@@ -173,6 +203,12 @@ Future<void> _swapFromAutodetect(BuildContext context) async {
     refreshLoading();
     print('translate error: $error');
   }
+}
+
+/// Records both current languages as recently used (Autodetect is not).
+void _rememberPair() {
+  rememberLanguage(FromTo.from, fromLangVal);
+  rememberLanguage(FromTo.to, toLangVal);
 }
 
 void _showInputLimit(BuildContext context) {

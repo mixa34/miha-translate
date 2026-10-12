@@ -41,7 +41,6 @@ List<String> recentLanguages(Iterable<String?> codes, Map<String, String> names)
 /// a language changes nothing until the caller acts on the result.
 Future<String?> showLanguagePicker(BuildContext context, FromTo side) {
   final names = Map<String, String>.of(side == FromTo.from ? fromSelLangMap : toSelLangMap);
-  final (last1, last2, last3) = lastUsed(side);
   return showModalBottomSheet<String>(
     context: context,
     isScrollControlled: true,
@@ -51,7 +50,7 @@ Future<String?> showLanguagePicker(BuildContext context, FromTo side) {
       side: side,
       names: names,
       selected: side == FromTo.from ? fromLangVal : toLangVal,
-      recent: recentLanguages([last1, last2, last3], names),
+      recent: recentLanguages(recentLanguageCodes(side), names),
     ),
   );
 }
@@ -165,8 +164,14 @@ class _LanguagePickerSheetState extends State<LanguagePickerSheet> {
 
   List<Widget> _browse(MainMessages messages) {
     final all = [for (final code in widget.names.keys) if (code != 'auto') code];
+    // The current language is always visible at the top: Autodetect's own
+    // row, or in Recent, or else on its own row above Recent -- not under the
+    // Recent heading, since it may never have been chosen.
+    final selected = widget.selected;
+    final selectedApart = selected != 'auto' && !widget.recent.contains(selected) && widget.names.containsKey(selected);
     return [
       if (_offersAutodetect) SliverToBoxAdapter(child: _tile('auto')),
+      if (selectedApart) SliverToBoxAdapter(child: _tile(selected)),
       if (widget.recent.isNotEmpty) ...[
         _header(messages.recent_languages),
         SliverList.builder(itemCount: widget.recent.length, itemBuilder: (_, i) => _tile(widget.recent[i])),

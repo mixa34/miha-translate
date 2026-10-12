@@ -145,12 +145,15 @@ void main() {
 
     testWidgets('the selected language is marked', (tester) async {
       await open(tester, FromTo.to);
-      await scrollTo(tester, tile('Serbian'));
-      final serbian = tester.widget<ListTile>(tile('Serbian'));
-      expect(serbian.selected, isTrue);
-      expect(find.descendant(of: tile('Serbian'), matching: find.byIcon(Icons.check)), findsOneWidget);
-      expect(tester.widget<ListTile>(tile('Sesotho')).selected, isFalse);
+      // Shown at the top (Phase 4.4B.6B.3C) and in its place in All languages.
+      expect(tester.widget<ListTile>(tile('Serbian')).selected, isTrue, reason: 'at the top');
       expect(find.descendant(of: picker, matching: find.byIcon(Icons.check)), findsOneWidget);
+
+      await scrollTo(tester, tile('Sesotho'));
+      final serbian = tile('Serbian').last;
+      expect(tester.widget<ListTile>(serbian).selected, isTrue);
+      expect(find.descendant(of: serbian, matching: find.byIcon(Icons.check)), findsOneWidget);
+      expect(tester.widget<ListTile>(tile('Sesotho')).selected, isFalse);
     });
   });
 
