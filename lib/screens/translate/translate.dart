@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:miha_translate/screens/translate/widgets/lang_selector/lang.dart';
+import 'package:miha_translate/screens/translate/widgets/lang_selector/language_bar.dart';
 import 'package:miha_translate/screens/translate/widgets/output/definitions.dart';
 import 'package:miha_translate/screens/translate/widgets/output/pronounciation.dart';
 import 'package:miha_translate/screens/translate/widgets/output/translations.dart';
 import '/data.dart';
 import 'widgets/input/input.dart';
 import 'widgets/output/output.dart';
-import 'widgets/lang_selector/switch_lang.dart';
-import 'translate_keys.dart';
 
 class GoogleTranslate extends StatefulWidget {
   const GoogleTranslate({Key? key}) : super(key: key);
@@ -56,14 +54,8 @@ class _GoogleTranslateState extends State<GoogleTranslate> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GoogleLang(FromTo.from, key: TranslateKeys.sourceLanguage),
-                      GoogleSwitchLang(),
-                      GoogleLang(FromTo.to, key: TranslateKeys.targetLanguage),
-                    ],
-                  ),
+                  // Not const: it must rebuild with the screen to show the current languages.
+                  LanguageBar(),
                   space,
                   GoogleTranslationInput(),
                   space,

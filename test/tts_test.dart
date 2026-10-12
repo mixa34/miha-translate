@@ -352,13 +352,9 @@ void main() {
       await finish(tester);
     });
 
-    ttsTest('confirming a typed language name', (tester) async {
+    ttsTest('choosing the source language via search', (tester) async {
       await startInputVoice(tester);
-      await tester.tap(targetLangField);
-      await tester.pump();
-      await tester.enterText(targetLangField, 'fren');
-      await tester.testTextInput.receiveAction(TextInputAction.done);
-      await tester.pump();
+      await chooseLanguage(tester, FromTo.from, 'fren', 'French');
 
       expect(inputTts.state.value, TtsState.idle);
       expect(audio.count('stop', inputTts.playerId), 1);

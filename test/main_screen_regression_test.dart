@@ -109,13 +109,10 @@ void main() {
       expect(server.requests, isEmpty, reason: 'nothing to translate yet');
     });
 
-    testWidgets('typing a target language and confirming updates state and to_lang', (tester) async {
+    testWidgets('searching for a target language and selecting it updates state and to_lang', (tester) async {
       await pumpApp(tester);
 
-      await tester.tap(targetLangField);
-      await tester.pump();
-      await tester.enterText(targetLangField, 'fren');
-      await tester.testTextInput.receiveAction(TextInputAction.done);
+      await chooseLanguage(tester, FromTo.to, 'fren', 'French');
       await settleRequests(tester);
 
       expect(toLangVal, 'fr');

@@ -112,12 +112,6 @@ final session = GetStorage();
 
 late final PackageInfo packageInfo;
 
-Function() fromCancel = () {};
-Function() toCancel = () {};
-
-Function(String)? changeFromTxt;
-Function(String)? changeToTxt;
-
 String newText = "";
 
 Future<void> getSharedText() async {
@@ -151,8 +145,6 @@ bool isFirst = true;
 
 switchVals() {
   if (fromLangVal == 'auto') return;
-  changeFromTxt!(toSelLangMap[toLangVal]!);
-  changeToTxt!(fromSelLangMap[fromLangVal]!);
 
   final tmp = fromLangVal;
   fromLangVal = toLangVal;

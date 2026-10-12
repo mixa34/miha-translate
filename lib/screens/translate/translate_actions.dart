@@ -16,13 +16,7 @@ Future<void> selectLanguage(FromTo fromto, String code) async {
     switchVals();
   } else {
     session.write(fromto == FromTo.from ? 'from_lang' : 'to_lang', code);
-    if (fromto == FromTo.from) {
-      fromLangVal = code;
-      changeFromTxt!(fromSelLangMap[fromLangVal]!);
-    } else {
-      toLangVal = code;
-      changeToTxt!(toSelLangMap[toLangVal]!);
-    }
+    setStateOverlord(() => fromto == FromTo.from ? fromLangVal = code : toLangVal = code);
     final generation = beginTranslation();
     final text = googleInCtrl.text;
     final from = fromLangVal;
@@ -174,8 +168,6 @@ Future<void> _swapFromAutodetect(BuildContext context) async {
       toLangVal = newTo;
       session.write('from_lang', newFrom);
       session.write('to_lang', newTo);
-      changeFromTxt!(fromSelLangMap[newFrom]!);
-      changeToTxt!(toSelLangMap[newTo]!);
     });
   } catch (error) {
     refreshLoading();

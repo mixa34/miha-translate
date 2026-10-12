@@ -105,40 +105,48 @@ void main() {
         expect(contrast(paintedEditable(tester, outputText), card), greaterThanOrEqualTo(4.5));
       });
 
-      testWidgets('language selectors are readable on their fields', (tester) async {
+      testWidgets('language buttons are tonal and readable', (tester) async {
         themeRadio = preference(mode);
         await pumpApp(tester);
 
-        for (final field in [languageSelectorField(FromTo.from), languageSelectorField(FromTo.to)]) {
-          final fill = tester.widget<InputDecorator>(find.descendant(of: field, matching: find.byType(InputDecorator))).decoration.fillColor!;
-          expect(contrast(paintedEditable(tester, field), fill), greaterThanOrEqualTo(4.5));
+        for (final side in FromTo.values) {
+          final button = find.descendant(of: languageSelector(side), matching: find.byType(FilledButton));
+          final background = tester.widget<Material>(find.descendant(of: button, matching: find.byType(Material)).first).color!;
+          final label = paintedText(tester, find.descendant(of: languageSelector(side), matching: find.byType(Text)));
+          expect(background, scheme.secondaryContainer);
+          expect(label, scheme.onSecondaryContainer);
+          expect(contrast(label, background), greaterThanOrEqualTo(4.5));
         }
       });
 
-      testWidgets('the language list uses the menu surface; recent languages are primary', (tester) async {
+      testWidgets('the language picker uses the sheet surface and marks the current language', (tester) async {
         themeRadio = preference(mode);
         await pumpApp(tester);
         await translate(tester, 'Hello'); // records en/sr as recent
-        await openLanguageList(tester, FromTo.to, query: 'Serb');
+        await openLanguageList(tester, FromTo.to);
 
-        final serbian = languageOption('Serbian');
-        final row = tester.widget<Container>(find.ancestor(of: serbian, matching: find.byType(Container)).at(1));
-        expect(row.color, scheme.surfaceContainerHigh);
-        expect(paintedText(tester, serbian), scheme.primary);
-        expect(contrast(scheme.primary, scheme.surfaceContainerHigh), greaterThanOrEqualTo(4.5));
-        await openLanguageList(tester, FromTo.to, query: 'Germ');
-        final other = languageOption('German');
-        expect(paintedText(tester, other), scheme.onSurface, reason: 'not a recent language');
-        expect(contrast(paintedText(tester, other), scheme.surfaceContainerHigh), greaterThanOrEqualTo(4.5));
+        final sheet = tester.widget<Material>(find.ancestor(of: languagePicker, matching: find.byType(Material)).first).color!;
+        expect(sheet, scheme.surfaceContainerLow);
+        final serbian = languageOption('Serbian').first;
+        expect(tester.widget<ListTile>(serbian).selected, isTrue);
+        expect(paintedText(tester, find.descendant(of: serbian, matching: find.text('Serbian'))), scheme.onSecondaryContainer);
+        expect(contrast(scheme.onSecondaryContainer, scheme.secondaryContainer), greaterThanOrEqualTo(4.5));
+
+        await tester.enterText(languageSearch, 'Germ');
+        await tester.pump();
+        final german = paintedText(tester, find.descendant(of: languageOption('German'), matching: find.text('German')));
+        expect(german, scheme.onSurface);
+        expect(contrast(german, sheet), greaterThanOrEqualTo(4.5));
       });
 
-      testWidgets('the swap button label is readable', (tester) async {
+      testWidgets('the swap icon is visible', (tester) async {
         themeRadio = preference(mode);
         await pumpApp(tester);
 
-        final label = paintedText(tester, find.text('<-->'));
-        expect(label, scheme.primary);
-        expect(contrast(label, scheme.surface), greaterThanOrEqualTo(4.5));
+        expect(isSwapEnabled(tester), isTrue);
+        final icon = IconTheme.of(tester.element(find.byIcon(Icons.swap_horiz))).color!;
+        expect(icon, scheme.onSurfaceVariant);
+        expect(contrast(icon, scheme.surface), greaterThanOrEqualTo(3));
       });
 
       testWidgets('character counter: neutral, and the error colour over the limit', (tester) async {

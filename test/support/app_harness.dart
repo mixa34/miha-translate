@@ -330,29 +330,31 @@ Finder get swapButton => find.byKey(TranslateKeys.swapLanguages);
 Finder languageSelector(FromTo side) =>
     find.byKey(side == FromTo.from ? TranslateKeys.sourceLanguage : TranslateKeys.targetLanguage);
 
-bool isSwapEnabled(WidgetTester tester) => tester.widget<ButtonStyleButton>(swapButton).onPressed != null;
+bool isSwapEnabled(WidgetTester tester) => tester.widget<IconButton>(swapButton).onPressed != null;
 
 // --- Language selection ----------------------------------------------------------
 //
-// Behavioural tests select and read languages only through these helpers, so
-// a new selector widget only has to change them. Today's selector is an
-// autocomplete text field with an options overlay.
+// Behavioural tests select and read languages only through these helpers.
+// A language button opens the language picker bottom sheet.
 
-/// The selector's text field (the current autocomplete implementation).
-Finder languageSelectorField(FromTo side) => find.descendant(of: languageSelector(side), matching: find.byType(TextField));
-Finder get sourceLangField => languageSelectorField(FromTo.from);
-Finder get targetLangField => languageSelectorField(FromTo.to);
+/// The sheet's enter and exit animations, without pumpAndSettle (the
+/// progress bar may be animating).
+const _sheetAnimation = Duration(milliseconds: 400);
+
+Finder get languagePicker => find.byKey(TranslateKeys.languagePicker);
+Finder get languageSearch => find.byKey(TranslateKeys.languageSearch);
 
 /// The language name the selector shows.
 String selectedLanguageLabel(WidgetTester tester, FromTo side) =>
-    tester.widget<TextField>(languageSelectorField(side)).controller!.text;
+    tester.widget<Text>(find.descendant(of: languageSelector(side), matching: find.byType(Text))).data!;
 
-/// Opens the selector's language list, optionally filtered by [query].
+/// Opens the language picker for [side], optionally searching for [query].
 Future<void> openLanguageList(WidgetTester tester, FromTo side, {String? query}) async {
-  await tester.tap(languageSelectorField(side));
+  await tester.tap(languageSelector(side));
   await tester.pump();
+  await tester.pump(_sheetAnimation);
   if (query != null) {
-    await tester.enterText(languageSelectorField(side), query);
+    await tester.enterText(languageSearch, query);
     await tester.pump();
   }
 }
@@ -362,13 +364,11 @@ Future<void> chooseLanguage(WidgetTester tester, FromTo side, String query, Stri
   await openLanguageList(tester, side, query: query);
   await tester.tap(languageOption(name));
   await tester.pump();
+  await tester.pump(_sheetAnimation);
 }
 
-/// An entry in the open language list.
-Finder languageOption(String name) => find.descendant(
-      of: find.byType(Scrollbar),
-      matching: find.text(name),
-    );
+/// An entry in the open language picker.
+Finder languageOption(String name) => find.descendant(of: languagePicker, matching: find.widgetWithText(ListTile, name));
 
 /// A widget anywhere in the translate screen's input box.
 Finder underInput(Finder matching) => find.descendant(
