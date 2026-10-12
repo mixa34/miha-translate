@@ -9,4 +9,6 @@ abstract final class TranslateKeys {
   static const targetLanguage = ValueKey('targetLanguageSelector');
   static const swapLanguages = ValueKey('swapLanguagesButton');
   static const input = ValueKey('translationInput');
+  static const languagePicker = ValueKey('languagePicker');
+  static const languageSearch = ValueKey('languageSearchField');
 }
