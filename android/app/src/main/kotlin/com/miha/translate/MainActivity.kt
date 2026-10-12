@@ -64,7 +64,8 @@ class UppercaseActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-       text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT).toString()
+       // Nothing (not the word "null") when the extra is missing.
+       text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)?.toString() ?: ""
 
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         launchIntent?.let { startActivity(it) }
@@ -79,7 +80,8 @@ class SharedActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        text = intent.getCharSequenceExtra(Intent.EXTRA_TEXT).toString()
+        // Nothing (not the word "null") when the extra is missing.
+        text = intent.getCharSequenceExtra(Intent.EXTRA_TEXT)?.toString() ?: ""
 
         val launchIntent = packageManager.getLaunchIntentForPackage(packageName)
         launchIntent?.let { startActivity(it) }
