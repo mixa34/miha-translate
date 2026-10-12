@@ -22,13 +22,15 @@ class _TranslationOutputState extends State<GoogleTranslationOutput> {
 
     // translate_() sets 'error' when the request or the response could not be
     // handled. Rendering it here is what distinguishes a genuine failure from a
-    // legitimately empty result -- previously both showed an empty box.
+    // legitimately empty result -- previously both showed an empty box. The
+    // input sets inputLimitError while it is too long to be translated.
     final String? errorKind = translatedText['error'];
-    final String? errorMessage = errorKind == null
-        ? null
-        : errorKind == 'network'
-            ? i18n().main.no_internet
-            : i18n().main.something_went_wrong;
+    final String? errorMessage = switch (errorKind) {
+      null => null,
+      'network' => i18n().main.no_internet,
+      inputLimitError => i18n().main.input_limit,
+      _ => i18n().main.something_went_wrong,
+    };
     final String displayed = errorMessage ?? (translatedText['text'] ?? '');
 
     return Container(

@@ -116,6 +116,7 @@ main:
   audio_limit: Не можливо отримати звук на більше ніж 200 символів
   autodetect_not_supported: Автовизначення не підтримується
   cancel: Скасувати
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: Співрозробка
   copied_to_clipboard: Скопійовано до буфера обміну

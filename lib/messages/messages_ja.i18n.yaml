@@ -116,6 +116,7 @@ main:
   audio_limit: 200 文字以上の文章は音声を取得できません
   autodetect_not_supported: 言語の自動検出はサポートされていません
   cancel: キャンセル
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: 貢献する
   copied_to_clipboard: クリップボードにコピー

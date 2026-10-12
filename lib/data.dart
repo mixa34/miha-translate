@@ -75,6 +75,26 @@ Future<Map<String, dynamic>> runTranslation(int generation, String text, String 
 typedef TranslationSource = ({Map output, String text, String from, String to});
 TranslationSource? googleOutputSource;
 
+/// The longest input sent for translation, counted as [String.length] counts:
+/// UTF-16 code units. An emoji or another character outside the Basic
+/// Multilingual Plane counts as two, and a combining mark as one of its own.
+/// That is never fewer than the characters the provider sees, so text within
+/// the limit is never too long for it.
+const inputLimit = 5000;
+
+bool exceedsInputLimit(String text) => text.length > inputLimit;
+
+/// The `error` of the output shown while the input is over [inputLimit]:
+/// nothing was translated, and no earlier translation is shown as current.
+const inputLimitError = 'inputLimit';
+
+bool get inputLimitShown => googleOutput['error'] == inputLimitError;
+
+/// Shows that [text] is over [inputLimit] instead of any translation. Call
+/// after taking a new generation, so no earlier request can replace it.
+void showInputLimitExceeded(String text, String from, String to) =>
+    setGoogleOutput({'error': inputLimitError}, text, from, to);
+
 /// Shows [output] as the translation of [text] from [from] to [to].
 void setGoogleOutput(Map output, String text, String from, String to) {
   setStateOverlord(() {
@@ -126,13 +146,23 @@ Future<void> getSharedText() async {
       final _translationInput = answer.toString();
       final generation = beginTranslation();
       stopAllTts();
+      final to = toLangVal;
+
+      if (exceedsInputLimit(_translationInput)) {
+        // Kept in full for editing, but not sent.
+        setStateOverlord(() {
+          googleInCtrl.text = _translationInput;
+          loading = false;
+        });
+        showInputLimitExceeded(_translationInput, 'auto', to);
+        return;
+      }
 
       setStateOverlord(() {
         googleInCtrl.text = _translationInput;
         loading = true;
       });
 
-      final to = toLangVal;
       final translatedText = await runTranslation(generation, _translationInput, 'auto', to);
       if (isCurrentTranslation(generation)) setGoogleOutput(translatedText, _translationInput, 'auto', to);
     }

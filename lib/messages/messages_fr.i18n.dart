@@ -184,6 +184,8 @@ class MainMessagesFr extends MainMessages {
   String get autodetect_not_supported =>
       """Autodétection non prise en charge""";
   String get cancel => """Annuler""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Contribuer""";
   String get copied_to_clipboard => """Copié dans le presse-papiers""";

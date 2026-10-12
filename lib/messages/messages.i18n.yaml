@@ -116,6 +116,7 @@ main:
   audio_limit: Cannot get audio for more than 200 characters
   autodetect_not_supported: Autodetect not supported
   cancel: Cancel
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: Contribute
   copied_to_clipboard: Copied to clipboard

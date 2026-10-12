@@ -183,6 +183,8 @@ class MainMessagesPtBR extends MainMessages {
       """Não é possível obter áudio para mais de 200 caracteres""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """Cancelar""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Contribuir""";
   String get copied_to_clipboard => """Copiado para a área de transferência""";

@@ -116,6 +116,7 @@ main:
   audio_limit: Невозможно воспроизвести аудио более чем для 200 символов
   autodetect_not_supported: Автоматическое определение не поддерживается
   cancel: Отмена
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: Сделать вклад
   copied_to_clipboard: Скопировано в буфер обмена

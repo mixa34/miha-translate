@@ -116,6 +116,7 @@ main:
   audio_limit: 200자를 초과하는 오디오를 가져올 수 없습니다
   autodetect_not_supported: 자동 감지가 지원되지 않습니다
   cancel: 취소
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: 기여하기
   copied_to_clipboard: 클립보드에 복사되었습니다

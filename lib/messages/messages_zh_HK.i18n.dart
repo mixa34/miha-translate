@@ -182,6 +182,8 @@ class MainMessagesZhHK extends MainMessages {
   String get audio_limit => """無法獲取超過 200 個字符的音頻""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """取消""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """投稿""";
   String get copied_to_clipboard => """已複製到剪貼板""";

@@ -184,6 +184,8 @@ class MainMessagesRu extends MainMessages {
   String get autodetect_not_supported =>
       """Автоматическое определение не поддерживается""";
   String get cancel => """Отмена""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Сделать вклад""";
   String get copied_to_clipboard => """Скопировано в буфер обмена""";

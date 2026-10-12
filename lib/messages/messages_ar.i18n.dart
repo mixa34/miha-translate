@@ -182,6 +182,8 @@ class MainMessagesAr extends MainMessages {
   String get audio_limit => """لا يمكن جلب الصوت لأكثر من 200 حرف""";
   String get autodetect_not_supported => """التلقائي غير مدعوم""";
   String get cancel => """إلغاء""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """المساهمة""";
   String get copied_to_clipboard => """نُسخ إلى الحافظة""";

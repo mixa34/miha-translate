@@ -184,6 +184,8 @@ class MainMessagesDe extends MainMessages {
   String get autodetect_not_supported =>
       """Automatische Erkennung wird nicht unterstützt""";
   String get cancel => """Abbrechen""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Mithelfen""";
   String get copied_to_clipboard => """In die Zwischenablage kopiert""";

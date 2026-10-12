@@ -116,6 +116,7 @@ main:
   audio_limit: 無法獲取超過 200 個字符的音頻
   autodetect_not_supported: Autodetect not supported
   cancel: 取消
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: 投稿
   copied_to_clipboard: 已複製到剪貼板

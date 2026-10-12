@@ -116,6 +116,7 @@ main:
   audio_limit: Kan ikke hente lyd for mer enn 200 tegn
   autodetect_not_supported: Autodetect not supported
   cancel: Avbryt
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: Bidra
   copied_to_clipboard: Kopiert til utklippstavle

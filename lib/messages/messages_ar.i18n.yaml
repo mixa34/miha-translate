@@ -116,6 +116,7 @@ main:
   audio_limit: لا يمكن جلب الصوت لأكثر من 200 حرف
   autodetect_not_supported: التلقائي غير مدعوم
   cancel: إلغاء
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: المساهمة
   copied_to_clipboard: نُسخ إلى الحافظة

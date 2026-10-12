@@ -116,6 +116,7 @@ main:
   audio_limit: Næ ekki hljóði fyrir meira en 200 stafi
   autodetect_not_supported: Sjálfvirk greining ekki studd
   cancel: Hætta við
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: Taktu þátt
   copied_to_clipboard: Afritað á klippispjald

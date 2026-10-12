@@ -69,11 +69,19 @@ class _TranslationInputState extends State<GoogleTranslationInput> {
                 final generation = beginTranslation();
                 stopAllTts();
                 if (loading) setStateOverlord(() => loading = false);
+                if (exceedsInputLimit(input)) {
+                  // At once, not after the debounce: the translation shown
+                  // belongs to earlier text, and this text is never sent.
+                  if (!inputLimitShown) showInputLimitExceeded(input, fromLangVal, toLangVal);
+                  return;
+                }
+                // Back within the limit: the notice no longer applies.
+                if (inputLimitShown) setStateOverlord(() => googleOutput = {});
                 Future.delayed(Duration(seconds: 1), () async {
                   // Superseded by a later edit, Clear, Swap, a language change
                   // or shared text: a stale timer has no side effects.
                   if (!isCurrentTranslation(generation) || input != googleInCtrl.text) return;
-                  if (input.length > 0 && input.length <= 5000) {
+                  if (input.isNotEmpty) {
                     final from = fromLangVal;
                     final to = toLangVal;
                     final translatedText = await runTranslation(generation, input, from, to);

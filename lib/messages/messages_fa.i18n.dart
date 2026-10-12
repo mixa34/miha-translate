@@ -182,6 +182,8 @@ class MainMessagesFa extends MainMessages {
   String get audio_limit => """نمی توان برای بیش از ۲۰۰ نویسه صدا دریافت کرد""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """لغو""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """مشارکت""";
   String get copied_to_clipboard => """ذخیره در کلیپ‌بورد""";

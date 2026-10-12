@@ -69,7 +69,8 @@ void main() {
       await settleRequests(tester);
 
       expect(server.requests, isEmpty);
-      expect(googleOutput, isEmpty);
+      // Phase 4.5B.1: the over-limit notice, not an empty or earlier result.
+      expect(googleOutput, {'error': inputLimitError});
     });
   });
 
@@ -449,13 +450,13 @@ void main() {
     // Current behaviour: the counter reads the controller only when the whole
     // app rebuilds, which happens when a translation starts or finishes -- not
     // on each keystroke.
-    testWidgets('the character counter shows the input length once the translation runs', (tester) async {
+    testWidgets('the character counter shows the input length as it is typed', (tester) async {
       await pumpApp(tester);
       expect(counterValue(tester), '0');
 
       await tester.enterText(inputField, 'Hello');
       await tester.pump();
-      expect(counterValue(tester), '0', reason: 'not refreshed per keystroke');
+      expect(counterValue(tester), '5', reason: 'refreshed per keystroke since Phase 4.5B.1');
 
       await tester.pump(debounce);
       await settleRequests(tester);

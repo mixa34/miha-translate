@@ -116,6 +116,7 @@ main:
   audio_limit: Ääntä ei voi saada yli 200 merkille
   autodetect_not_supported: Automaattista tunnistusta ei tueta
   cancel: Peruuta
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: Osallistu
   copied_to_clipboard: Tallennettu leikepöydälle

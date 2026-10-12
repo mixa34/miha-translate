@@ -183,6 +183,8 @@ class MainMessagesHu extends MainMessages {
   String get autodetect_not_supported =>
       """Az automatikus felismerés nem támogatott""";
   String get cancel => """Mégse""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Közreműködés""";
   String get copied_to_clipboard => """Vágólapra másolva""";

@@ -183,6 +183,8 @@ class MainMessagesFi extends MainMessages {
   String get autodetect_not_supported =>
       """Automaattista tunnistusta ei tueta""";
   String get cancel => """Peruuta""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Osallistu""";
   String get copied_to_clipboard => """Tallennettu leikepöydälle""";

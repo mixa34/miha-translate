@@ -182,6 +182,8 @@ class MainMessagesEo extends MainMessages {
   String get audio_limit => """Ne eblas prononci pli ol 200 signojn""";
   String get autodetect_not_supported => """Aŭtomata trovado ne funkcias""";
   String get cancel => """Nuligi""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Kontribui""";
   String get copied_to_clipboard => """Kopiita al tondujo""";

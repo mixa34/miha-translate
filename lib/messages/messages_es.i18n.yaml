@@ -116,6 +116,7 @@ main:
   audio_limit: No se puede obtener audio de más de 200 caracteres
   autodetect_not_supported: Detección automática no soportada
   cancel: Cancelar
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: Contribuir
   copied_to_clipboard: Copiado al portapapeles

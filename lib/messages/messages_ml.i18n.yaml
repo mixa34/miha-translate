@@ -116,6 +116,7 @@ main:
   audio_limit: 200-ൽ കൂടുതൽ വാക്കുകൾക്ക് ഓഡിയോ ലഭിക്കില്ല
   autodetect_not_supported: Autodetect not supported
   cancel: റദ്ദാക്കുക
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: സഹായം
   copied_to_clipboard: ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി

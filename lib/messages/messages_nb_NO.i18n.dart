@@ -182,6 +182,8 @@ class MainMessagesNbNO extends MainMessages {
   String get audio_limit => """Kan ikke hente lyd for mer enn 200 tegn""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """Avbryt""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Bidra""";
   String get copied_to_clipboard => """Kopiert til utklippstavle""";

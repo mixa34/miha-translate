@@ -182,6 +182,8 @@ class MainMessagesMl extends MainMessages {
   String get audio_limit => """200-ൽ കൂടുതൽ വാക്കുകൾക്ക് ഓഡിയോ ലഭിക്കില്ല""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """റദ്ദാക്കുക""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """സഹായം""";
   String get copied_to_clipboard => """ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തി""";

@@ -184,6 +184,8 @@ class MainMessagesIt extends MainMessages {
   String get autodetect_not_supported =>
       """Rilevamento automatico non supportato""";
   String get cancel => """Annulla""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Contribuisci""";
   String get copied_to_clipboard => """Copiato negli appunti""";

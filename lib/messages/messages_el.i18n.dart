@@ -183,6 +183,8 @@ class MainMessagesEl extends MainMessages {
       """Δεν είναι δυνατή η λήψη ήχου για πάνω από 200 χαρακτήρες""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """Ακύρωση""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Συνεισφέρετε""";
   String get copied_to_clipboard => """Αντιγράφηκε στο πρόχειρο""";

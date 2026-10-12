@@ -182,6 +182,8 @@ class MainMessagesKo extends MainMessages {
   String get audio_limit => """200자를 초과하는 오디오를 가져올 수 없습니다""";
   String get autodetect_not_supported => """자동 감지가 지원되지 않습니다""";
   String get cancel => """취소""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """기여하기""";
   String get copied_to_clipboard => """클립보드에 복사되었습니다""";

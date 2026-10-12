@@ -184,6 +184,8 @@ class MainMessagesTr extends MainMessages {
   String get autodetect_not_supported =>
       """Otomatik belirleme desteklenmiyor""";
   String get cancel => """İptal""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Katkıda bulun""";
   String get copied_to_clipboard => """Panoya kopyalandı""";

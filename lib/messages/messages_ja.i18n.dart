@@ -182,6 +182,8 @@ class MainMessagesJa extends MainMessages {
   String get audio_limit => """200 文字以上の文章は音声を取得できません""";
   String get autodetect_not_supported => """言語の自動検出はサポートされていません""";
   String get cancel => """キャンセル""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """貢献する""";
   String get copied_to_clipboard => """クリップボードにコピー""";

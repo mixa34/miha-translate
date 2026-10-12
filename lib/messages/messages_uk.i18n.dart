@@ -183,6 +183,8 @@ class MainMessagesUk extends MainMessages {
       """Не можливо отримати звук на більше ніж 200 символів""";
   String get autodetect_not_supported => """Автовизначення не підтримується""";
   String get cancel => """Скасувати""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Співрозробка""";
   String get copied_to_clipboard => """Скопійовано до буфера обміну""";

@@ -181,6 +181,8 @@ class MainMessages {
   String get audio_limit => """Cannot get audio for more than 200 characters""";
   String get autodetect_not_supported => """Autodetect not supported""";
   String get cancel => """Cancel""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Contribute""";
   String get copied_to_clipboard => """Copied to clipboard""";

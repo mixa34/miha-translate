@@ -184,6 +184,8 @@ class MainMessagesPl extends MainMessages {
   String get autodetect_not_supported =>
       """Autowykrywanie nie jest obsługiwane""";
   String get cancel => """Anuluj""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Wnieś swój wkład""";
   String get copied_to_clipboard => """Skopiowano do schowka""";

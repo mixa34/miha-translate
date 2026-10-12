@@ -40,6 +40,11 @@ Future<void> _translateInput() async {
   final text = googleInCtrl.text;
   final from = fromLangVal;
   final to = toLangVal;
+  if (exceedsInputLimit(text)) {
+    refreshLoading();
+    showInputLimitExceeded(text, from, to);
+    return;
+  }
   final translatedText = await runTranslation(generation, text, from, to);
   if (isCurrentTranslation(generation)) setGoogleOutput(translatedText, text, from, to);
 }
@@ -108,7 +113,7 @@ int? _pendingSwap;
 /// superseded request never leaves them half-updated. Every swap supersedes
 /// the translations that were in flight when it was pressed.
 ///
-/// Empty input, and input above 5000 characters, only swap the languages.
+/// Empty input, and input above [inputLimit], only swap the languages.
 ///
 /// From Autodetect see [_swapFromAutodetect].
 Future<void> swapLanguages(BuildContext context) async {
@@ -117,7 +122,7 @@ Future<void> swapLanguages(BuildContext context) async {
   if (fromLangVal == 'auto') return _swapFromAutodetect(context);
   stopAllTts();
   final input = googleInCtrl.text;
-  if (input.isEmpty || input.length > 5000) {
+  if (input.isEmpty || exceedsInputLimit(input)) {
     setStateOverlord(cancelTranslations);
     switchVals();
     _rememberPair();
@@ -148,7 +153,7 @@ Future<void> swapLanguages(BuildContext context) async {
         if (_pendingSwap == generation) _pendingSwap = null;
       }
     }
-    if (newInput.length > 5000) {
+    if (exceedsInputLimit(newInput)) {
       _showInputLimit(context);
       return;
     }
@@ -187,7 +192,7 @@ Future<void> _swapFromAutodetect(BuildContext context) async {
   final newFrom = toLangVal;
   final newTo = detectedSourceLanguage()!;
   stopAllTts();
-  if (translated.length > 5000) {
+  if (exceedsInputLimit(translated)) {
     _showInputLimit(context);
     return;
   }

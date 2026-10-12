@@ -183,6 +183,8 @@ class MainMessagesCs extends MainMessages {
   String get autodetect_not_supported =>
       """Automatická detekce není podporována""";
   String get cancel => """Zrušit""";
+  String character_count(String count, String limit) =>
+      """$count of $limit characters""";
   String get clear_source => """Clear source text""";
   String get contribute => """Přispějte""";
   String get copied_to_clipboard => """Zkopírováno do schránky""";

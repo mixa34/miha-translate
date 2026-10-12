@@ -116,6 +116,7 @@ main:
   audio_limit: Nelze získat zvuk pro více než 200 znaků
   autodetect_not_supported: Automatická detekce není podporována
   cancel: Zrušit
+  character_count(String count, String limit): "$count of $limit characters"
   clear_source: Clear source text
   contribute: Přispějte
   copied_to_clipboard: Zkopírováno do schránky
