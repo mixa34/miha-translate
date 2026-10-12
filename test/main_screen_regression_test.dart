@@ -197,11 +197,18 @@ void main() {
       expect(server.requests, isEmpty);
     });
 
-    // Current behaviour, documented for the redesign: swapping with text sends
-    // TWO requests. The input is first translated forward with the OLD pair,
-    // that result becomes the new input, and it is then translated back with
-    // the NEW pair. The previous output is not reused.
-    testWidgets('with text, swap sends a forward request then a back-translation', (tester) async {
+    String describe(RecordedRequest r) => '${r.text} ${r.from}>${r.to}';
+
+    void expectLanguages(WidgetTester tester, String from, String to) {
+      expect(fromLangVal, from);
+      expect(toLangVal, to);
+      expect(session.read('from_lang'), from);
+      expect(session.read('to_lang'), to);
+      expect(fieldText(tester, sourceLangField), from == 'en' ? 'English' : 'Serbian');
+      expect(fieldText(tester, targetLangField), to == 'en' ? 'English' : 'Serbian');
+    }
+
+    testWidgets('the shown translation becomes the new input and only the back-translation is requested', (tester) async {
       await pumpApp(tester);
       await typeAndTranslate(tester, 'Hello');
       server.requests.clear();
@@ -209,18 +216,224 @@ void main() {
       await tester.tap(swapButton);
       await settleRequests(tester);
 
-      expect(server.requests, hasLength(2));
-      expect([server.requests[0].text, server.requests[0].from, server.requests[0].to], ['Hello', 'en', 'sr']);
-      expect([server.requests[1].text, server.requests[1].from, server.requests[1].to], ['sr:Hello', 'sr', 'en']);
-
+      expect(server.requests.map(describe), ['sr:Hello sr>en']);
       expect(googleInCtrl.text, 'sr:Hello');
       expect(googleOutput['text'], 'en:sr:Hello');
-      expect(fromLangVal, 'sr');
-      expect(toLangVal, 'en');
-      expect(session.read('from_lang'), 'sr');
-      expect(session.read('to_lang'), 'en');
-      expect(fieldText(tester, sourceLangField), 'Serbian');
-      expect(fieldText(tester, targetLangField), 'English');
+      expect(find.text('en:sr:Hello'), findsOneWidget);
+      expectLanguages(tester, 'sr', 'en');
+      expect(loading, isFalse);
+    });
+
+    testWidgets('a translation of different input is not reused', (tester) async {
+      await pumpApp(tester);
+      await typeAndTranslate(tester, 'Hello');
+      await tester.enterText(inputField, 'Hello world');
+      await tester.pump(const Duration(milliseconds: 100));
+      server.requests.clear();
+
+      await tester.tap(swapButton);
+      await settleRequests(tester);
+      // The debounce still pending for "Hello world" must not fire a request.
+      await tester.pump(debounce);
+      await settleRequests(tester);
+
+      expect(server.requests.map(describe), ['Hello world en>sr', 'sr:Hello world sr>en']);
+      expect(googleInCtrl.text, 'sr:Hello world');
+      expect(googleOutput['text'], 'en:sr:Hello world');
+      expectLanguages(tester, 'sr', 'en');
+    });
+
+    testWidgets('a translation made with a different language pair is not reused', (tester) async {
+      // Shared text is always translated from auto, not from the selected source.
+      pendingSharedText = 'Hello';
+      await pumpApp(tester);
+      await settleRequests(tester);
+      expect(server.requests.map(describe), ['Hello auto>sr']);
+      server.requests.clear();
+
+      await tester.tap(swapButton);
+      await settleRequests(tester);
+
+      expect(server.requests.map(describe), ['Hello en>sr', 'sr:Hello sr>en']);
+      expect(googleInCtrl.text, 'sr:Hello');
+      expect(googleOutput['text'], 'en:sr:Hello');
+      expectLanguages(tester, 'sr', 'en');
+    });
+
+    testWidgets('a failed translation is not reused', (tester) async {
+      server.failWhen = (_) => true;
+      await pumpApp(tester);
+      await typeAndTranslate(tester, 'Hello');
+      expect(googleOutput['error'], isNotNull);
+      server.failWhen = null;
+      server.requests.clear();
+
+      await tester.tap(swapButton);
+      await settleRequests(tester);
+
+      expect(server.requests.map(describe), ['Hello en>sr', 'sr:Hello sr>en']);
+      expect(googleInCtrl.text, 'sr:Hello');
+      expect(googleOutput['text'], 'en:sr:Hello');
+      expectLanguages(tester, 'sr', 'en');
+    });
+
+    testWidgets('if the forward translation fails, languages, input and storage stay unchanged', (tester) async {
+      server.failWhen = (_) => true;
+      await pumpApp(tester);
+      await typeAndTranslate(tester, 'Hello');
+      server.requests.clear();
+
+      await tester.tap(swapButton);
+      await settleRequests(tester);
+
+      expect(server.requests.map(describe), ['Hello en>sr'], reason: 'no back-translation without a new input');
+      expect(googleInCtrl.text, 'Hello');
+      expect(googleOutput['error'], isNotNull);
+      expect(find.text(i18n().main.something_went_wrong), findsOneWidget);
+      expectLanguages(tester, 'en', 'sr');
+      expect(loading, isFalse);
+    });
+
+    testWidgets('if the back-translation fails, the swap is complete and the error is shown', (tester) async {
+      await pumpApp(tester);
+      await typeAndTranslate(tester, 'Hello');
+      server.failWhen = (r) => r.from == 'sr';
+      server.requests.clear();
+
+      await tester.tap(swapButton);
+      await settleRequests(tester);
+
+      expect(server.requests.map(describe), ['sr:Hello sr>en']);
+      expect(googleInCtrl.text, 'sr:Hello');
+      expect(googleOutput['error'], isNotNull);
+      expect(find.text(i18n().main.something_went_wrong), findsOneWidget);
+      expectLanguages(tester, 'sr', 'en');
+      expect(loading, isFalse);
+    });
+
+    testWidgets('a translation still in flight when Swap is pressed is discarded', (tester) async {
+      server.holdResponses = true;
+      await pumpApp(tester);
+      await tester.enterText(inputField, 'Hello');
+      await tester.pump(debounce);
+      expect(loading, isTrue);
+
+      await tester.tap(swapButton);
+      await tester.pump();
+      expect(server.requests.map(describe), ['Hello en>sr', 'Hello en>sr'], reason: 'debounce, then the swap\'s forward request');
+
+      server.release(0);
+      await settleRequests(tester);
+      expect(googleOutput, isEmpty, reason: 'the pre-swap result is never shown');
+      expect(googleInCtrl.text, 'Hello');
+      expectLanguages(tester, 'en', 'sr');
+
+      server.release(1);
+      await settleRequests(tester);
+      expect(googleInCtrl.text, 'sr:Hello');
+      expectLanguages(tester, 'sr', 'en');
+      expect(server.requests.map(describe).last, 'sr:Hello sr>en');
+
+      server.release(2);
+      await settleRequests(tester);
+      expect(googleOutput['text'], 'en:sr:Hello');
+      expect(loading, isFalse);
+    });
+
+    testWidgets('rapid swaps end in a consistent state and superseded results are discarded', (tester) async {
+      server.holdResponses = true;
+      await pumpApp(tester);
+      await tester.enterText(inputField, 'Hello');
+      await tester.pump(debounce);
+      server.release(0);
+      await settleRequests(tester);
+      expect(googleOutput['text'], 'sr:Hello');
+
+      // First swap reuses the output; its back-translation (#1) is held.
+      await tester.tap(swapButton);
+      await tester.pump();
+      expect(googleInCtrl.text, 'sr:Hello');
+      expectLanguages(tester, 'sr', 'en');
+
+      // Second swap: nothing reusable is shown, so it needs a forward request (#2).
+      await tester.tap(swapButton);
+      await tester.pump();
+      // A third press while that forward request is pending is ignored.
+      await tester.tap(swapButton);
+      await tester.pump();
+      expect(server.requests.map(describe).skip(1), ['sr:Hello sr>en', 'sr:Hello sr>en']);
+      expectLanguages(tester, 'sr', 'en');
+
+      server.release(1);
+      await settleRequests(tester);
+      expect(googleOutput, isEmpty, reason: 'the first swap\'s back-translation was superseded');
+
+      server.release(2);
+      await settleRequests(tester);
+      expect(googleInCtrl.text, 'en:sr:Hello');
+      expectLanguages(tester, 'en', 'sr');
+      expect(server.requests.map(describe).last, 'en:sr:Hello en>sr');
+
+      server.release(3);
+      await settleRequests(tester);
+      expect(googleOutput['text'], 'sr:en:sr:Hello');
+      expect(server.requests, hasLength(4));
+      expect(loading, isFalse);
+    });
+
+    testWidgets('clearing the input cancels a pending swap', (tester) async {
+      server.holdResponses = true;
+      await pumpApp(tester);
+      await tester.enterText(inputField, 'Hello');
+      await tester.pump(debounce);
+      await tester.tap(swapButton);
+      await tester.pump();
+
+      await tester.tap(underInput(find.widgetWithIcon(IconButton, Icons.close)));
+      await tester.pump();
+      server.release(0);
+      server.release(1);
+      await settleRequests(tester);
+
+      expect(server.requests, hasLength(2));
+      expect(googleInCtrl.text, isEmpty);
+      expect(googleOutput, isEmpty);
+      expectLanguages(tester, 'en', 'sr');
+    });
+
+    testWidgets('a translation longer than 5000 characters is not swapped in', (tester) async {
+      await pumpApp(tester);
+      final input = 'a' * 4999;
+      await typeAndTranslate(tester, input);
+      expect((googleOutput['text'] as String).length, greaterThan(5000));
+      server.requests.clear();
+
+      // Typing that much scrolls the screen; bring the swap button back first.
+      await tester.ensureVisible(swapButton);
+      await tester.tap(swapButton);
+      await tester.pump();
+      await tester.pump();
+
+      expect(server.requests, isEmpty);
+      expect(find.text(i18n().main.input_limit), findsOneWidget);
+      expect(googleInCtrl.text, input);
+      expectLanguages(tester, 'en', 'sr');
+      await drainTimers(tester);
+    });
+
+    testWidgets('input above 5000 characters only swaps the languages', (tester) async {
+      await pumpApp(tester);
+      await tester.enterText(inputField, 'a' * 5001);
+      await tester.pump(debounce);
+      await settleRequests(tester);
+
+      await tester.ensureVisible(swapButton);
+      await tester.tap(swapButton);
+      await settleRequests(tester);
+
+      expect(server.requests, isEmpty);
+      expect(googleInCtrl.text, 'a' * 5001);
+      expectLanguages(tester, 'sr', 'en');
     });
   });
 

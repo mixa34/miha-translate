@@ -11,6 +11,7 @@
 // The app itself is driven exactly as in production: tests pump `MyApp` and
 // interact with the real widgets, so production code is not modified.
 
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
@@ -52,6 +53,18 @@ class FakeTranslationServer {
   /// the engine reads as the auto-detected source language.
   String? detectedAtEngineField;
 
+  /// Requests for which this returns true are answered with HTTP 500, which
+  /// the engine reports as an upstream error.
+  bool Function(RecordedRequest request)? failWhen;
+
+  /// While true, each response is held until [release] is called for it, so a
+  /// test can act while a translation is in flight.
+  bool holdResponses = false;
+  final _held = <Completer<void>>[];
+
+  /// Lets the [index]th held response (in request order) through.
+  void release(int index) => _held[index].complete();
+
   static String translationOf(String text, String to) => '$to:$text';
 
   late final http.Client client = MockClient((request) async {
@@ -60,7 +73,14 @@ class FakeTranslationServer {
     final text = inner[0][0] as String;
     final from = inner[0][1] as String;
     final to = inner[0][2] as String;
-    requests.add(RecordedRequest(text, from, to));
+    final recorded = RecordedRequest(text, from, to);
+    requests.add(recorded);
+    if (holdResponses) {
+      final gate = Completer<void>();
+      _held.add(gate);
+      await gate.future;
+    }
+    if (failWhen?.call(recorded) ?? false) return http.Response('server error', 500);
     return http.Response.bytes(
       utf8.encode(batchExecuteResponse(
         translationOf(text, to),
@@ -160,7 +180,6 @@ Future<FakeTranslationServer> resetApp({Map<String, String> stored = const {}}) 
   googleInCtrl.text = '';
   googleOutput = {};
   loading = false;
-  isTranslationCanceled = false;
   isTtsInCanceled = false;
   ttsInputloading = false;
   ttsOutloading = false;

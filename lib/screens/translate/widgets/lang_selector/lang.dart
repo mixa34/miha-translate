@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:miha_translate/simplytranslate.dart';
 import '/data.dart';
 import '../../translate_actions.dart';
 
@@ -184,8 +183,12 @@ class _GoogleLangState extends State<GoogleLang> {
                 switchVals();
                 FocusScope.of(context).unfocus();
               }
-              final translatedText = await translate(googleInCtrl.text, fromLangVal, toLangVal);
-              if (!isTranslationCanceled) setStateOverlord(() => googleOutput = translatedText);
+              final generation = beginTranslation();
+              final text = googleInCtrl.text;
+              final from = fromLangVal;
+              final to = toLangVal;
+              final translatedText = await runTranslation(generation, text, from, to);
+              if (isCurrentTranslation(generation)) setGoogleOutput(translatedText, text, from, to);
             },
             decoration: InputDecoration(contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), isDense: true),
             controller: txtCtrl,

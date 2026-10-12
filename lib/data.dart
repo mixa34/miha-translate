@@ -20,6 +20,67 @@ late String toLangVal;
 
 Map googleOutput = {};
 
+/// The generation that owns the displayed translation.
+///
+/// Every action that changes what should be translated takes a new generation:
+/// editing the input, choosing or swapping languages, shared text, and Clear.
+/// A request may show its result, and keeps `loading` on, only while its
+/// generation is still the current one, so an older request can never
+/// overwrite newer state.
+int translationEpoch = 0;
+
+/// Generations whose request is still waiting for the engine.
+final _translationsInFlight = <int>{};
+
+/// Takes a new generation, superseding every earlier request.
+int beginTranslation() => ++translationEpoch;
+
+bool isCurrentTranslation(int generation) => generation == translationEpoch;
+
+/// Supersedes every earlier request without starting a new one. Call inside
+/// a `setStateOverlord` callback so the progress bar is hidden at once.
+void cancelTranslations() {
+  translationEpoch++;
+  loading = false;
+}
+
+/// Sets `loading` to whether the current generation's request is in flight.
+void refreshLoading() {
+  setStateOverlord(() => loading = _translationsInFlight.contains(translationEpoch));
+}
+
+/// Runs the translation engine on behalf of [generation].
+///
+/// The engine sets `loading` itself: true when a request starts, which is
+/// correct because requests start only for the current generation, and false
+/// when any request finishes, which is wrong while a newer one is running.
+/// The `finally` below corrects that in the same microtask chain, before the
+/// next frame is drawn.
+Future<Map<String, dynamic>> runTranslation(int generation, String text, String from, String to) async {
+  _translationsInFlight.add(generation);
+  try {
+    return await simplytranslate.translate(text, from, to);
+  } finally {
+    _translationsInFlight.remove(generation);
+    refreshLoading();
+  }
+}
+
+/// The input text and language pair that produced [googleOutput].
+///
+/// Only meaningful while [output] is identical to [googleOutput]: any write to
+/// [googleOutput] that does not go through [setGoogleOutput] invalidates it.
+typedef TranslationSource = ({Map output, String text, String from, String to});
+TranslationSource? googleOutputSource;
+
+/// Shows [output] as the translation of [text] from [from] to [to].
+void setGoogleOutput(Map output, String text, String from, String to) {
+  setStateOverlord(() {
+    googleOutput = output;
+    googleOutputSource = (output: output, text: text, from: from, to: to);
+  });
+}
+
 extension CapitalizeString on String {
   String capitalize() {
     return "${this[0].toUpperCase()}${this.substring(1).toLowerCase()}";
@@ -42,7 +103,6 @@ late Map<String, String> toSelLangMap;
 late Map<String, String> fromSelLangMap;
 
 bool loading = false;
-bool isTranslationCanceled = false;
 
 final googleInCtrl = TextEditingController();
 
@@ -64,17 +124,18 @@ Future<void> getSharedText() async {
     final answer = await methodChannel.invokeMethod('getText');
     if (answer != '') {
       final _translationInput = answer.toString();
+      final generation = beginTranslation();
 
       setStateOverlord(() {
         googleInCtrl.text = _translationInput;
         loading = true;
       });
 
-      final translatedText = await simplytranslate.translate(_translationInput, 'auto', toLangVal);
-      setStateOverlord(() => googleOutput = translatedText);
+      final translatedText = await runTranslation(generation, _translationInput, 'auto', toLangVal);
+      if (isCurrentTranslation(generation)) setStateOverlord(() => googleOutput = translatedText);
     }
   } catch (_) {
-    setStateOverlord(() => loading = false);
+    refreshLoading();
   }
 }
 

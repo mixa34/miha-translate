@@ -4,7 +4,6 @@ import 'tts_button.dart';
 import '/data.dart';
 import 'delete_button.dart';
 import 'character_limit.dart';
-import '/simplytranslate.dart' as simplytranslate;
 
 class GoogleTranslationInput extends StatefulWidget {
   const GoogleTranslationInput({Key? key}) : super(key: key);
@@ -68,15 +67,19 @@ class _TranslationInputState extends State<GoogleTranslationInput> {
               controller: googleInCtrl,
               keyboardType: TextInputType.multiline,
               onChanged: (String input) {
+                // The edit supersedes every earlier request at once, so none of
+                // them can overwrite the screen during the debounce window.
+                final generation = beginTranslation();
+                if (loading) setStateOverlord(() => loading = false);
                 Future.delayed(Duration(seconds: 1), () async {
-                  isTranslationCanceled = true;
-                  loading = false;
-                  if (input == googleInCtrl.text) {
-                    if (googleInCtrl.text.length > 0 && googleInCtrl.text.length <= 5000) {
-                      isTranslationCanceled = false;
-                      final translatedText = await simplytranslate.translate(googleInCtrl.text, fromLangVal, toLangVal);
-                      if (!isTranslationCanceled) setStateOverlord(() => googleOutput = translatedText);
-                    }
+                  // Superseded by a later edit, Clear, Swap, a language change
+                  // or shared text: a stale timer has no side effects.
+                  if (!isCurrentTranslation(generation) || input != googleInCtrl.text) return;
+                  if (input.length > 0 && input.length <= 5000) {
+                    final from = fromLangVal;
+                    final to = toLangVal;
+                    final translatedText = await runTranslation(generation, input, from, to);
+                    if (isCurrentTranslation(generation)) setGoogleOutput(translatedText, input, from, to);
                   }
                 });
               },
