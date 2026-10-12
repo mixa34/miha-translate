@@ -1,10 +1,5 @@
 // Phase 4.3B.3: no layout overflow at 320 dp in either theme.
-//
-// Kept in its own file: lib/screens/translate/translate.dart keeps a global
-// "was landscape" flag that outlives the screen, and building a new translate
-// screen in portrait after a landscape one (the default 800x600 test view is
-// landscape) calls jumpTo() on a detached ScrollController. A fresh isolate
-// starts in portrait, so this file only tests the layout.
+// (Orientation handling itself is covered by orientation_test.dart.)
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

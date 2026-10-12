@@ -8,8 +8,6 @@ import 'widgets/input/input.dart';
 import 'widgets/output/output.dart';
 import 'widgets/lang_selector/switch_lang.dart';
 
-var _scrollController = ScrollController();
-
 class GoogleTranslate extends StatefulWidget {
   const GoogleTranslate({Key? key}) : super(key: key);
 
@@ -17,19 +15,31 @@ class GoogleTranslate extends StatefulWidget {
   State<GoogleTranslate> createState() => _GoogleTranslateState();
 }
 
-var _isBefore = false;
-
 class _GoogleTranslateState extends State<GoogleTranslate> {
+  final _scrollController = ScrollController();
+
+  /// The orientation this screen last saw; null until its first build, so a
+  /// new screen never inherits another one's orientation history.
+  Orientation? _orientation;
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
-    if (MediaQuery.of(context).orientation == Orientation.landscape)
-      _isBefore = true;
-    else if (MediaQuery.of(context).orientation == Orientation.portrait && _isBefore) {
-      _scrollController.jumpTo(0);
-      _isBefore = false;
+    final orientation = MediaQuery.orientationOf(context);
+    final backToPortrait = _orientation == Orientation.landscape && orientation == Orientation.portrait;
+    _orientation = orientation;
+    if (backToPortrait) {
+      // Return to the top once the portrait layout exists.
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _scrollController.hasClients) _scrollController.jumpTo(0);
+      });
     }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 
   @override
