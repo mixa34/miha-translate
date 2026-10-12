@@ -1,0 +1,4 @@
+)]}'
+
+360
+[["wrb.fr","MkEWBc","[[null,null,\"zh-TW\",[[[0,[[[null,6]],[true]]]],6],null,null,[\"你們好，謝謝\",\"auto\",\"en\",true]],[[[null,null,null,null,null,[[\"Hello, thank you\",null,null,null,null,null,\"你們好，謝謝\",1]],null,null,null,[]]],\"en\",1,\"zh-TW\",[\"你們好，謝謝\",\"auto\",\"en\",true]],\"zh-TW\",null,null,null,null,[[[0,0],[[6,1]]]]]",null,null,null,"generic"]]

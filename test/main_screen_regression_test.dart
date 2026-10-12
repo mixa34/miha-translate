@@ -498,6 +498,9 @@ void main() {
     setUp(() async => server = await resetApp(stored: {'from_lang': 'en', 'to_lang': 'sr'}));
 
     testWidgets('shared text present at launch fills the input and is translated from auto', (tester) async {
+      // Like a real Autodetect response, the language Google detects is
+      // reported; it must not replace the selected source.
+      server.detect = (_) => 'fr';
       pendingSharedText = 'Bonjour';
       await pumpApp(tester);
       await settleRequests(tester);
@@ -511,6 +514,7 @@ void main() {
       expect(googleOutput['text'], 'sr:Bonjour');
       expect(fromLangVal, 'en', reason: 'the selected source language is left as it was');
       expect(session.read('from_lang'), 'en');
+      expect(fieldText(tester, sourceLangField), 'English');
     });
 
     testWidgets('shared text arriving while in the background is picked up 1 second after resume', (tester) async {
@@ -551,29 +555,31 @@ void main() {
       expect(loading, isFalse);
     });
 
-    testWidgets('with Autodetect selected, a real-shaped response keeps the source on Autodetect', (tester) async {
+    // Real Autodetect responses report the detected language at data[0][2]
+    // (test/fixtures/autodetect_*.txt). It is reported with the result, but
+    // Autodetect stays the selection and nothing is saved.
+    testWidgets('with Autodetect selected, a detected language is reported but Autodetect stays selected', (tester) async {
       server = await resetApp(stored: {'to_lang': 'sr'});
+      server.detect = (_) => 'fr';
       await pumpApp(tester);
       await typeAndTranslate(tester, 'Bonjour');
 
       expect(server.requests.single.from, 'auto');
+      expect(googleOutput['detectedLanguage'], 'fr');
       expect(fromLangVal, 'auto');
       expect(fieldText(tester, sourceLangField), 'Autodetect');
       expect(session.read('from_lang'), isNull);
     });
 
-    // The engine reads the detected language from data[0][2]. Captured
-    // responses (test/fixtures) carry null there, so in practice the branch
-    // below does not fire; this pins down what it does if it ever does.
-    testWidgets('a detected language at the engine field replaces Autodetect and is saved', (tester) async {
-      server = await resetApp(stored: {'to_lang': 'sr'});
-      server.detectedAtEngineField = 'fr';
+    testWidgets('a detected language never replaces a saved Autodetect preference', (tester) async {
+      server = await resetApp(stored: {'from_lang': 'auto', 'to_lang': 'sr'});
+      server.detect = (_) => 'fr';
       await pumpApp(tester);
       await typeAndTranslate(tester, 'Bonjour');
 
-      expect(fromLangVal, 'fr');
-      expect(session.read('from_lang'), 'fr');
-      expect(fieldText(tester, sourceLangField), 'French');
+      expect(fromLangVal, 'auto');
+      expect(session.read('from_lang'), 'auto');
+      expect(fieldText(tester, sourceLangField), 'Autodetect');
     });
   });
 

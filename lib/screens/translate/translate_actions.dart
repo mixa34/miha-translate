@@ -43,6 +43,33 @@ String? reusableTranslation(String text, String from, String to) {
   return translated is String && translated.isNotEmpty ? translated : null;
 }
 
+/// The language Google detected for the input, while the source is
+/// Autodetect; otherwise null.
+///
+/// Valid only for the displayed output (checked through [googleOutputSource])
+/// when it was produced by an automatic-source request for exactly the current
+/// input text and target language, succeeded, and reported a language the app
+/// supports. It is never saved and never replaces `fromLangVal == 'auto'`.
+String? detectedSourceLanguage() {
+  if (fromLangVal != 'auto') return null;
+  final source = googleOutputSource;
+  if (source == null || !identical(source.output, googleOutput)) return null;
+  if (source.from != 'auto' || source.to != toLangVal || source.text != googleInCtrl.text) return null;
+  if (googleOutput.containsKey('error')) return null;
+  final detected = googleOutput['detectedLanguage'];
+  if (detected is! String || detected == 'auto' || !fromSelLangMap.containsKey(detected)) return null;
+  return detected;
+}
+
+/// Whether Swap is available: always for an explicit source; from Autodetect
+/// only when a current detection exists, differs from the target, and the
+/// displayed translation can become the new input.
+bool canSwapLanguages() {
+  if (fromLangVal != 'auto') return true;
+  final detected = detectedSourceLanguage();
+  return detected != null && detected != toLangVal && reusableTranslation(googleInCtrl.text, 'auto', toLangVal) != null;
+}
+
 /// The generation of a swap that is waiting for the forward translation it
 /// needs before it can change anything. Further swaps are ignored only while
 /// that generation is current: an edit, Clear, language change or shared text
@@ -60,9 +87,12 @@ int? _pendingSwap;
 /// the translations that were in flight when it was pressed.
 ///
 /// Empty input, and input above 5000 characters, only swap the languages.
+///
+/// From Autodetect see [_swapFromAutodetect].
 Future<void> swapLanguages(BuildContext context) async {
   final pending = _pendingSwap;
   if (pending != null && isCurrentTranslation(pending)) return;
+  if (fromLangVal == 'auto') return _swapFromAutodetect(context);
   stopAllTts();
   final input = googleInCtrl.text;
   if (input.isEmpty || input.length > 5000) {
@@ -96,35 +126,75 @@ Future<void> swapLanguages(BuildContext context) async {
       }
     }
     if (newInput.length > 5000) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            duration: Duration(seconds: 2),
-            width: 160,
-            content: Text(
-              i18n().main.input_limit,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        );
-      }
+      _showInputLimit(context);
       return;
     }
-    final swappedInput = newInput;
-    final generation = beginTranslation();
-    setStateOverlord(() {
-      switchVals();
-      googleInCtrl.text = swappedInput;
-      googleOutput = {};
-    });
-    final newFrom = fromLangVal;
-    final newTo = toLangVal;
-    final back = await runTranslation(generation, swappedInput, newFrom, newTo);
-    if (isCurrentTranslation(generation)) setGoogleOutput(back, swappedInput, newFrom, newTo);
+    await _commitSwap(newInput, switchVals);
   } catch (error) {
     refreshLoading();
     print('translate error: $error');
   }
+}
+
+/// Applies a swap: [swapPair] changes the languages, [newInput] becomes the
+/// input, and the output is cleared until the back-translation of [newInput]
+/// with the new pair arrives -- shown only if no newer action superseded it.
+Future<void> _commitSwap(String newInput, void Function() swapPair) async {
+  final generation = beginTranslation();
+  setStateOverlord(() {
+    swapPair();
+    googleInCtrl.text = newInput;
+    googleOutput = {};
+  });
+  final newFrom = fromLangVal;
+  final newTo = toLangVal;
+  final back = await runTranslation(generation, newInput, newFrom, newTo);
+  if (isCurrentTranslation(generation)) setGoogleOutput(back, newInput, newFrom, newTo);
+}
+
+/// Swaps from Autodetect using the detected language, like an explicit swap
+/// with a reusable translation: the source becomes the previous target, the
+/// target the detected language, the translation becomes the input, and one
+/// back-translation request produces the new output. Does nothing unless
+/// [canSwapLanguages] holds.
+Future<void> _swapFromAutodetect(BuildContext context) async {
+  if (!canSwapLanguages()) return;
+  final translated = reusableTranslation(googleInCtrl.text, 'auto', toLangVal)!;
+  final newFrom = toLangVal;
+  final newTo = detectedSourceLanguage()!;
+  stopAllTts();
+  if (translated.length > 5000) {
+    _showInputLimit(context);
+    return;
+  }
+  FocusScope.of(context).unfocus();
+  try {
+    await _commitSwap(translated, () {
+      fromLangVal = newFrom;
+      toLangVal = newTo;
+      session.write('from_lang', newFrom);
+      session.write('to_lang', newTo);
+      changeFromTxt!(fromSelLangMap[newFrom]!);
+      changeToTxt!(toSelLangMap[newTo]!);
+    });
+  } catch (error) {
+    refreshLoading();
+    print('translate error: $error');
+  }
+}
+
+void _showInputLimit(BuildContext context) {
+  if (!context.mounted) return;
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      duration: Duration(seconds: 2),
+      width: 160,
+      content: Text(
+        i18n().main.input_limit,
+        textAlign: TextAlign.center,
+      ),
+    ),
+  );
 }
 
 /// Clears the input and the translation, cancelling any pending translation

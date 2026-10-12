@@ -135,11 +135,12 @@ Future<void> disposeTts() => Future.wait([inputTts.dispose(), outputTts.dispose(
 /// The speaker button shared by the input and the output.
 ///
 /// [language] is read only when the button is pressed, so it always reflects
-/// the current selection. [available] false disables the button.
+/// the current selection; null then means nothing is spoken. [available] false
+/// disables the button.
 class TtsButton extends StatelessWidget {
   final TtsPlayback playback;
   final String text;
-  final String Function() language;
+  final String? Function() language;
   final bool available;
 
   const TtsButton({required this.playback, required this.text, required this.language, this.available = true, Key? key}) : super(key: key);
@@ -173,7 +174,10 @@ class TtsButton extends StatelessWidget {
             if (playing) return playback.stop;
             if (text.isEmpty || !available) return null;
             if (text.length > 200) return () => _audioLimit(context);
-            return () => playback.play(text, language(), onError: (failure) => _showError(context, failure));
+            return () {
+              final lang = language();
+              if (lang != null) playback.play(text, lang, onError: (failure) => _showError(context, failure));
+            };
           }(),
           icon: Icon(
             playing ? Icons.stop : Icons.volume_up,

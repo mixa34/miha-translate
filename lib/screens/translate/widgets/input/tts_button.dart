@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '/data.dart';
 import '../tts_playback.dart';
+import '../../translate_actions.dart';
 
 /// Speaks the current input in the source language.
 ///
 /// Rebuilds on every edit, so the button is enabled, limited and greyed from
-/// the text actually in the field. Disabled while the source is Autodetect:
-/// the engine reports no detected language, and `tl=auto` is not a voice.
+/// the text actually in the field. With Autodetect it speaks in the detected
+/// language, and is disabled while there is no current detection for this
+/// exact text (`tl=auto` is not a voice).
 class TtsInput extends StatelessWidget {
   const TtsInput({Key? key}) : super(key: key);
 
@@ -17,8 +19,8 @@ class TtsInput extends StatelessWidget {
       builder: (context, value, _) => TtsButton(
         playback: inputTts,
         text: value.text,
-        language: () => fromLangVal,
-        available: fromLangVal != 'auto',
+        language: () => fromLangVal == 'auto' ? detectedSourceLanguage() : fromLangVal,
+        available: fromLangVal != 'auto' || detectedSourceLanguage() != null,
       ),
     );
   }

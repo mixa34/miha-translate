@@ -50,9 +50,16 @@ class RecordedRequest {
 class FakeTranslationServer {
   final requests = <RecordedRequest>[];
 
-  /// When set, the response reports this language at `data[0][2]`, the field
-  /// the engine reads as the auto-detected source language.
-  String? detectedAtEngineField;
+  /// The language reported as detected for an automatic-source request, at
+  /// `data[0][2]` as in real responses (see test/fixtures/autodetect_*.txt).
+  /// Defaults to "en", which is also what Google reports for text without a
+  /// clear language. Return null to report no detection.
+  String? Function(RecordedRequest request) detect = (_) => 'en';
+
+  /// Google's own identification of an explicit-source request's text. When it
+  /// differs from the requested source it is also reported as the "did you
+  /// mean" language at `data[0][1]`. Defaults to the requested source.
+  String? Function(RecordedRequest request)? identify;
 
   /// Requests for which this returns true are answered with HTTP 500, which
   /// the engine reports as an upstream error.
@@ -82,11 +89,14 @@ class FakeTranslationServer {
       await gate.future;
     }
     if (failWhen?.call(recorded) ?? false) return http.Response('server error', 500);
+    final detected = from == 'auto' ? detect(recorded) : null;
+    final identified = from == 'auto' ? detected : (identify?.call(recorded) ?? from);
     return http.Response.bytes(
       utf8.encode(batchExecuteResponse(
         translationOf(text, to),
-        source: from == 'auto' ? 'en' : from,
-        detectedAtEngineField: detectedAtEngineField,
+        detected: detected,
+        identified: identified,
+        suggested: from != 'auto' && identified != from ? identified : null,
       )),
       200,
       headers: {'content-type': 'application/json; charset=utf-8'},
@@ -94,12 +104,23 @@ class FakeTranslationServer {
   });
 }
 
-/// Builds a minimal response in the same framing as the captured fixtures in
-/// test/fixtures/translate_*.txt. Real responses carry the source language at
-/// `data[2]` and `null` at `data[0][2]`.
-String batchExecuteResponse(String translated, {required String source, String? detectedAtEngineField}) {
+/// Builds a minimal response in the same framing as the captured fixtures.
+/// Like real responses (test/fixtures/autodetect_*.txt): `data[0][2]` is the
+/// language detected for an automatic-source request (null otherwise),
+/// `data[0][1]` the "did you mean" language for an explicit source Google
+/// disagrees with, and `data[2]` Google's identification of the text.
+String batchExecuteResponse(String translated, {String? detected, String? identified, String? suggested}) {
   final data = [
-    [null, null, detectedAtEngineField],
+    [
+      null,
+      suggested == null
+          ? null
+          : [
+              null,
+              [suggested]
+            ],
+      detected
+    ],
     [
       [
         [
@@ -114,7 +135,7 @@ String batchExecuteResponse(String translated, {required String source, String? 
         ]
       ]
     ],
-    source,
+    identified,
   ];
   final envelope = jsonEncode([
     ['wrb.fr', 'MkEWBc', jsonEncode(data), null, null, null, 'generic']

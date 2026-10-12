@@ -313,13 +313,18 @@ Future<Map<String, dynamic>> translate_(String text, String from, String to) asy
       } catch (e) {}
     }
   } catch (e) {}
+  // Language metadata is only reported; what to do with it is up to the app,
+  // so the engine never changes the selected languages or saved preferences.
+  // data[0][2] is the language detected for an automatic-source request
+  // (null for explicit sources); data[0][1][1][0] is Google's "did you mean"
+  // language when it disagrees with an explicitly requested source.
   try {
-    final detectedLanguage = data[0][2];
-    if (toSelLangMap.keys.contains(detectedLanguage)) {
-      fromLangVal = detectedLanguage;
-      session.write('from_lang', fromLangVal);
-      changeFromTxt!(fromSelLangMap[fromLangVal]!);
-    }
+    final detected = data[0][2];
+    if (from == 'auto' && detected is String && detected.isNotEmpty) response['detectedLanguage'] = detected;
+  } catch (e) {}
+  try {
+    final suggested = data[0][1][1][0];
+    if (from != 'auto' && suggested is String && suggested.isNotEmpty) response['suggestedSource'] = suggested;
   } catch (e) {}
 
   try {
