@@ -376,7 +376,7 @@ Finder underInput(Finder matching) => find.descendant(
       matching: matching,
     );
 
-/// The two-line "length / 5000" counter next to the input.
+/// The input length shown by the "length / 5000" counter.
 String counterValue(WidgetTester tester) {
   final counter = find.descendant(
     of: find.byWidgetPredicate((w) => w.runtimeType.toString() == 'CharacterLimit'),

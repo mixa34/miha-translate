@@ -60,13 +60,9 @@ class _GoogleTranslateState extends State<GoogleTranslate> {
                   space,
                   GoogleTranslationInput(),
                   space,
+                  // Shows its own progress bar while translating.
                   GoogleTranslationOutput(),
                   space,
-                  if (loading)
-                    Container(
-                      width: MediaQuery.of(context).size.width - 20,
-                      child: LinearProgressIndicator(),
-                    ),
                   Pronunciation(googleOutput),
                   Definitions(googleOutput),
                   Translations(googleOutput),

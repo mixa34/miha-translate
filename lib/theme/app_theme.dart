@@ -97,14 +97,27 @@ abstract final class AppTheme {
   static Color cardColor(ColorScheme scheme) =>
       scheme.brightness == Brightness.light ? scheme.surfaceContainerLowest : scheme.surfaceContainer;
 
-  /// The bordered area around the source text and around the translation:
-  /// the card surface with a subtle outline. The 1.5 px border width is the
-  /// one the layout was built with.
-  static BoxDecoration translationAreaDecoration(ThemeData theme) => BoxDecoration(
+  /// The source text card: the card surface with a subtle outline.
+  static BoxDecoration inputAreaDecoration(ThemeData theme) => BoxDecoration(
         color: cardColor(theme.colorScheme),
         border: Border.all(color: theme.colorScheme.outlineVariant, width: 1.5),
-        borderRadius: BorderRadius.circular(AppRadius.medium),
+        borderRadius: BorderRadius.circular(AppRadius.large),
       );
+
+  /// The translation's surface: a light tint of the secondary container over
+  /// the page, so the result stands apart from the source without a border.
+  static Color translationSurface(ColorScheme scheme) =>
+      Color.alphaBlend(scheme.secondaryContainer.withValues(alpha: 0.55), scheme.surface);
+
+  /// The translation card: the tinted surface, no outline.
+  static BoxDecoration outputAreaDecoration(ThemeData theme) => BoxDecoration(
+        color: translationSurface(theme.colorScheme),
+        borderRadius: BorderRadius.circular(AppRadius.large),
+      );
+
+  /// The source and translated text.
+  static TextStyle translationText(ThemeData theme) =>
+      translationTextStyle.copyWith(color: theme.colorScheme.onSurface);
 
   static ThemeData light() => _build(lightScheme);
   static ThemeData dark() => _build(darkScheme);

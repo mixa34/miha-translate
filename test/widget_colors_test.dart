@@ -80,20 +80,29 @@ void main() {
     final card = design.AppTheme.cardColor(scheme);
 
     group('${mode.name} theme', () {
-      testWidgets('input and output areas share the card surface and subtle border', (tester) async {
+      // Phase 4.5 (variant D): the source keeps the bordered card; the
+      // translation sits on its own tinted surface without a border.
+      testWidgets('input card with a subtle border, translation on the tinted surface', (tester) async {
         themeRadio = preference(mode);
         await pumpApp(tester);
         await translate(tester, 'Hello');
 
         final input = areaDecoration(tester, inputField);
-        final output = areaDecoration(tester, outputText);
-        for (final area in [input, output]) {
-          expect(area.color, card);
-          expect((area.border as Border).top.color, scheme.outlineVariant);
-          expect(area.borderRadius, BorderRadius.circular(design.AppRadius.medium));
-        }
+        expect(input.color, card);
+        expect((input.border as Border).top.color, scheme.outlineVariant);
+        expect(input.borderRadius, BorderRadius.circular(design.AppRadius.large));
         final decorator = tester.widget<InputDecorator>(find.descendant(of: inputField, matching: find.byType(InputDecorator)));
         expect(decorator.decoration.filled, isFalse, reason: 'no separate fill inside the input area');
+
+        final output = areaDecoration(tester, outputText);
+        final surface = design.AppTheme.translationSurface(scheme);
+        expect(output.color, surface);
+        expect(output.border, isNull);
+        expect(output.borderRadius, BorderRadius.circular(design.AppRadius.large));
+        expect(surface, isNot(card), reason: 'the translation stands apart from the source');
+        for (final color in [scheme.onSurface, scheme.error, scheme.onSurfaceVariant]) {
+          expect(contrast(color, surface), greaterThanOrEqualTo(4.5), reason: '$color on the translation surface');
+        }
       });
 
       testWidgets('source and translated text are readable on their areas', (tester) async {

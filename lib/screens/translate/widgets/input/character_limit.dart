@@ -17,29 +17,17 @@ class CharacterLimit extends StatelessWidget {
           final textLength = value.text.length;
           final scheme = Theme.of(context).colorScheme;
           final color = textLength > inputLimit ? scheme.error : scheme.onSurfaceVariant;
+          final style = Theme.of(context).textTheme.labelMedium?.copyWith(color: color);
           return Semantics(
             label: i18n().main.character_count('$textLength', '$inputLimit'),
             excludeSemantics: true,
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
-              child: Column(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    textLength > 99999 ? '∞' : textLength.toString(),
-                    style: TextStyle(color: color),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.symmetric(vertical: 3),
-                    height: 1,
-                    width: 30,
-                    color: color,
-                  ),
-                  Text(
-                    '$inputLimit',
-                    style: TextStyle(color: color),
-                  ),
+                  Text(textLength > 99999 ? '∞' : textLength.toString(), style: style),
+                  Text(' / $inputLimit', style: style),
                 ],
               ),
             ),
