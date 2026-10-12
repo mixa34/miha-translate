@@ -79,34 +79,78 @@ class LanguageButton extends StatelessWidget {
 ///
 /// Whether there is a detection is decided by [detectedSourceLanguage] alone
 /// (current output, input and target; supported languages only). It rebuilds
-/// on every edit, so the label disappears as soon as the text changes, and
-/// takes no space when there is nothing to show.
-class DetectedLanguageLabel extends StatelessWidget {
+/// on every edit, so the label disappears as soon as the text changes.
+///
+/// While the source is Autodetect its line is always reserved, so the input
+/// below does not move while typing or waiting for a translation; with an
+/// explicit source it takes no space.
+///
+/// Screen readers announce the label (a live region) when a language is
+/// first detected or changes, not each time the same language comes back
+/// after an edit.
+class DetectedLanguageLabel extends StatefulWidget {
   const DetectedLanguageLabel({Key? key}) : super(key: key);
+
+  @override
+  State<DetectedLanguageLabel> createState() => _DetectedLanguageLabelState();
+}
+
+class _DetectedLanguageLabelState extends State<DetectedLanguageLabel> {
+  // Android announces a live region whenever its label is new, which includes
+  // every time the label reappears after an edit. So only a label showing a
+  // different language than the last one is a live region. Updated in build:
+  // it depends only on what is shown, and building again without a change
+  // leaves it as it is.
+  String? _lastLanguage; // the last language shown; reset when leaving Autodetect
+  bool _hidden = true; // whether the last build showed no label
+  bool _announce = false; // whether the shown label is a live region
+
+  bool _liveRegionFor(String code) {
+    if (code != _lastLanguage) {
+      _lastLanguage = code;
+      _announce = true;
+    } else if (_hidden) {
+      _announce = false; // the same language back after an edit
+    }
+    _hidden = false;
+    return _announce;
+  }
 
   @override
   Widget build(BuildContext context) => ValueListenableBuilder<TextEditingValue>(
         valueListenable: googleInCtrl,
         builder: (context, _, __) {
+          if (fromLangVal != 'auto') {
+            _lastLanguage = null;
+            _hidden = true;
+            return const SizedBox.shrink();
+          }
+          final theme = Theme.of(context);
+          final style = theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant);
           final code = detectedSourceLanguage();
           final name = code == null ? null : fromSelLangMap[code];
-          if (name == null) return const SizedBox.shrink();
-          final theme = Theme.of(context);
-          return Padding(
-            padding: const EdgeInsets.only(left: AppSpacing.lg, right: AppSpacing.lg, top: AppSpacing.sm),
-            child: Align(
-              alignment: AlignmentDirectional.centerStart,
-              child: Semantics(
-                liveRegion: true,
-                child: Text(
-                  i18n().main.detected_language(name),
-                  key: TranslateKeys.detectedLanguage,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
-                ),
+          final Widget content;
+          if (code == null || name == null) {
+            _hidden = true;
+            // Keeps the line's height, scaled with the text, without anything
+            // to see or read.
+            content = ExcludeSemantics(child: Text(' ', maxLines: 1, style: style));
+          } else {
+            content = Semantics(
+              liveRegion: _liveRegionFor(code),
+              child: Text(
+                i18n().main.detected_language(name),
+                key: TranslateKeys.detectedLanguage,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: style,
               ),
-            ),
+            );
+          }
+          return Padding(
+            key: TranslateKeys.detectedLanguageSlot,
+            padding: const EdgeInsets.only(left: AppSpacing.lg, right: AppSpacing.lg, top: AppSpacing.sm),
+            child: Align(alignment: AlignmentDirectional.centerStart, child: content),
           );
         },
       );

@@ -12,4 +12,5 @@ abstract final class TranslateKeys {
   static const languagePicker = ValueKey('languagePicker');
   static const languageSearch = ValueKey('languageSearchField');
   static const detectedLanguage = ValueKey('detectedLanguageLabel');
+  static const detectedLanguageSlot = ValueKey('detectedLanguageSlot');
 }
