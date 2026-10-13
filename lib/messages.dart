@@ -21,6 +21,7 @@ import 'messages/messages_nb_NO.i18n.dart';
 import 'messages/messages_pl.i18n.dart';
 import 'messages/messages_pt_BR.i18n.dart';
 import 'messages/messages_ru.i18n.dart';
+import 'messages/messages_sr.i18n.dart';
 import 'messages/messages_tr.i18n.dart';
 import 'messages/messages_uk.i18n.dart';
 import 'messages/messages_zh_HK.i18n.dart';
@@ -46,6 +47,7 @@ var langs = [
   MessagesPl(),
   MessagesPtBR(),
   MessagesRu(),
+  MessagesSr(),
   MessagesTr(),
   MessagesUk(),
   MessagesZhHK(),

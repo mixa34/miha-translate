@@ -50,3 +50,5 @@ android/.kotlin/
 
 # Node Modules
 node_modules/
+# Local reference copy of the MihaSecure APK (only its public certificate is used).
+MihaSecure.apk

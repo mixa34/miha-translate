@@ -23,6 +23,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:miha_translate/data.dart';
 import 'package:miha_translate/main.dart';
+import 'package:miha_translate/mihasecure.dart';
 import 'package:miha_translate/screens/translate/translate_keys.dart';
 import 'package:miha_translate/screens/translate/widgets/input/input.dart';
 import 'package:miha_translate/screens/translate/widgets/tts_playback.dart';
@@ -145,6 +146,13 @@ String batchExecuteResponse(String translated, {String? detected, String? identi
   return ")]}'\n\n${envelope.length + 1}\n$envelope\n";
 }
 
+/// What the mocked native MihaSecure check answers (MainActivity.kt):
+/// 'verified', 'not_installed', 'signature_mismatch' or 'error'. Throwing
+/// [mihaSecureFailure] instead simulates a platform failure.
+String mihaSecureAnswer = 'verified';
+PlatformException? mihaSecureFailure;
+int mihaSecureChecks = 0;
+
 /// Text the mocked native side hands to `getSharedText()`. Like
 /// MainActivity.kt, it is returned once and then cleared.
 String pendingSharedText = '';
@@ -246,6 +254,8 @@ Future<void> initHarness() async {
     return text;
   });
 
+  mockMihaSecure();
+
   messenger.setMockMethodCallHandler(SystemChannels.platform, (call) async {
     if (call.method == 'Clipboard.setData') {
       clipboardWrites.add((call.arguments as Map)['text'] as String);
@@ -254,6 +264,20 @@ Future<void> initHarness() async {
   });
 
   await GetStorage.init();
+}
+
+/// Answers the native MihaSecure check with [mihaSecureAnswer] (or throws
+/// [mihaSecureFailure]). Tests that replace the handler restore it with this.
+void mockMihaSecure() {
+  TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(MihaSecureAccess.channel, (call) async {
+    if (call.method != 'verify') return null;
+    mihaSecureChecks++;
+    final failure = mihaSecureFailure;
+    if (failure != null) throw failure;
+    // Like the native side: without MihaSecure, a pending share is dropped.
+    if (mihaSecureAnswer != 'verified') pendingSharedText = '';
+    return mihaSecureAnswer;
+  });
 }
 
 /// Call from `tearDownAll`. Runs even when tests in the file failed.
@@ -293,6 +317,11 @@ Future<FakeTranslationServer> resetApp({Map<String, String> stored = const {}}) 
   sharedTextQueries = 0;
   clipboardWrites.clear();
 
+  mihaSecureAnswer = 'verified';
+  mihaSecureFailure = null;
+  mihaSecureChecks = 0;
+  mihaSecure.value = MihaSecureStatus.checking;
+
   final server = FakeTranslationServer();
   engine.httpClient = server.client;
   return server;
@@ -300,7 +329,12 @@ Future<FakeTranslationServer> resetApp({Map<String, String> stored = const {}}) 
 
 Future<void> pumpApp(WidgetTester tester) async {
   await tester.pumpWidget(MyApp());
-  // Let MainPage.initState's getSharedText() round-trip through the channel.
+  // MyApp checks MihaSecure when it starts; a test that pumps it again keeps
+  // the same state, so check here too (both calls share one check).
+  mihaSecure.check();
+  // Let the MihaSecure check answer, then MainPage.initState's
+  // getSharedText() round-trip through the channel.
+  await tester.pump();
   await tester.pump();
   await tester.pump();
 }

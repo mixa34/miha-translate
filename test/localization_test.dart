@@ -5,6 +5,7 @@
 // English base (the generator requires it); untranslated entries carry the
 // English text, as scripts/python/arb_merger.py fills them.
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/widgets.dart';
@@ -31,6 +32,7 @@ import 'package:miha_translate/messages/messages_nb_NO.i18n.dart' as m_nb_no;
 import 'package:miha_translate/messages/messages_pl.i18n.dart' as m_pl;
 import 'package:miha_translate/messages/messages_pt_BR.i18n.dart' as m_pt_br;
 import 'package:miha_translate/messages/messages_ru.i18n.dart' as m_ru;
+import 'package:miha_translate/messages/messages_sr.i18n.dart' as m_sr;
 import 'package:miha_translate/messages/messages_tr.i18n.dart' as m_tr;
 import 'package:miha_translate/messages/messages_uk.i18n.dart' as m_uk;
 import 'package:miha_translate/messages/messages_zh_HK.i18n.dart' as m_zh_hk;
@@ -59,7 +61,10 @@ Map<String, String> yamlEntries(String path) {
       continue;
     }
     final entry = RegExp(r'^  ([a-z_]+): (.*)$').firstMatch(line);
-    if (entry != null) entries['$section.${entry.group(1)}'] = entry.group(2)!;
+    if (entry == null) continue;
+    // Double-quoted values (texts with colons or line breaks) are unescaped.
+    final value = entry.group(2)!;
+    entries['$section.${entry.group(1)}'] = value.startsWith('"') ? jsonDecode(value) as String : value;
   }
   return entries;
 }
@@ -99,7 +104,7 @@ void main() {
       }
       expect(m.main.detected_language('X'), contains('X'), reason: m.locale);
     }
-    expect(langs, hasLength(23));
+    expect(langs, hasLength(24));
   });
 
   test('untranslated locales show the English text', () {
@@ -143,11 +148,12 @@ void main() {
       'lib/messages/messages_pl.i18n.yaml': m_pl.messagesPlMap,
       'lib/messages/messages_pt_BR.i18n.yaml': m_pt_br.messagesPtBRMap,
       'lib/messages/messages_ru.i18n.yaml': m_ru.messagesRuMap,
+      'lib/messages/messages_sr.i18n.yaml': m_sr.messagesSrMap,
       'lib/messages/messages_tr.i18n.yaml': m_tr.messagesTrMap,
       'lib/messages/messages_uk.i18n.yaml': m_uk.messagesUkMap,
       'lib/messages/messages_zh_HK.i18n.yaml': m_zh_hk.messagesZhHKMap,
     };
-    expect(generated, hasLength(24));
+    expect(generated, hasLength(25));
     generated.forEach((path, map) {
       final yaml = yamlEntries(path);
       expect(map, yaml, reason: path);

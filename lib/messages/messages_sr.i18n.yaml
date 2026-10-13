@@ -1,0 +1,170 @@
+langs:
+  afrikaans: Afrikaans
+  albanian: Albanian
+  amharic: Amharic
+  arabic: Arabic
+  armenian: Armenian
+  autodetect: Autodetect
+  azerbaijani: Azerbaijani
+  basque: Basque
+  belarusian: Belarusian
+  bengali: Bengali
+  bosnian: Bosnian
+  bulgarian: Bulgarian
+  catalan: Catalan
+  cebuano: Cebuano
+  chichewa: Chichewa
+  chinese: Chinese
+  corsican: Corsican
+  croatian: Croatian
+  czech: Czech
+  danish: Danish
+  dutch: Dutch
+  english: English
+  esperanto: Esperanto
+  estonian: Estonian
+  filipino: Filipino
+  finnish: Finnish
+  french: French
+  frisian: Frisian
+  galician: Galician
+  georgian: Georgian
+  german: German
+  greek: Greek
+  gujarati: Gujarati
+  haitian_creole: Haitian Creole
+  hausa: Hausa
+  hawaiian: Hawaiian
+  hebrew: Hebrew
+  hindi: Hindi
+  hmong: Hmong
+  hungarian: Hungarian
+  icelandic: Icelandic
+  igbo: Igbo
+  indonesian: Indonesian
+  irish: Irish
+  italian: Italian
+  japanese: Japanese
+  javanese: Javanese
+  kannada: Kannada
+  kazakh: Kazakh
+  khmer: Khmer
+  kinyarwanda: Kinyarwanda
+  korean: Korean
+  kurdish_kurmanji: Kurdish (Kurmanji)
+  kyrgyz: Kyrgyz
+  lao: Lao
+  latin: Latin
+  latvian: Latvian
+  lithuanian: Lithuanian
+  luxembourgish: Luxembourgish
+  macedonian: Macedonian
+  malagasy: Malagasy
+  malay: Malay
+  malayalam: Malayalam
+  maltese: Maltese
+  maori: Maori
+  marathi: Marathi
+  mongolian: Mongolian
+  myanmar_burmese: Myanmar (Burmese)
+  nepali: Nepali
+  norwegian: Norwegian
+  odia_oriya: Odia (Oriya)
+  pashto: Pashto
+  persian: Persian
+  polish: Polish
+  portuguese: Portuguese
+  punjabi: Punjabi
+  romanian: Romanian
+  russian: Russian
+  samoan: Samoan
+  scots_gaelic: Scots Gaelic
+  serbian: Serbian
+  sesotho: Sesotho
+  shona: Shona
+  sindhi: Sindhi
+  sinhala: Sinhala
+  slovak: Slovak
+  slovenian: Slovenian
+  somali: Somali
+  spanish: Spanish
+  sundanese: Sundanese
+  swahili: Swahili
+  swedish: Swedish
+  tajik: Tajik
+  tamil: Tamil
+  tatar: Tatar
+  telugu: Telugu
+  thai: Thai
+  traditional_chinese: Traditional Chinese
+  turkish: Turkish
+  turkmen: Turkmen
+  ukrainian: Ukrainian
+  urdu: Urdu
+  uyghur: Uyghur
+  uzbek: Uzbek
+  vietnamese: Vietnamese
+  welsh: Welsh
+  xhosa: Xhosa
+  yiddish: Yiddish
+  yoruba: Yoruba
+  zulu: Zul
+main:
+  about: "O aplikaciji"
+  about_story_title: "Kako je sve počelo"
+  about_story_text: "Miha Translate nastao je iz jednostavne potrebe: da moji klijenti imaju pouzdanu aplikaciju za prevođenje koja radi kada im zatreba.\n\nPrvobitni plan nije bio da razvijam sopstveni prevodilac.\n\nMeđutim, kada postojeće aplikacije prestanu da rade, a njihovi developeri baš i ne žure da otklone probleme, čoveku ne preostaje mnogo izbora.\n\nMogao sam da čekam ažuriranje.\nMogao sam ponovo da prijavim isti problem.\nA mogao sam i da napravim svoju aplikaciju.\n\nPogodite šta sam izabrao. 🙂"
+  about_how_title: "Kako funkcioniše"
+  about_how_text: "Miha Translate je jednostavna Android aplikacija za prevođenje teksta, razvijena pomoću Flutter tehnologije.\n\nAplikacija automatski prevodi tekst tokom unosa, podržava prepoznavanje izvornog jezika, izbor i zamenu jezika, reprodukciju govora i kopiranje prevedenog teksta.\n\nZa prevođenje koristi Googleov onlajn servis, bez potrebe da Google Translate aplikacija bude instalirana na uređaju.\n\nInterfejs podržava svetlu i tamnu temu i prilagođava se različitim veličinama ekrana.\n\nZa prevođenje je potrebna internet veza."
+  about_footer: "Napravljeno za MihaSecure zajednicu."
+  about_license_text: "Miha Translate je slobodan softver, objavljen pod licencom GNU General Public License, verzija 3. Zasnovan je na aplikaciji SimplyTranslate Mobile, čiji su autori ManeraKai i saradnici."
+  about_licenses_button: "Licence otvorenog koda"
+  all_languages: All languages
+  appearance: Appearance
+  audio_limit: Cannot get audio for more than 200 characters
+  autodetect_not_supported: Autodetect not supported
+  cancel: Cancel
+  character_count(String count, String limit): "$count of $limit characters"
+  check_again: "Proveri ponovo"
+  checking_mihasecure: "Provera MihaSecure aplikacije..."
+  clear_source: Clear source text
+  contribute: Contribute
+  copied_to_clipboard: Copied to clipboard
+  copy_translation: Copy translation
+  dark: Dark
+  definitions: Definitions
+  detected_language(String language): "Detected: $language"
+  donate: Donate
+  enter_text_here: Enter text here
+  error: There was an error
+  follow_system: Follow system
+  help: Help
+  input_limit: The translation input is above 5000
+  install: Install
+  license: "Licenca"
+  light: Light
+  listen_source: Listen to source text
+  listen_translation: Listen to translation
+  mihasecure_required_title: "Potreban je MihaSecure"
+  mihasecure_required_message: "Miha Translate je dostupan isključivo korisnicima MihaSecure aplikacije.\n\nInstalirajte MihaSecure da biste nastavili."
+  no_internet: No internet connection
+  no_languages_found: No languages found
+  ok: OK
+  recent_languages: Recent
+  report_bug: Report a bug
+  search_languages: Search languages
+  settings: Settings
+  something_went_wrong: Something went wrong
+  source_language: Source language
+  stop_audio: Stop audio
+  swap_languages: Swap languages
+  target_language: Target language
+  text_recognition: Text Recognition
+  text_to_speech: Text-To-Speech
+  theme: Theme
+  translate: Translate
+  translate_from: Translate from
+  translate_to: Translate to
+  translation: Translation
+  translations: Translation
+  version: "Verzija"
+  website: Website

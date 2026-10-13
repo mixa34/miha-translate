@@ -11,10 +11,10 @@ import 'package:flutter_test/flutter_test.dart';
 import '../tool/generate_i18n.dart';
 
 void main() {
-  test('regenerating reproduces all 24 committed localization files exactly', () {
+  test('regenerating reproduces all 25 committed localization files exactly', () {
     final generated = generateAll();
 
-    expect(generated, hasLength(24));
+    expect(generated, hasLength(25));
     expect(generated.keys, contains('lib/messages/messages.i18n.dart'));
     expect(outdated(generated), isEmpty, reason: 'run: dart run tool/generate_i18n.dart');
   });

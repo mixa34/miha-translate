@@ -32,6 +32,8 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.WAKE_LOCK" />
   <queries>
+    <!-- MihaSecure, whose signature is checked at startup (MainActivity.kt). -->
+    <package android:name="net.mihalabs.mihasecure" />
     <!-- If your app opens https URLs -->
     <intent>
       <action android:name="android.intent.action.VIEW" />

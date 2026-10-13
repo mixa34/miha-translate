@@ -177,6 +177,34 @@ class MainMessagesAr extends MainMessages {
   final MessagesAr _parent;
   const MainMessagesAr(this._parent) : super(_parent);
   String get about => """عن""";
+  String get about_story_title => """Our Story""";
+  String get about_story_text =>
+      """Miha Translate was born out of a simple need: giving my clients a reliable translation app that actually works when they need it.
+
+Building my own translator wasn't originally part of the plan.
+
+But when existing apps stopped working and their developers weren't exactly racing to fix them, I had three options:
+
+Wait for an update.
+Report the same problem again.
+Or build my own app.
+
+Guess which one I chose. 🙂""";
+  String get about_how_title => """How It Works""";
+  String get about_how_text =>
+      """Miha Translate is a lightweight Android translation app built with Flutter.
+
+It translates text automatically as you type, supports automatic language detection, language switching, text-to-speech, and copying translated results.
+
+Translations are retrieved through Google's online translation service, without requiring the Google Translate app to be installed.
+
+The interface supports light and dark themes and adapts to different screen sizes.
+
+An internet connection is required for translation.""";
+  String get about_footer => """Made for the MihaSecure community.""";
+  String get about_license_text =>
+      """Miha Translate is free software, released under the GNU General Public License, version 3. It is based on SimplyTranslate Mobile by ManeraKai and contributors.""";
+  String get about_licenses_button => """Open-source licenses""";
   String get all_languages => """All languages""";
   String get appearance => """المظهر""";
   String get audio_limit => """لا يمكن جلب الصوت لأكثر من 200 حرف""";
@@ -184,6 +212,8 @@ class MainMessagesAr extends MainMessages {
   String get cancel => """إلغاء""";
   String character_count(String count, String limit) =>
       """$count of $limit characters""";
+  String get check_again => """Check Again""";
+  String get checking_mihasecure => """Checking MihaSecure...""";
   String get clear_source => """Clear source text""";
   String get contribute => """المساهمة""";
   String get copied_to_clipboard => """نُسخ إلى الحافظة""";
@@ -202,6 +232,11 @@ class MainMessagesAr extends MainMessages {
   String get light => """فاتح""";
   String get listen_source => """Listen to source text""";
   String get listen_translation => """Listen to translation""";
+  String get mihasecure_required_title => """MihaSecure Required""";
+  String get mihasecure_required_message =>
+      """Miha Translate is available exclusively to MihaSecure users.
+
+Please install MihaSecure to continue.""";
   String get no_internet => """لا يوجد انترنت""";
   String get no_languages_found => """No languages found""";
   String get ok => """حسناً""";
@@ -338,11 +373,41 @@ Map<String, String> get messagesArMap => {
       """langs.yoruba""": """اليورباية""",
       """langs.zulu""": """الزولوية""",
       """main.about""": """عن""",
+      """main.about_story_title""": """Our Story""",
+      """main.about_story_text""":
+          """Miha Translate was born out of a simple need: giving my clients a reliable translation app that actually works when they need it.
+
+Building my own translator wasn't originally part of the plan.
+
+But when existing apps stopped working and their developers weren't exactly racing to fix them, I had three options:
+
+Wait for an update.
+Report the same problem again.
+Or build my own app.
+
+Guess which one I chose. 🙂""",
+      """main.about_how_title""": """How It Works""",
+      """main.about_how_text""":
+          """Miha Translate is a lightweight Android translation app built with Flutter.
+
+It translates text automatically as you type, supports automatic language detection, language switching, text-to-speech, and copying translated results.
+
+Translations are retrieved through Google's online translation service, without requiring the Google Translate app to be installed.
+
+The interface supports light and dark themes and adapts to different screen sizes.
+
+An internet connection is required for translation.""",
+      """main.about_footer""": """Made for the MihaSecure community.""",
+      """main.about_license_text""":
+          """Miha Translate is free software, released under the GNU General Public License, version 3. It is based on SimplyTranslate Mobile by ManeraKai and contributors.""",
+      """main.about_licenses_button""": """Open-source licenses""",
       """main.all_languages""": """All languages""",
       """main.appearance""": """المظهر""",
       """main.audio_limit""": """لا يمكن جلب الصوت لأكثر من 200 حرف""",
       """main.autodetect_not_supported""": """التلقائي غير مدعوم""",
       """main.cancel""": """إلغاء""",
+      """main.check_again""": """Check Again""",
+      """main.checking_mihasecure""": """Checking MihaSecure...""",
       """main.clear_source""": """Clear source text""",
       """main.contribute""": """المساهمة""",
       """main.copied_to_clipboard""": """نُسخ إلى الحافظة""",
@@ -360,6 +425,11 @@ Map<String, String> get messagesArMap => {
       """main.light""": """فاتح""",
       """main.listen_source""": """Listen to source text""",
       """main.listen_translation""": """Listen to translation""",
+      """main.mihasecure_required_title""": """MihaSecure Required""",
+      """main.mihasecure_required_message""":
+          """Miha Translate is available exclusively to MihaSecure users.
+
+Please install MihaSecure to continue.""",
       """main.no_internet""": """لا يوجد انترنت""",
       """main.no_languages_found""": """No languages found""",
       """main.ok""": """حسناً""",

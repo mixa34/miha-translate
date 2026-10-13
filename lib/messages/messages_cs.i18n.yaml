@@ -111,12 +111,21 @@ langs:
   zulu: Zul
 main:
   about: O aplikaci
+  about_story_title: "Our Story"
+  about_story_text: "Miha Translate was born out of a simple need: giving my clients a reliable translation app that actually works when they need it.\n\nBuilding my own translator wasn't originally part of the plan.\n\nBut when existing apps stopped working and their developers weren't exactly racing to fix them, I had three options:\n\nWait for an update.\nReport the same problem again.\nOr build my own app.\n\nGuess which one I chose. 🙂"
+  about_how_title: "How It Works"
+  about_how_text: "Miha Translate is a lightweight Android translation app built with Flutter.\n\nIt translates text automatically as you type, supports automatic language detection, language switching, text-to-speech, and copying translated results.\n\nTranslations are retrieved through Google's online translation service, without requiring the Google Translate app to be installed.\n\nThe interface supports light and dark themes and adapts to different screen sizes.\n\nAn internet connection is required for translation."
+  about_footer: "Made for the MihaSecure community."
+  about_license_text: "Miha Translate is free software, released under the GNU General Public License, version 3. It is based on SimplyTranslate Mobile by ManeraKai and contributors."
+  about_licenses_button: "Open-source licenses"
   all_languages: All languages
   appearance: Vzhled
   audio_limit: Nelze získat zvuk pro více než 200 znaků
   autodetect_not_supported: Automatická detekce není podporována
   cancel: Zrušit
   character_count(String count, String limit): "$count of $limit characters"
+  check_again: "Check Again"
+  checking_mihasecure: "Checking MihaSecure..."
   clear_source: Clear source text
   contribute: Přispějte
   copied_to_clipboard: Zkopírováno do schránky
@@ -135,6 +144,8 @@ main:
   light: Světlý
   listen_source: Listen to source text
   listen_translation: Listen to translation
+  mihasecure_required_title: "MihaSecure Required"
+  mihasecure_required_message: "Miha Translate is available exclusively to MihaSecure users.\n\nPlease install MihaSecure to continue."
   no_internet: Jste bez internetu
   no_languages_found: No languages found
   ok: OK

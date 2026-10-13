@@ -11,6 +11,8 @@ import 'package:miha_translate/screens/translate/widgets/tts_playback.dart';
 // Prefixed: data.dart's `AppTheme` enum is the saved theme preference.
 import 'package:miha_translate/theme/app_theme.dart' as design;
 import 'data.dart';
+import 'mihasecure.dart';
+import 'screens/mihasecure/mihasecure_gate.dart';
 import 'language_codes.dart';
 import 'screens/translate/translate.dart';
 
@@ -51,6 +53,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     contextOverlordData = context;
     setStateOverlord = setState;
     super.initState();
+    // Nothing of the app is shown before this answers (MihaSecureGate).
+    mihaSecure.check();
   }
 
   @override
@@ -62,8 +66,11 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   void didChangeAppLifecycleState(AppLifecycleState state) async {
     if (state == AppLifecycleState.resumed) {
+      // MihaSecure may have been removed or installed meanwhile; shared text
+      // is only taken when it is verified.
+      final verified = mihaSecure.check();
       await Future.delayed(Duration(seconds: 1));
-      getSharedText();
+      if (await verified && mounted) getSharedText();
     }
   }
 
@@ -110,7 +117,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         AppTheme.system => ThemeMode.system,
       },
       title: 'Miha Translate',
-      home: Scaffold(
+      home: MihaSecureGate(
+          child: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size(0, 60),
           child: Builder(
@@ -150,7 +158,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           ),
         ),
         body: MainPageLocalization(),
-      ),
+      )),
     );
   }
 }

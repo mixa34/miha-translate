@@ -111,12 +111,21 @@ langs:
   zulu: 줄루어
 main:
   about: 소개
+  about_story_title: "Our Story"
+  about_story_text: "Miha Translate was born out of a simple need: giving my clients a reliable translation app that actually works when they need it.\n\nBuilding my own translator wasn't originally part of the plan.\n\nBut when existing apps stopped working and their developers weren't exactly racing to fix them, I had three options:\n\nWait for an update.\nReport the same problem again.\nOr build my own app.\n\nGuess which one I chose. 🙂"
+  about_how_title: "How It Works"
+  about_how_text: "Miha Translate is a lightweight Android translation app built with Flutter.\n\nIt translates text automatically as you type, supports automatic language detection, language switching, text-to-speech, and copying translated results.\n\nTranslations are retrieved through Google's online translation service, without requiring the Google Translate app to be installed.\n\nThe interface supports light and dark themes and adapts to different screen sizes.\n\nAn internet connection is required for translation."
+  about_footer: "Made for the MihaSecure community."
+  about_license_text: "Miha Translate is free software, released under the GNU General Public License, version 3. It is based on SimplyTranslate Mobile by ManeraKai and contributors."
+  about_licenses_button: "Open-source licenses"
   all_languages: All languages
   appearance: 모양
   audio_limit: 200자를 초과하는 오디오를 가져올 수 없습니다
   autodetect_not_supported: 자동 감지가 지원되지 않습니다
   cancel: 취소
   character_count(String count, String limit): "$count of $limit characters"
+  check_again: "Check Again"
+  checking_mihasecure: "Checking MihaSecure..."
   clear_source: Clear source text
   contribute: 기여하기
   copied_to_clipboard: 클립보드에 복사되었습니다
@@ -135,6 +144,8 @@ main:
   light: 낮
   listen_source: Listen to source text
   listen_translation: Listen to translation
+  mihasecure_required_title: "MihaSecure Required"
+  mihasecure_required_message: "Miha Translate is available exclusively to MihaSecure users.\n\nPlease install MihaSecure to continue."
   no_internet: 인터넷 엿결 없음
   no_languages_found: No languages found
   ok: OK
